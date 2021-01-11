@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./NavBar.css";
-import "./hamburgers/dist/hamburgers.css";
+import "./burger-menu/hamburgers.min.css";
 import bee from "../../Assets/bee.svg";
 import { Link, useLocation } from "react-router-dom";
 
