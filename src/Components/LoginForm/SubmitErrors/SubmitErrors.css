@@ -1,0 +1,88 @@
+.errorsContainer {
+  width: 40%;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  z-index: 10;
+}
+
+.error-box {
+  display: none;
+
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  animation: fadeIn;
+  animation-duration: 0.2s;
+
+  width: 70%;
+  margin: 5px 0px;
+  padding: 5px 20px;
+
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: #ffa600;
+  background: -webkit-linear-gradient(to right, #ffbf34, #ffa600);
+  background: linear-gradient(to right, #ffbf34, #ffa600);
+}
+
+/* IMPORTANT ERRORS -> */
+.error-box.reg-invalid-email,
+.error-box.repeated-pwrd {
+  background: #ff6334;
+  background: -webkit-linear-gradient(to right, #ff6334, #ff3c00);
+  background: linear-gradient(to right, #ff6334, #ff3c00);
+}
+.error-box.reg-invalid-email p,
+.error-box.repeated-pwrd p {
+  color: #fff;
+}
+/* <- IMPORTANT ERRORS */
+
+.error-box.active {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.error-box p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.error-box img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .errorsContainer {
+    width: 65%;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .errorsContainer {
+    width: 75%;
+  }
+
+  .error-box {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .errorsContainer {
+    width: 90%;
+  }
+}

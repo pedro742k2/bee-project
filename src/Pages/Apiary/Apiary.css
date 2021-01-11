@@ -1,0 +1,277 @@
+.apiarypage-main {
+  height: 100%;
+  min-height: 80vh;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+
+  margin: 0;
+  padding: 0;
+}
+
+.apiarypage-main {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.menus {
+  width: 15%;
+
+  margin: 0;
+  margin-top: 1vh;
+  padding: 0;
+
+  border: 2px solid #fff;
+  border-width: 3px 3px 3px 0px;
+  border-radius: 0px 10px 10px 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  z-index: 10;
+}
+
+/* .menus #title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+} */
+
+.apiaries {
+  width: 100%;
+  min-height: 84vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-bottom: 0px;
+}
+
+.apiary-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background-color: #fff;
+  color: #ff4800;
+  margin: 0;
+  padding: 10px 0px 10px 0px;
+  border-radius: 10px 10px 0px 0px;
+  cursor: default;
+}
+
+.apiary {
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #fff;
+  border-radius: 15px;
+  margin: 20px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
+}
+
+.apiary div {
+  margin-top: 10px;
+}
+
+.apiary div p {
+  cursor: pointer;
+  padding: 10px 0px 10px 0px;
+  margin: 5px 0px 5px 0px;
+}
+
+.apiary div p:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.apiary .selected {
+  background-color: rgba(255, 81, 0, 0.5);
+  border: 2px solid #fff;
+  border-width: 2px 0px 2px 0px;
+}
+
+.graphs {
+  width: 85%;
+  height: 100%;
+  z-index: 10;
+  min-height: 84vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-bottom: 10vh;
+}
+
+.graphs h1 {
+  align-self: center;
+}
+
+.graphs h1:first-of-type {
+  margin-bottom: 0px;
+}
+
+#actual-values {
+  margin-top: 1vh;
+  padding: 20px 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  cursor: default;
+
+  border: 3px solid #fff;
+  border-radius: 10px;
+}
+
+#actual-values,
+#actual-values h1 {
+  margin-bottom: 20px;
+}
+
+#actual-values h1 {
+  margin-top: 0px;
+  font-size: 2.5rem;
+}
+
+/* Dropdown menu -> */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  user-select: none;
+  width: 30vw;
+
+  margin-top: 50px;
+}
+.custom-select {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #ff4800;
+}
+.custom-select__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #3b3b3b;
+  height: 60px;
+  line-height: 60px;
+  background: #ffffff;
+  cursor: pointer;
+  border-width: 2px 0 2px 0;
+  border-style: solid;
+  border-color: #ff4800;
+}
+.custom-options {
+  position: absolute;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  top: 100%;
+  left: 0px;
+  right: 0px;
+  border: 2px solid #ff4800;
+  border-top: 0;
+  background: #fff;
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+.custom-option {
+  position: relative;
+  display: block;
+  padding: 0 22px 0 22px;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #3b3b3b;
+  line-height: 60px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.custom-option:hover {
+  cursor: pointer;
+  background-color: #b2b2b2;
+}
+.custom-option.selected {
+  color: #ffffff;
+  background-color: #ff4800;
+}
+/* <- Dropdown menu */
+
+/* Dropdown arrow -> */
+.arrow {
+  position: relative;
+  height: 15px;
+  width: 15px;
+}
+.arrow::before,
+.arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 0.15rem;
+  height: 100%;
+  transition: all 0.5s;
+}
+.arrow::before {
+  left: -5px;
+  transform: rotate(45deg);
+  background-color: #ff4800;
+}
+.arrow::after {
+  left: 5px;
+  transform: rotate(-45deg);
+  background-color: #ff4800;
+}
+.open .arrow::before {
+  left: -5px;
+  transform: rotate(-45deg);
+}
+.open .arrow::after {
+  left: 5px;
+  transform: rotate(45deg);
+}
+/* <- Dropdown arrow */
+
+#charts {
+  width: 100%;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#charts h3 {
+  cursor: default;
+  margin: 0;
+  padding: 0;
+
+  margin-top: 10px;
+}

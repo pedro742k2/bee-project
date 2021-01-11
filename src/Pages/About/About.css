@@ -1,0 +1,13 @@
+.aboutpage-main {
+  height: 84vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.aboutpage-main p {
+  font-size: 3rem;
+  color: #fff;
+}

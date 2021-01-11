@@ -1,0 +1,237 @@
+.login-main {
+  width: 100%;
+  height: 84vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.main-div {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.login-form {
+  margin-left: 10%;
+  width: 50%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*border: 2px solid #ff7b00;*/
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 0 20px 0;
+
+  -webkit-box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.56);
+  -moz-box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.56);
+  box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.56);
+
+  z-index: 20;
+
+  transition: all ease-in-out 1s;
+}
+
+.login-form.disable {
+  display: none;
+}
+
+.buttons-div {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 10px 10px 0px 0px;
+  /*border: 2px solid #ff7b00;*/
+  margin-bottom: 20px;
+
+  background: #ff7b00;
+  background: -webkit-linear-gradient(to right, #ff7b00, #ff5e00);
+  background: linear-gradient(to right, #ff7b00, #ff5e00);
+}
+
+.buttons-div button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+  height: 100%;
+  border: none;
+  border-radius: 10px 10px 0px 0px;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all linear 0.2s;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.btn-text-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-div .login-register-icon {
+  width: 40px;
+  height: auto;
+  opacity: 0.5;
+  margin-left: 20px;
+}
+
+.bubble {
+  display: none;
+  margin-top: 10px;
+}
+
+button.disable {
+  /*cursor: not-allowed;*/
+  cursor: default;
+  opacity: 0.5;
+}
+
+button.disable .bubble {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 100%;
+}
+
+.buttons-div .enable:hover {
+  opacity: 0.75;
+  color: #272727;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-form h1 {
+  cursor: default;
+  font-size: 4rem;
+  color: #272727;
+}
+
+.inputs-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  transition: all ease-in-out 1s;
+}
+
+.input-fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.input-container img {
+  display: none;
+  width: 30px;
+  /* cursor: pointer; */
+}
+
+.input-container img.active {
+  display: block;
+}
+
+.login-form input {
+  width: 90%;
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+
+  border: none;
+  border-radius: 5px;
+  background: #ff8800;
+  background: -webkit-linear-gradient(to right, #ffae00, #ff6600);
+  background: linear-gradient(to right, #ffae00, #ff6600);
+
+  margin: 10px 0;
+  line-height: 2rem;
+
+  transition: all linear 0.1s;
+}
+
+.login-form input.error {
+  border: 3px solid #ff0000;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-form input:focus {
+  background-color: #fff;
+
+  transform: scale(1.05);
+}
+
+.submit-form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  /* border: none; */
+  border: 3px solid #ff8800;
+  border-radius: 5px;
+  background-color: rgba(255, 136, 0, 0.75);
+
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px 30px;
+  cursor: pointer;
+
+  transition: all linear 0.1s;
+}
+
+.submit-form-btn:hover {
+  background-color: #ff8800;
+  background-color: -webkit-linear-gradient(to right, #ffae00, #ff6600);
+  background-color: linear-gradient(to right, #ffae00, #ff6600);
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

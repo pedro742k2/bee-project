@@ -1,0 +1,178 @@
+.nav-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 10vh;
+
+  background: #ff8800;
+  background: -webkit-linear-gradient(to right, #ffae00, #ff4800);
+  background: linear-gradient(to right, #ffae00, #ff4800);
+
+  -webkit-box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 13px -1px rgba(0, 0, 0, 0.25);
+
+  padding-left: 10px;
+}
+
+.nav-bar .burger-menu {
+  display: none;
+}
+
+.nav-options {
+  display: flex;
+  flex-direction: row;
+
+  position: absolute;
+  right: 20px;
+}
+
+.nav-bar .links {
+  text-decoration: none;
+  z-index: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar p {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 15px;
+  margin: 0 10px;
+  font-size: 2rem;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.nav-bar p:hover {
+  background-color: #fff;
+  color: #ff3c00;
+}
+
+.nav-bar p.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.nav-bar .link {
+  text-decoration: none;
+  z-index: 20;
+}
+
+.bee-logo {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  z-index: 100;
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+}
+
+#hr-login {
+  width: 2px;
+  border: none;
+  background-color: #fff;
+}
+
+@media (max-width: 750px) {
+  .nav-options p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 850px) {
+  #hr-login {
+    display: none;
+  }
+
+  .nav-options p {
+    display: none;
+  }
+
+  .nav-bar.on img {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    z-index: 20;
+  }
+
+  .nav-bar .burger-menu {
+    display: block;
+  }
+
+  .nav-bar.on {
+    position: fixed;
+  }
+
+  .nav-bar.on .nav-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 10;
+
+    background: url("../../Assets/background.svg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .nav-bar.on .burger-menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+
+  .nav-bar.on p {
+    margin: 10px 0px 10px 0px;
+    line-height: 50px;
+
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    display: block;
+    width: 100vw;
+  }
+
+  .nav-bar.on p:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #272727;
+  }
+}
+
+@media (max-height: 600px) {
+  .nav-bar.on p {
+    line-height: 75px;
+  }
+}
+
+@media (max-height: 500px) {
+  .nav-bar.on p {
+    line-height: 50px;
+  }
+}
+
+@media (max-width: 300px) {
+  .bee-logo {
+    width: 30px;
+    height: auto;
+  }
+}

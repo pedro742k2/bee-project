@@ -1,0 +1,26 @@
+.footer {
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: #ff8800;
+  background: -webkit-linear-gradient(to right, #ffae00, #ff4800);
+  background: linear-gradient(to right, #ffae00, #ff4800);
+
+  -webkit-box-shadow: 0px -2px 13px -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px -2px 13px -1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -2px 13px -1px rgba(0, 0, 0, 0.25);
+}
+
+.footer .credits {
+  font-size: 2rem;
+  color: #fff;
+}
+
+@media (max-width: 750px) {
+  .footer .credits {
+    font-size: 1.5rem;
+  }
+}
