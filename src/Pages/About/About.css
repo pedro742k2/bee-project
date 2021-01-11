@@ -1,5 +1,5 @@
 .aboutpage-main {
-  height: 84vh;
+  min-height: 84vh;
 
   display: flex;
   justify-content: center;
@@ -8,6 +8,44 @@
 }
 
 .aboutpage-main p {
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: bolder;
   color: #fff;
+}
+
+.license-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 20px 100px;
+  margin: 20px 20px;
+
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 10;
+}
+
+.license-type {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bolder;
+}
+
+.license-container hr {
+  width: 100%;
+  height: 3px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 20px 0px;
+}
+
+.license {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: bolder;
 }

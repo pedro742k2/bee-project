@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import Chart from "../../Components/Chart/Chart";
@@ -76,6 +76,7 @@ class Apiary extends Component {
 
   render() {
     let { day, month, year } = this.state.date;
+    const { burger_state } = this.state;
 
     return (
       <div className="App">
@@ -86,108 +87,117 @@ class Apiary extends Component {
           />
         </header>
 
-        <main className="apiarypage-main">
-          {/* Left-side menu */}
-          <div className="menus">
-            <div className="apiaries">
-              <div className="apiary">
-                <p className="apiary-title">Apiary 1</p>
+        {burger_state ? (
+          <Fragment>
+            <main className="apiarypage-main">
+              {/* Left-side menu */}
+              <div className="menus">
+                <div className="apiaries">
+                  <div className="apiary">
+                    <p className="apiary-title">Apiary 1</p>
 
-                <div>
-                  <p>Hive 1</p>
-                  <p>Hive 2</p>
-                  <p className="selected">Hive 3</p>
-                </div>
-              </div>
-
-              <div className="apiary">
-                <p className="apiary-title">Apiary 2</p>
-
-                <div>
-                  <p>Hive 1</p>
-                </div>
-              </div>
-
-              <div className="apiary">
-                <p className="apiary-title">Apiary 3</p>
-
-                <div>
-                  <p>Hive 1</p>
-                  <p className="selected">Hive 2</p>
-                </div>
-              </div>
-
-              <div className="apiary">
-                <p className="apiary-title">Apiary 4</p>
-
-                <div>
-                  <p>Hive 1</p>
-                  <p>Hive 2</p>
-                  <p>Hive 3</p>
-                  <p>Hive 4</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="graphs">
-            <div id="actual-values">
-              <h1>Actual values</h1>
-              <ActualValues />
-            </div>
-            <div id="charts">
-              {/* <h1>Apiary 3 - Hive 2</h1> */}
-              {/* <h1 id="measurement-date">Daily measurement</h1> */}
-              <div class="custom-select-wrapper" onClick={this.toggleDropMenu}>
-                <div class="custom-select">
-                  <div class="custom-select__trigger">
-                    <span>{this.state.measurementType} measurements</span>
-                    <div class="arrow"></div>
+                    <div>
+                      <p>Hive 1</p>
+                      <p>Hive 2</p>
+                      <p className="selected">Hive 3</p>
+                    </div>
                   </div>
-                  <div class="custom-options">
-                    <span
-                      class="custom-option selected"
-                      data-value="daily"
-                      onClick={() => {
-                        this.handleDropMenuClick("Daily");
-                      }}
-                    >
-                      Daily measurements
-                    </span>
-                    <span
-                      class="custom-option"
-                      data-value="weekly"
-                      onClick={() => {
-                        this.handleDropMenuClick("Weekly");
-                      }}
-                    >
-                      Weekly measurements
-                    </span>
-                    <span
-                      class="custom-option"
-                      data-value="monthly"
-                      onClick={() => {
-                        this.handleDropMenuClick("Monthly");
-                      }}
-                    >
-                      Monthly measurements
-                    </span>
+
+                  <div className="apiary">
+                    <p className="apiary-title">Apiary 2</p>
+
+                    <div>
+                      <p>Hive 1</p>
+                    </div>
+                  </div>
+
+                  <div className="apiary">
+                    <p className="apiary-title">Apiary 3</p>
+
+                    <div>
+                      <p>Hive 1</p>
+                      <p className="selected">Hive 2</p>
+                    </div>
+                  </div>
+
+                  <div className="apiary">
+                    <p className="apiary-title">Apiary 4</p>
+
+                    <div>
+                      <p>Hive 1</p>
+                      <p>Hive 2</p>
+                      <p>Hive 3</p>
+                      <p>Hive 4</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <h3>{`${day <= 9 ? "0" + day : day}/${
-                month <= 9 ? "0" + month : month
-              }/${year}`}</h3>
+              <div className="graphs">
+                <div id="actual-values">
+                  <h1>Actual values</h1>
+                  <ActualValues />
+                </div>
+                <div id="charts">
+                  {/* <h1>Apiary 3 - Hive 2</h1> */}
+                  {/* <h1 id="measurement-date">Daily measurement</h1> */}
+                  <div
+                    class="custom-select-wrapper"
+                    onClick={this.toggleDropMenu}
+                  >
+                    <div class="custom-select">
+                      <div class="custom-select__trigger">
+                        <span>{this.state.measurementType} measurements</span>
+                        <div class="arrow"></div>
+                      </div>
+                      <div class="custom-options">
+                        <span
+                          class="custom-option selected"
+                          data-value="daily"
+                          onClick={() => {
+                            this.handleDropMenuClick("Daily");
+                          }}
+                        >
+                          Daily measurements
+                        </span>
+                        <span
+                          class="custom-option"
+                          data-value="weekly"
+                          onClick={() => {
+                            this.handleDropMenuClick("Weekly");
+                          }}
+                        >
+                          Weekly measurements
+                        </span>
+                        <span
+                          class="custom-option"
+                          data-value="monthly"
+                          onClick={() => {
+                            this.handleDropMenuClick("Monthly");
+                          }}
+                        >
+                          Monthly measurements
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
-              <Chart />
-            </div>
-          </div>
-        </main>
+                  <h3>{`${day <= 9 ? "0" + day : day}/${
+                    month <= 9 ? "0" + month : month
+                  }/${year}`}</h3>
 
-        <footer>
-          <Footer />
-        </footer>
+                  <Chart />
+                </div>
+              </div>
+            </main>
+
+            <footer>
+              <Footer />
+            </footer>
+          </Fragment>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./About.css";
@@ -41,6 +41,8 @@ class About extends Component {
   };
 
   render() {
+    const { burger_state } = this.state;
+
     return (
       <div className="App">
         <header>
@@ -50,14 +52,54 @@ class About extends Component {
           />
         </header>
 
-        <main className="aboutpage-main">
-          <p>About Page</p>
-          <p>Under development</p>
-        </main>
+        {burger_state ? (
+          <Fragment>
+            <main className="aboutpage-main">
+              <p>About Page</p>
+              <p>Under development</p>
 
-        <footer>
-          <Footer />
-        </footer>
+              <div className="license-container">
+                <span className="license-type">Copyright Notice</span>
+                <hr></hr>
+                <span align="justify" className="license">
+                  MIT License
+                  <br />
+                  Copyright (c) 2021 Pedro Batista
+                  <br />
+                  <br />
+                  Permission is hereby granted, free of charge, to any person
+                  obtaining a copy of this software and associated documentation
+                  files (the "Software"), to deal in the Software without
+                  restriction, including without limitation the rights to use,
+                  copy, modify, merge, publish, distribute, sublicense, and/or
+                  sell copies of the Software, and to permit persons to whom the
+                  Software is furnished to do so, subject to the following
+                  conditions
+                  <br />
+                  <br /> The above copyright notice and this permission notice
+                  shall be included in all copies or substantial portions of the
+                  Software.
+                  <br />
+                  <br />
+                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+                  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+                  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+                  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+                  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+                  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                </span>
+              </div>
+            </main>
+
+            <footer>
+              <Footer />
+            </footer>
+          </Fragment>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }
