@@ -76,7 +76,7 @@ class TempNotes extends Component {
                 <div className="note">
                   <div className="note-title-div">
                     <h1>Corrigido bug do menu de três barras</h1>
-                    <h2>11-01-2021 / 21:09</h2>
+                    <h2>11-01-2021 / 21:09h</h2>
                   </div>
                   <span>
                     Foi corrigido um bug que impedia dispositivos abaixo dos 850
@@ -89,7 +89,7 @@ class TempNotes extends Component {
                 <div className="note">
                   <div className="note-title-div">
                     <h1>Adicionada a página "Notas temporárias"</h1>
-                    <h2>11-01-2021 / 20:27</h2>
+                    <h2>11-01-2021 / 20:27h</h2>
                   </div>
                   <span>
                     Adicionada esta mesma página, que unicamente pode ser
@@ -100,7 +100,7 @@ class TempNotes extends Component {
                 <div className="note">
                   <div className="note-title-div">
                     <h1>Adicionada a página "invalid page"</h1>
-                    <h2>11-01-2021 / 15:51</h2>
+                    <h2>11-01-2021 / 15:51h</h2>
                   </div>
                   <span>
                     Adicionada uma página com a finalidade de ser exibida quando
