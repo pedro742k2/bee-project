@@ -7,6 +7,7 @@ import About from "./Pages/About/About";
 import Contacts from "./Pages/Contacts/Contacts";
 import MainLogin from "./Pages/MainLogin/MainLogin";
 import Apiary from "./Pages/Apiary/Apiary";
+import NotExistPage from "./Pages/NotExistPage/NotExistPage";
 
 const Routes = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Routes = () => (
       <Route path="/contacts" component={Contacts} />
       <Route path="/login" component={MainLogin} />
       <Route path="/apiary" component={Apiary} />
+      <Route path="/" component={NotExistPage} />
     </Switch>
   </BrowserRouter>
 );

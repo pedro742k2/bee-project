@@ -172,7 +172,7 @@
   color: #3b3b3b;
   height: 60px;
   line-height: 60px;
-  background: #ffffff;
+  background: rgb(255, 255, 255);
   cursor: pointer;
   border-width: 2px 0 2px 0;
   border-style: solid;
@@ -190,7 +190,7 @@
   right: 0px;
   border: 2px solid #ff4800;
   border-top: 0;
-  background: #fff;
+  background: rgb(255, 255, 255);
   transition: all 0.5s;
   opacity: 0;
   visibility: hidden;

@@ -59,6 +59,11 @@
   cursor: default;
 }
 
+.nav-bar p.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
 .nav-bar .link {
   text-decoration: none;
   z-index: 20;

@@ -1,0 +1,26 @@
+.nopage-main {
+  height: 84vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nopage-main p {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.bee-p {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: row;
+}
+
+.bee-p img {
+  width: 100px;
+  margin-right: 10px;
+}

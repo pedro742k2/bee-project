@@ -13,7 +13,11 @@ const NavBar = ({ burgerMenuOptionClicked, changeMenuState }) => {
     document.getElementById("/contacts").classList.remove("disabled");
     document.getElementById("/apiary").classList.remove("disabled");
     document.getElementById("/login").classList.remove("disabled");
-    document.getElementById(path).classList.add("disabled");
+    try {
+      document.getElementById(path).classList.add("disabled");
+    } catch (error) {
+      console.warn(error);
+    }
   });
 
   return (
