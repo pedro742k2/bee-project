@@ -8,7 +8,6 @@ import Contacts from "./Pages/Contacts/Contacts";
 import MainLogin from "./Pages/MainLogin/MainLogin";
 import Apiary from "./Pages/Apiary/Apiary";
 import NotExistPage from "./Pages/NotExistPage/NotExistPage";
-import TempNotes from "./Pages/TempNotes/TempNotes";
 
 const Routes = () => (
   <BrowserRouter>
@@ -18,7 +17,6 @@ const Routes = () => (
       <Route path="/contacts" component={Contacts} />
       <Route path="/login" component={MainLogin} />
       <Route path="/apiary" component={Apiary} />
-      <Route path="/temp" component={TempNotes} />
       <Route path="/" component={NotExistPage} />
     </Switch>
   </BrowserRouter>

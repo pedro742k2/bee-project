@@ -1,0 +1,47 @@
+@media (max-width: 1200px) {
+  .nopage-main p:first-of-type {
+    font-size: 3.5rem;
+  }
+
+  .nopage-main p {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nopage-main p:first-of-type {
+    font-size: 3rem;
+  }
+
+  .nopage-main p {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .nopage-main p:first-of-type {
+    font-size: 2.5rem;
+  }
+
+  .nopage-main p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .bee-p {
+    flex-direction: column;
+  }
+
+  .bee-p img {
+    width: 75px;
+  }
+
+  .nopage-main p:first-of-type {
+    font-size: 2rem;
+  }
+
+  .nopage-main p {
+    font-size: 1.5rem;
+  }
+}

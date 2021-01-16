@@ -7,8 +7,12 @@
   flex-direction: column;
 }
 
-.nopage-main p {
+.nopage-main p:first-of-type {
   font-size: 4rem;
+}
+
+.nopage-main p {
+  font-size: 3rem;
   font-weight: bolder;
   color: #fff;
 }
@@ -16,7 +20,7 @@
 .bee-p {
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-items: center;
   flex-direction: row;
 }
 

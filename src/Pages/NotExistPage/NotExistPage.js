@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./NotExistPage.css";
+import "./NotExistPageResponsive.css";
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
 class NotExistPage extends Component {
