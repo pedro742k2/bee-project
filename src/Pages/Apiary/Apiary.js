@@ -4,6 +4,7 @@ import Footer from "../../Components/Footer/Footer";
 import Chart from "../../Components/Chart/Chart";
 import ActualValues from "../../Components/ActualValues/ActualValues";
 import "./Apiary.css";
+import "./ApiaryResponsive.css";
 
 class Apiary extends Component {
   constructor() {

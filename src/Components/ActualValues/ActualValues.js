@@ -13,6 +13,10 @@ class ActualValues extends Component {
           <p>
             <img alt="" src={tempIcon}></img>Temperature
           </p>
+          <p className="hidden-img">
+            <img alt="" src={tempIcon}></img>
+          </p>
+
           <p>35{" °C"}</p>
         </div>
 
@@ -20,6 +24,10 @@ class ActualValues extends Component {
           <p>
             <img alt="" src={hmdtIcon}></img>Humidity
           </p>
+          <p className="hidden-img">
+            <img alt="" src={hmdtIcon}></img>
+          </p>
+
           <p>29{" %"}</p>
         </div>
 
@@ -27,6 +35,10 @@ class ActualValues extends Component {
           <p>
             <img alt="" src={weightIcon}></img>Weight
           </p>
+          <p className="hidden-img">
+            <img alt="" src={weightIcon}></img>
+          </p>
+
           <p>36{" Kg"}</p>
         </div>
 
@@ -34,6 +46,10 @@ class ActualValues extends Component {
           <p>
             <img alt="" src={batteryIcon}></img>Battery
           </p>
+          <p className="hidden-img">
+            <img alt="" src={batteryIcon}></img>
+          </p>
+
           <p>86{" %"}</p>
         </div>
       </div>

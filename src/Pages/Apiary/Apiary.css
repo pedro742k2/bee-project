@@ -9,9 +9,7 @@
 
   margin: 0;
   padding: 0;
-}
 
-.apiarypage-main {
   font-size: 2rem;
   color: #fff;
 }
@@ -37,15 +35,8 @@
   z-index: 10;
 }
 
-/* .menus #title {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #fff;
-} */
-
 .apiaries {
   width: 100%;
-  min-height: 84vh;
 
   display: flex;
   justify-content: center;
@@ -53,9 +44,17 @@
   flex-direction: column;
 
   margin-bottom: 0px;
+
+  overflow-x: auto;
 }
 
 .apiary-title {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-size: 2.5rem;
   font-weight: bold;
   background-color: #fff;
@@ -76,7 +75,7 @@
 }
 
 .apiary div {
-  margin-top: 10px;
+  margin: 10px 0px 0px 0px;
 }
 
 .apiary div p {
@@ -118,8 +117,14 @@
 }
 
 #actual-values {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 95%;
+
   margin-top: 1vh;
-  padding: 20px 50px;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.2);
 
   cursor: default;
@@ -167,7 +172,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 22px;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 300;
   color: #3b3b3b;
   height: 60px;
