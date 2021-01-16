@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./About.css";
+import "./AboutResponsive.css";
 
 class About extends Component {
   constructor() {

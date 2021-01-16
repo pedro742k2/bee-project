@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import closeBtn from "../../../Assets/close.svg";
 import "./SubmitErrors.css";
+import "./SubmitErrorsResponsive.css";
 
 class SubmitErrors extends Component {
   closeBox = (event) => {

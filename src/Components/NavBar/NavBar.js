@@ -18,7 +18,7 @@ const NavBar = ({ burgerMenuOptionClicked, changeMenuState }) => {
     } catch (error) {
       console.warn(error);
     }
-  });
+  }, [path]);
 
   return (
     <div className="nav-bar">

@@ -6,7 +6,7 @@ import particleParams from "../Settings/ParticleSettings";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Particles params={particleParams} className="particles" />
       <Routes />
     </div>
