@@ -28,7 +28,7 @@ const TempData = {
 
     {
       label: "Apiary 2 - Hive 1 \\ Temperature",
-      data: [100, 99, 98, 97, 97, 96, 95, 94, 94, 92],
+      data: [36, 37, 38, 37, 36, 34, 37, 39, 40, 40],
 
       backgroundColor: "rgba(0, 0, 0, 0)",
       borderColor: "#007CFF",

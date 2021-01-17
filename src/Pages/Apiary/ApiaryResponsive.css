@@ -1,3 +1,5 @@
+/* ----- MAX-WIDTH ----- */
+
 @media (max-width: 1350px) {
   .apiarypage-main {
     font-size: 1.5rem;
@@ -133,6 +135,10 @@
   .values {
     width: 18vw;
   }
+
+  .chart {
+    width: 95vw;
+  }
 }
 
 @media (max-width: 450px) {
@@ -159,6 +165,13 @@
   }
 }
 
+@media (max-width: 425px) {
+  .menus,
+  #actual-values {
+    width: 95vw;
+  }
+}
+
 @media (max-width: 350px) {
   .custom-select-wrapper {
     width: 95vw;
@@ -180,5 +193,64 @@
   }
   .open .arrow::after {
     left: 4px;
+  }
+
+  .values {
+    width: 18vw;
+  }
+}
+
+@media (max-width: 300px) {
+  .menus,
+  #actual-values {
+    width: 100vw;
+    border-radius: 0;
+    border-width: 2px 0;
+  }
+
+  .values {
+    width: 25vw;
+    margin: 0;
+    border-radius: 0px;
+  }
+
+  .values .hidden-img {
+    border-radius: 0;
+  }
+
+  .menus {
+    margin-top: 20px;
+  }
+
+  #actual-values {
+    padding: 10px 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-height: 1000px) {
+  .chart {
+    height: 35vh;
+  }
+}
+
+/* ----- MAX-HEIGHT ----- */
+
+@media (max-height: 900px) {
+  .chart {
+    height: 50vh;
+  }
+}
+
+@media (max-height: 800px) {
+  .chart {
+    height: 60vh;
+  }
+}
+
+@media (max-height: 650px) {
+  .chart {
+    height: 80vh;
   }
 }

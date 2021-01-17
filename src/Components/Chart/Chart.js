@@ -39,6 +39,8 @@ class Chart extends Component {
           ticks: {
             fontColor: "#fff",
             fontSize: 10,
+            min: 0,
+            max: 100,
           },
         },
       ],
@@ -54,7 +56,20 @@ class Chart extends Component {
             options={{
               maintainAspectRatio: this.props.maintainAspectRatio,
 
-              scales: this.props.scaleOptions,
+              scales: {
+                xAxes: this.props.scaleOptions.xAxes,
+
+                yAxes: [
+                  {
+                    ticks: {
+                      fontColor: "#fff",
+                      fontSize: 10,
+                      min: Math.min(...TempData.datasets[0].data) - 20,
+                      max: Math.max(...TempData.datasets[0].data) + 20,
+                    },
+                  },
+                ],
+              },
 
               title: {
                 display: this.props.displayTitle,
@@ -106,7 +121,20 @@ class Chart extends Component {
             options={{
               maintainAspectRatio: this.props.maintainAspectRatio,
 
-              scales: this.props.scaleOptions,
+              scales: {
+                xAxes: this.props.scaleOptions.xAxes,
+
+                yAxes: [
+                  {
+                    ticks: {
+                      fontColor: "#fff",
+                      fontSize: 10,
+                      min: Math.min(...WeightData.datasets[0].data) - 10,
+                      max: Math.max(...WeightData.datasets[0].data) + 10,
+                    },
+                  },
+                ],
+              },
 
               title: {
                 display: this.props.displayTitle,

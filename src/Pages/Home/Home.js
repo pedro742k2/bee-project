@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./Home.css";
-
+import "./HomeResponsive.css";
 class Home extends Component {
   constructor() {
     super();

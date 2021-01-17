@@ -143,17 +143,17 @@ class Apiary extends Component {
                   {/* <h1>Apiary 3 - Hive 2</h1> */}
                   {/* <h1 id="measurement-date">Daily measurement</h1> */}
                   <div
-                    class="custom-select-wrapper"
+                    className="custom-select-wrapper"
                     onClick={this.toggleDropMenu}
                   >
-                    <div class="custom-select">
-                      <div class="custom-select__trigger">
+                    <div className="custom-select">
+                      <div className="custom-select__trigger">
                         <span>{this.state.measurementType} measurements</span>
-                        <div class="arrow"></div>
+                        <div className="arrow"></div>
                       </div>
-                      <div class="custom-options">
+                      <div className="custom-options">
                         <span
-                          class="custom-option selected"
+                          className="custom-option selected"
                           data-value="daily"
                           onClick={() => {
                             this.handleDropMenuClick("Daily");
@@ -162,7 +162,7 @@ class Apiary extends Component {
                           Daily measurements
                         </span>
                         <span
-                          class="custom-option"
+                          className="custom-option"
                           data-value="weekly"
                           onClick={() => {
                             this.handleDropMenuClick("Weekly");
@@ -171,7 +171,7 @@ class Apiary extends Component {
                           Weekly measurements
                         </span>
                         <span
-                          class="custom-option"
+                          className="custom-option"
                           data-value="monthly"
                           onClick={() => {
                             this.handleDropMenuClick("Monthly");

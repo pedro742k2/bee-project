@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./Contacts.css";
+import "./ContactsResponsive.css";
 
 class Contacts extends Component {
   constructor() {
