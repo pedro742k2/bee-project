@@ -73,6 +73,14 @@ class Apiary extends Component {
     this.setState({
       measurementType: item,
     });
+
+    for (let i = 0; i < 3; i++) {
+      document
+        .getElementsByClassName("custom-option")
+        [i].classList.remove("selected");
+    }
+
+    document.getElementsByClassName(item)[0].classList.add("selected");
   };
 
   render() {
@@ -153,7 +161,7 @@ class Apiary extends Component {
                       </div>
                       <div className="custom-options">
                         <span
-                          className="custom-option selected"
+                          className="custom-option Daily selected"
                           data-value="daily"
                           onClick={() => {
                             this.handleDropMenuClick("Daily");
@@ -162,7 +170,7 @@ class Apiary extends Component {
                           Daily measurements
                         </span>
                         <span
-                          className="custom-option"
+                          className="custom-option Weekly"
                           data-value="weekly"
                           onClick={() => {
                             this.handleDropMenuClick("Weekly");
@@ -171,7 +179,7 @@ class Apiary extends Component {
                           Weekly measurements
                         </span>
                         <span
-                          className="custom-option"
+                          className="custom-option Monthly"
                           data-value="monthly"
                           onClick={() => {
                             this.handleDropMenuClick("Monthly");
