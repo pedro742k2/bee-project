@@ -57,9 +57,8 @@ const Chart = ({ allValues }) => {
 
     /* console.log(
       `temp: ${temp}\nhmdt: ${hmdt}\nweight: ${weight}\nbattery: ${battery}\nreadingsDate: ${readingsDate}`
-    ); */
-
-    console.log("\n");
+    ); 
+    console.log("\n"); */
   }, [allValues, temp, hmdt, weight, battery, readingsDate]);
 
   return (
