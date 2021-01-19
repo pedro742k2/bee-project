@@ -17,7 +17,9 @@ const Apiary = () => {
   const [receivedOn, setReceivedOn] = useState("Not available yet");
 
   const getValues = async () => {
-    const data = await fetch("http://localhost:3000/get-data")
+    const data = await fetch(
+      "https://bee-project-server.herokuapp.com/get-data"
+    )
       .then((res) => res.json())
       .then((data) => {
         const length = data.length;
