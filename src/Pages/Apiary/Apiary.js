@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
-import Chart from "../../Components/Chart/Chart";
+import ApiaryMenu from "../../Components/ApiaryMenu/ApiaryMenu";
 import ActualValues from "../../Components/ActualValues/ActualValues";
+import Chart from "../../Components/Chart/Chart";
 import "./Apiary.css";
 import "./ApiaryResponsive.css";
 
@@ -101,45 +102,7 @@ class Apiary extends Component {
             <main className="apiarypage-main">
               {/* Left-side menu */}
               <div className="menus">
-                <div className="apiaries">
-                  <div className="apiary">
-                    <p className="apiary-title">Apiary 1</p>
-
-                    <div>
-                      <p>Hive 1</p>
-                      <p>Hive 2</p>
-                      <p className="selected">Hive 3</p>
-                    </div>
-                  </div>
-
-                  <div className="apiary">
-                    <p className="apiary-title">Apiary 2</p>
-
-                    <div>
-                      <p>Hive 1</p>
-                    </div>
-                  </div>
-
-                  <div className="apiary">
-                    <p className="apiary-title">Apiary 3</p>
-
-                    <div>
-                      <p>Hive 1</p>
-                      <p className="selected">Hive 2</p>
-                    </div>
-                  </div>
-
-                  <div className="apiary">
-                    <p className="apiary-title">Apiary 4</p>
-
-                    <div>
-                      <p>Hive 1</p>
-                      <p>Hive 2</p>
-                      <p>Hive 3</p>
-                      <p>Hive 4</p>
-                    </div>
-                  </div>
-                </div>
+                <ApiaryMenu />
               </div>
 
               <div className="graphs">

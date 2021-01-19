@@ -1,4 +1,4 @@
-const particleParams = {
+let particleParams = {
   particles: {
     number: {
       value: 100,

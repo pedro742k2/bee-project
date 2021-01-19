@@ -19,6 +19,26 @@
   color: #fff;
 }
 
+.disable-particles {
+  position: absolute;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 2px solid #fff;
+  border-radius: 5px;
+
+  padding: 5px 10px;
+  font-size: 1.75rem;
+  color: #fff;
+  font-weight: bold;
+
+  transition: all 0.1s ease-in-out;
+}
+
+.disable-particles:hover {
+  background-color: #fff;
+  color: #ff4800;
+}
+
 @media (max-width: 750px) {
   .footer .credits {
     font-size: 1.5rem;
