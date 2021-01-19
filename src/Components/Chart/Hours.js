@@ -73,7 +73,7 @@ const Hours = [
   "20:00",
   "21:00",
   "22:00",
-  "23:30",
+  "23:00",
 ];
 
 export default Hours;

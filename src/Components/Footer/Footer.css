@@ -1,9 +1,12 @@
 .footer {
+  width: 100%;
+  max-width: 100%;
   height: 6vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  flex-direction: row;
+  text-align: start;
 
   background: #ff8800;
   background: -webkit-linear-gradient(to right, #ffae00, #ff4800);
@@ -17,15 +20,23 @@
 .footer .credits {
   font-size: 2rem;
   color: #fff;
+  width: 80vw;
+  margin: 0;
 }
 
 .disable-particles {
-  position: absolute;
-  right: 10px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
   background-color: rgba(0, 0, 0, 0.25);
   border: 2px solid #fff;
   border-radius: 5px;
 
+  min-width: 225px;
+  margin-right: 0;
   padding: 5px 10px;
   font-size: 1.75rem;
   color: #fff;
@@ -37,6 +48,33 @@
 .disable-particles:hover {
   background-color: #fff;
   color: #ff4800;
+}
+
+.rm-particles-img {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 675px) {
+  .rm-particles-img {
+    display: block;
+  }
+
+  .disable-particles span {
+    display: none;
+  }
+
+  .disable-particles {
+    border-radius: 100%;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer .credits {
+    text-align: start;
+  }
 }
 
 @media (max-width: 750px) {

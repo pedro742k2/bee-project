@@ -27,3 +27,7 @@
 .bold {
   font-weight: bold;
 }
+
+footer {
+  max-width: 100vw;
+}
