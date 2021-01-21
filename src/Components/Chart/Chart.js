@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import chartOptions from "./GraphConfig";
 import "./Chart.css";
 /* DATA */
@@ -7,7 +7,8 @@ import HmdtData from "./data/HmdtData";
 import WeightData from "./data/WeightData";
 import BatteryData from "./data/BatteryData";
 
-const Chart = ({ allValues }) => {
+const Chart = ({ allValues, ApHv }) => {
+  const [readyToDisplay, setReadyToDisplay] = useState(false);
   const [temp, setTemp] = useState([]);
   const [hmdt, setHmdt] = useState([]);
   const [weight, setWeight] = useState([]);
@@ -15,85 +16,95 @@ const Chart = ({ allValues }) => {
   const [readingsDate, setReadingsDate] = useState([]);
 
   useEffect(() => {
+    let error = false;
+
     const cloneTemp = [];
     const cloneHmdt = [];
     const cloneWeight = [];
     const cloneBattery = [];
     const cloneReadingsDate = [];
-    let error = false;
 
     try {
       allValues.forEach((value) => {
-        const treatedData = value.data.split("-");
-        const treatedTime = value.readDate.split("-");
+        const receivedDate = value.readings_date
+          .split("T")[1]
+          .split(".")[0]
+          .split(":");
 
-        const tempData = treatedData[0];
-        const hmdtData = treatedData[1];
-        const weightData = treatedData[2];
-        const batteryData = treatedData[3];
-        let readDate = treatedTime[3];
-        readDate = readDate <= 9 ? "0" + readDate + ":00" : readDate + ":00";
-
-        // console.log(readDate);
-
-        cloneTemp.push(tempData);
-        cloneHmdt.push(hmdtData);
-        cloneWeight.push(weightData);
-        cloneBattery.push(batteryData);
-        cloneReadingsDate.push(readDate);
+        cloneTemp.push(value.temperature);
+        cloneHmdt.push(value.humidity);
+        cloneWeight.push(value.weight);
+        cloneBattery.push(value.battery);
+        cloneReadingsDate.push(`${receivedDate[0]}:${receivedDate[1]}`);
       });
-    } catch (err) {
-      console.log(err);
+    } catch {
       error = true;
     }
 
     if (!error) {
+      setReadyToDisplay(true);
       setTemp(cloneTemp);
       setHmdt(cloneHmdt);
       setWeight(cloneWeight);
       setBattery(cloneBattery);
       setReadingsDate(cloneReadingsDate);
+    } else {
+      setReadyToDisplay(false);
+      setTemp([]);
+      setHmdt([]);
+      setWeight([]);
+      setBattery([]);
+      setReadingsDate([]);
     }
-
-    /* console.log(
-      `temp: ${temp}\nhmdt: ${hmdt}\nweight: ${weight}\nbattery: ${battery}\nreadingsDate: ${readingsDate}`
-    ); 
-    console.log("\n"); */
-  }, [allValues, temp, hmdt, weight, battery, readingsDate]);
+  }, [allValues]);
 
   return (
     <div>
-      <div className="chart">
-        <TempData
-          temp={temp}
-          readingsDate={readingsDate}
-          chartOptions={chartOptions}
-        />
-      </div>
+      {readyToDisplay ? (
+        <Fragment>
+          <div className="chart">
+            <TempData
+              ApHv={ApHv}
+              temp={temp}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
 
-      <div className="chart">
-        <HmdtData
-          hmdt={hmdt}
-          readingsDate={readingsDate}
-          chartOptions={chartOptions}
-        />
-      </div>
+          <div className="chart">
+            <HmdtData
+              ApHv={ApHv}
+              hmdt={hmdt}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
 
-      <div className="chart">
-        <WeightData
-          weight={weight}
-          readingsDate={readingsDate}
-          chartOptions={chartOptions}
-        />
-      </div>
+          <div className="chart">
+            <WeightData
+              ApHv={ApHv}
+              weight={weight}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
 
-      <div className="chart">
-        <BatteryData
-          battery={battery}
-          readingsDate={readingsDate}
-          chartOptions={chartOptions}
-        />
-      </div>
+          <div className="chart">
+            <BatteryData
+              ApHv={ApHv}
+              battery={battery}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
+        </Fragment>
+      ) : (
+        <div>
+          <h3 style={{ marginTop: "50px", fontSize: "3rem" }}>
+            Nothing to display yet
+          </h3>
+        </div>
+      )}
     </div>
   );
 };

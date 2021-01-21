@@ -56,7 +56,7 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
 
       <div className="actual-info">
         <p>
-          <span>Date format:</span> {"(DD/MM/YYYY - HH:MM)"}
+          <span>Date format:</span> {"(DD/MM/YYYY HH:MM)"}
         </p>
 
         <p>

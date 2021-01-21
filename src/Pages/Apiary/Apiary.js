@@ -6,69 +6,112 @@ import ActualValues from "../../Components/ActualValues/ActualValues";
 import Chart from "../../Components/Chart/Chart";
 import "./Apiary.css";
 import "./ApiaryResponsive.css";
+import ServerApi from "../../Settings/ServerApi";
 
 const Apiary = () => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
+  const [selectedHives, setSelectedHives] = useState([]);
 
+  const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
   const [actualValues, setActualValues] = useState(["-", "-", "-", "-"]);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
 
   const getValues = async () => {
-    const data = await fetch(
-      "https://bee-project-server.herokuapp.com/get-data"
-    )
+    const nowDate = new Date();
+    const currentDate = `${nowDate.getDate()}-${
+      nowDate.getMonth() + 1
+    }-${nowDate.getFullYear()}`;
+
+    setApHv(selectedHives[0]);
+    const data = await fetch(`${ServerApi}/get-data`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ApHv: selectedHives,
+        currentDate: currentDate,
+        measurementType: "daily",
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
-        const length = data.length;
-
-        return [data, data[length - 1].data, data[length - 1].readDate];
+        return data;
       })
       .catch(() => {
         return false;
       });
 
-    if (data) {
-      setAllValues(data[0]); // All data
-      setActualValues(data[1].split("-")); // 24-7-30-97
+    if (selectedHives.length === 0) {
+      setAllValues(undefined);
+      setActualValues(["-", "-", "-", "-"]);
+      setReadOn("No hive selected");
+      setReceivedOn("No hive selected");
+    } else {
+      if (data.length >= 1) {
+        const arrayLength = data.length - 1;
 
-      const finalReadOn = data[2].split("-");
-      setReadOn(
-        `${
-          finalReadOn[0].length === 1 ? "0" + finalReadOn[0] : finalReadOn[0]
-        }/${
-          finalReadOn[1].length === 1
-            ? "0" + finalReadOn[1]
-            : finalReadOn[1] + 1
-        }/${finalReadOn[2]} - ${
-          finalReadOn[3].length === 1 ? "0" + finalReadOn[3] : finalReadOn[3]
-        }:${
-          finalReadOn[4].length === 1 ? "0" + finalReadOn[4] : finalReadOn[4]
-        }`
-      );
+        /* Date of when the data was read */
+        const readingsDateInfo = data[arrayLength].readings_date.split("T");
+        let date = readingsDateInfo[0].split("-");
+        const hours = readingsDateInfo[1].split(".")[0].split(":");
+        date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
 
-      const now = new Date();
-      setReceivedOn(
-        `${
-          now.getDate().toString().length === 1
-            ? "0" + now.getDate()
-            : now.getDate()
-        }/${
-          now.getMonth().toString().length === 1
-            ? "0" + (now.getMonth() + 1)
-            : now.getMonth() + 1
-        }/${now.getFullYear()} - ${
-          now.getHours().toString().length === 1
-            ? "0" + now.getHours()
-            : now.getHours()
-        }:${
-          now.getMinutes().toString().length === 1
-            ? "0" + now.getMinutes()
-            : now.getMinutes()
-        }`
-      );
+        /* Date of when the data was received */
+        const nowDate = new Date();
+        const currentDay =
+          nowDate.getDate() <= 9 ? "0" + nowDate.getDate() : nowDate.getDate();
+        const currentMonth =
+          nowDate.getMonth() + 1 <= 9
+            ? "0" + (nowDate.getMonth() + 1)
+            : nowDate.getMonth() + 1;
+        const currentYear = nowDate.getFullYear();
+        const currentHour =
+          nowDate.getHours() <= 9
+            ? "0" + nowDate.getHours()
+            : nowDate.getHours();
+        const currentMinute =
+          nowDate.getMinutes() <= 9
+            ? "0" + nowDate.getMinutes()
+            : nowDate.getMinutes();
+        const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
+
+        setAllValues(data);
+        setActualValues([
+          data[arrayLength].temperature,
+          data[arrayLength].humidity,
+          data[arrayLength].weight,
+          data[arrayLength].battery,
+        ]);
+        setReadOn(date);
+        setReceivedOn(currentTime);
+      } else {
+        setAllValues(undefined);
+        setActualValues(["-", "-", "-", "-"]);
+        setReadOn("Not available yet");
+        setReceivedOn("Not available yet");
+      }
+    }
+  };
+
+  const addHive = (id) => {
+    setSelectedHives([...selectedHives, id]);
+  };
+
+  const removeHive = (id) => {
+    setSelectedHives(selectedHives.filter((item) => item !== id));
+  };
+
+  const selectHive = async (event) => {
+    const id = event.target.id;
+
+    const state = document.getElementById(id).classList.toggle("selected");
+
+    if (state) {
+      addHive(id);
+    } else {
+      removeHive(id);
     }
   };
 
@@ -77,12 +120,12 @@ const Apiary = () => {
 
     const interval = setInterval(() => {
       getValues();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [selectedHives]);
 
   const burgerMenuOptionClicked = () => {
     if (!burgerState) {
@@ -140,7 +183,7 @@ const Apiary = () => {
           <main className="apiarypage-main">
             {/* Left-side menu */}
             <div className="menus">
-              <ApiaryMenu />
+              <ApiaryMenu selectHive={selectHive} />
             </div>
 
             <div className="graphs">
@@ -153,8 +196,6 @@ const Apiary = () => {
                 />
               </div>
               <div id="charts">
-                {/* <h1>Apiary 3 - Hive 2</h1> */}
-                {/* <h1 id="measurement-date">Daily measurement</h1> */}
                 <div className="custom-select-wrapper" onClick={toggleDropMenu}>
                   <div className="custom-select">
                     <div className="custom-select__trigger">
@@ -193,7 +234,7 @@ const Apiary = () => {
                   </div>
                 </div>
 
-                <Chart allValues={allValues} />
+                <Chart allValues={allValues} ApHv={ApHv} />
               </div>
             </div>
           </main>
