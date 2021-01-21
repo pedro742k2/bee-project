@@ -44,8 +44,8 @@ const WeightData = ({ weight, readingsDate, chartOptions }) => {
               ticks: {
                 fontColor: "#fff",
                 fontSize: 10,
-                min: Math.min(...data.datasets[0].data) - 10,
-                max: Math.max(...data.datasets[0].data) + 10,
+                min: parseInt(Math.min(...data.datasets[0].data) - 10),
+                max: parseInt(Math.max(...data.datasets[0].data) + 10),
               },
             },
           ],
