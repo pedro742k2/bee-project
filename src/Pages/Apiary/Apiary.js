@@ -32,7 +32,7 @@ const Apiary = () => {
       body: JSON.stringify({
         ApHv: selectedHives,
         currentDate: currentDate,
-        measurementType: "daily",
+        measurementType: measurementType.toLowerCase(),
       }),
     })
       .then((res) => res.json())
@@ -49,48 +49,54 @@ const Apiary = () => {
       setReadOn("No hive selected");
       setReceivedOn("No hive selected");
     } else {
-      if (data.length >= 1) {
-        const arrayLength = data.length - 1;
+      if (data !== "Resource not available yet") {
+        if (data.firstDataFromHours.length >= 1) {
+          try {
+            /* Date of when the data was read */
+            const readingsDateInfo = data.lastValues.readings_date.split("T");
+            let date = readingsDateInfo[0].split("-");
+            const hours = readingsDateInfo[1].split(".")[0].split(":");
+            date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
 
-        /* Date of when the data was read */
-        const readingsDateInfo = data[arrayLength].readings_date.split("T");
-        let date = readingsDateInfo[0].split("-");
-        const hours = readingsDateInfo[1].split(".")[0].split(":");
-        date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
+            /* Date of when the data was received */
+            const nowDate = new Date();
+            const currentDay =
+              nowDate.getDate() <= 9
+                ? "0" + nowDate.getDate()
+                : nowDate.getDate();
+            const currentMonth =
+              nowDate.getMonth() + 1 <= 9
+                ? "0" + (nowDate.getMonth() + 1)
+                : nowDate.getMonth() + 1;
+            const currentYear = nowDate.getFullYear();
+            const currentHour =
+              nowDate.getHours() <= 9
+                ? "0" + nowDate.getHours()
+                : nowDate.getHours();
+            const currentMinute =
+              nowDate.getMinutes() <= 9
+                ? "0" + nowDate.getMinutes()
+                : nowDate.getMinutes();
+            const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
 
-        /* Date of when the data was received */
-        const nowDate = new Date();
-        const currentDay =
-          nowDate.getDate() <= 9 ? "0" + nowDate.getDate() : nowDate.getDate();
-        const currentMonth =
-          nowDate.getMonth() + 1 <= 9
-            ? "0" + (nowDate.getMonth() + 1)
-            : nowDate.getMonth() + 1;
-        const currentYear = nowDate.getFullYear();
-        const currentHour =
-          nowDate.getHours() <= 9
-            ? "0" + nowDate.getHours()
-            : nowDate.getHours();
-        const currentMinute =
-          nowDate.getMinutes() <= 9
-            ? "0" + nowDate.getMinutes()
-            : nowDate.getMinutes();
-        const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
-
-        setAllValues(data);
-        setActualValues([
-          data[arrayLength].temperature,
-          data[arrayLength].humidity,
-          data[arrayLength].weight,
-          data[arrayLength].battery,
-        ]);
-        setReadOn(date);
-        setReceivedOn(currentTime);
-      } else {
-        setAllValues(undefined);
-        setActualValues(["-", "-", "-", "-"]);
-        setReadOn("Not available yet");
-        setReceivedOn("Not available yet");
+            setAllValues(data.firstDataFromHours);
+            setActualValues([
+              data.lastValues.temperature,
+              data.lastValues.humidity,
+              data.lastValues.weight,
+              data.lastValues.battery,
+            ]);
+            setReadOn(date);
+            setReceivedOn(currentTime);
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          setAllValues(undefined);
+          setActualValues(["-", "-", "-", "-"]);
+          setReadOn("Not available yet");
+          setReceivedOn("Not available yet");
+        }
       }
     }
   };
