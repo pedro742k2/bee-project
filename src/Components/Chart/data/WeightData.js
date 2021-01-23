@@ -9,10 +9,10 @@ const WeightData = ({ weight, readingsDate, chartOptions }) => {
         label: "Weight",
         data: weight,
 
-        backgroundColor: "rgba(0, 0, 0, 0)",
+        backgroundColor: "rgba(255, 166, 0, 0.2)",
         borderColor: "#FFA600",
         fill: true,
-        lineTension: 0.3,
+        lineTension: 0.2,
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -44,7 +44,8 @@ const WeightData = ({ weight, readingsDate, chartOptions }) => {
               ticks: {
                 fontColor: "#fff",
                 fontSize: 10,
-                min: parseInt(Math.min(...data.datasets[0].data) - 10),
+                min: 0,
+                // min: parseInt(Math.min(...data.datasets[0].data) - 10),
                 max: parseInt(Math.max(...data.datasets[0].data) + 10),
               },
             },
@@ -54,7 +55,7 @@ const WeightData = ({ weight, readingsDate, chartOptions }) => {
         title: {
           display: chartOptions.displayTitle,
           text: "Weight (Kg)",
-          fontSize: 40,
+          fontSize: 34,
           fontColor: "#fff",
         },
 

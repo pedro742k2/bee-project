@@ -9,10 +9,10 @@ const BatteryData = ({ battery, readingsDate, chartOptions }) => {
         label: "Battery",
         data: battery,
 
-        backgroundColor: "rgba(0, 0, 0, 0)",
+        backgroundColor: "rgba(0, 255, 114, 0.2)",
         borderColor: "#00FF72",
         fill: true,
-        lineTension: 0.3,
+        lineTension: 0.2,
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -41,7 +41,7 @@ const BatteryData = ({ battery, readingsDate, chartOptions }) => {
         title: {
           display: chartOptions.displayTitle,
           text: "Battery (%)",
-          fontSize: 40,
+          fontSize: 34,
           fontColor: "#fff",
         },
 

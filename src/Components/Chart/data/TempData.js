@@ -19,10 +19,10 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
         label: `Apiary ${apiary} Hive ${hive} `,
         data: temp,
 
-        backgroundColor: "rgba(0, 0, 0, 0)",
+        backgroundColor: "rgba(255, 89, 0, 0.2)",
         borderColor: "#FF5900",
         fill: true,
-        lineTension: 0.3,
+        lineTension: 0.2,
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -54,7 +54,8 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
               ticks: {
                 fontColor: "#fff",
                 fontSize: 10,
-                min: parseInt(Math.min(...data.datasets[0].data) - 5),
+                min: 0,
+                // min: parseInt(Math.min(...data.datasets[0].data) - 5),
                 max: parseInt(Math.max(...data.datasets[0].data) + 5),
               },
             },
@@ -64,7 +65,7 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
         title: {
           display: chartOptions.displayTitle,
           text: "Temperature (°C)",
-          fontSize: 40,
+          fontSize: 34,
           fontColor: "#fff",
         },
 

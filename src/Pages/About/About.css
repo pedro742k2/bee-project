@@ -1,5 +1,6 @@
 .aboutpage-main {
   min-height: 84vh;
+  padding: 0;
 
   display: flex;
   justify-content: center;

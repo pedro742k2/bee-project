@@ -9,10 +9,10 @@ const HmdtData = ({ hmdt, readingsDate, chartOptions }) => {
         label: "Humidity",
         data: hmdt,
 
-        backgroundColor: "rgba(0, 0, 0, 0)",
+        backgroundColor: "rgba(0, 124, 255, 0.2)",
         borderColor: "#007CFF",
         fill: true,
-        lineTension: 0.3,
+        lineTension: 0.2,
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -41,7 +41,7 @@ const HmdtData = ({ hmdt, readingsDate, chartOptions }) => {
         title: {
           display: chartOptions.displayTitle,
           text: "Humidity (%)",
-          fontSize: 40,
+          fontSize: 34,
           fontColor: "#fff",
         },
 
