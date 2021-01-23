@@ -138,20 +138,6 @@ const Apiary = () => {
     };
   }, [selectedHives, measurementType]);
 
-  const burgerMenuOptionClicked = () => {
-    if (!burgerState) {
-      const burger_menu = document.getElementsByClassName(
-        "hamburger--stand"
-      )[0];
-      const nav_bar = document.getElementsByClassName("nav-bar")[0];
-
-      burger_menu.classList.toggle("is-active");
-      nav_bar.classList.toggle("on");
-
-      setBurgerState(!burgerState);
-    }
-  };
-
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
     const nav_bar = document.getElementsByClassName("nav-bar")[0];
@@ -183,10 +169,7 @@ const Apiary = () => {
   return (
     <div className="App">
       <header>
-        <NavBar
-          burgerMenuOptionClicked={burgerMenuOptionClicked}
-          changeMenuState={changeMenuState}
-        />
+        <NavBar changeMenuState={changeMenuState} />
       </header>
 
       {burgerState ? (

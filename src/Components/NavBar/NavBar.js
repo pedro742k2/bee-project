@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import "./NavBar.css";
+import "./NavBarResponsive.css";
 import "./burger-menu/hamburgers.min.css";
 import bee from "../../Assets/bee.svg";
 import { Link, useLocation } from "react-router-dom";
 
-const NavBar = ({ burgerMenuOptionClicked, changeMenuState }) => {
+const NavBar = ({ changeMenuState }) => {
   const path = useLocation().pathname;
 
   useEffect(() => {
@@ -36,35 +37,23 @@ const NavBar = ({ burgerMenuOptionClicked, changeMenuState }) => {
         </div>
 
         <Link className="links" to="/">
-          <p id="/" onClick={burgerMenuOptionClicked}>
-            Home
-          </p>
+          <p id="/">Home</p>
         </Link>
 
         <Link className="links" to="/about">
-          <p id="/about" onClick={burgerMenuOptionClicked}>
-            About
-          </p>
+          <p id="/about">About</p>
         </Link>
 
         <Link className="links" to="/contacts">
-          <p id="/contacts" onClick={burgerMenuOptionClicked}>
-            Contacts
-          </p>
+          <p id="/contacts">Contacts</p>
         </Link>
 
         <Link className="links" to="/apiary">
-          <p id="/apiary" onClick={burgerMenuOptionClicked}>
-            Apiary
-          </p>
+          <p id="/apiary">Apiary</p>
         </Link>
 
-        <hr id="hr-login"></hr>
-
         <Link className="links" to="/login">
-          <p id="/login" onClick={burgerMenuOptionClicked}>
-            Login
-          </p>
+          <p id="/login">Login</p>
         </Link>
       </div>
     </div>

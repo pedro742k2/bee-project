@@ -13,21 +13,21 @@ class About extends Component {
     };
   }
 
-  burgerMenuOptionClicked = () => {
-    if (!this.state.burger_state) {
+  /* burgerMenuOptionClicked = () => {
+    const { burger_state } = this.state;
+
+    if (burger_state) {
       const burger_menu = document.getElementsByClassName(
         "hamburger--stand"
       )[0];
       const nav_bar = document.getElementsByClassName("nav-bar")[0];
-
-      const { burger_state } = this.state;
 
       burger_menu.classList.toggle("is-active");
       nav_bar.classList.toggle("on");
 
       this.setState({ burger_state: !burger_state });
     }
-  };
+  }; */
 
   changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -48,7 +48,7 @@ class About extends Component {
       <div className="App">
         <header>
           <NavBar
-            burgerMenuOptionClicked={this.burgerMenuOptionClicked}
+            // burgerMenuOptionClicked={this.burgerMenuOptionClicked}
             changeMenuState={this.changeMenuState}
           />
         </header>

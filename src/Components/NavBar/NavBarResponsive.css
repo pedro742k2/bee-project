@@ -1,0 +1,97 @@
+@media (max-width: 750px) {
+  .nav-options p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 850px) {
+  #hr-login {
+    display: none;
+  }
+
+  .nav-options p {
+    display: none;
+  }
+
+  .nav-bar.on img {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    z-index: 20;
+  }
+
+  .nav-bar .burger-menu {
+    display: block;
+  }
+
+  .nav-bar.on {
+    position: fixed;
+  }
+
+  .nav-bar.on .nav-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    z-index: 10;
+
+    background: url("../../Assets/background.svg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .nav-bar.on .burger-menu {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+
+  .nav-bar.on p {
+    margin: 10px 0px 10px 0px;
+    line-height: 50px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    display: block;
+    width: 100vw;
+  }
+
+  .nav-bar.on p:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #272727;
+  }
+}
+
+@media (max-height: 600px) {
+  .nav-bar.on p {
+    line-height: 75px;
+  }
+}
+
+@media (max-height: 500px) {
+  .nav-bar.on p {
+    line-height: 50px;
+  }
+}
+
+@media (max-width: 300px) {
+  .bee-logo {
+    width: 30px;
+    height: auto;
+  }
+}
