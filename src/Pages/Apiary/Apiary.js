@@ -12,6 +12,7 @@ const Apiary = () => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
   const [selectedHives, setSelectedHives] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
 
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
@@ -20,18 +21,14 @@ const Apiary = () => {
   const [receivedOn, setReceivedOn] = useState("Not available yet");
 
   const getValues = async () => {
-    const nowDate = new Date();
-    const currentDate = `${nowDate.getDate()}-${
-      nowDate.getMonth() + 1
-    }-${nowDate.getFullYear()}`;
-
     setApHv(selectedHives[0]);
+
     const data = await fetch(`${ServerApi}/get-data`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ApHv: selectedHives,
-        currentDate: currentDate,
+        currentDate: selectedDate,
         measurementType: measurementType.toLowerCase(),
       }),
     })
@@ -127,6 +124,14 @@ const Apiary = () => {
   };
 
   useEffect(() => {
+    if (selectedDate === "") {
+      const nowDate = new Date();
+      const currentDate = `${nowDate.getFullYear()}-${
+        nowDate.getMonth() + 1
+      }-${nowDate.getDate()}`;
+      setSelectedDate(currentDate);
+    }
+
     getValues();
 
     const interval = setInterval(() => {
@@ -136,7 +141,7 @@ const Apiary = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [selectedHives, measurementType]);
+  }, [selectedHives, measurementType, selectedDate]);
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -166,6 +171,10 @@ const Apiary = () => {
     document.getElementsByClassName(item)[0].classList.add("selected");
   };
 
+  const selectDate = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
   return (
     <div className="App">
       <header>
@@ -190,42 +199,54 @@ const Apiary = () => {
                 />
               </div>
               <div id="charts">
-                <div className="custom-select-wrapper" onClick={toggleDropMenu}>
-                  <div className="custom-select">
-                    <div className="custom-select__trigger">
-                      <span>{measurementType} measurements</span>
-                      <div className="arrow"></div>
-                    </div>
-                    <div className="custom-options">
-                      <span
-                        className="custom-option Daily selected"
-                        data-value="daily"
-                        onClick={() => {
-                          handleDropMenuClick("Daily");
-                        }}
-                      >
-                        Daily measurements
-                      </span>
-                      <span
-                        className="custom-option Weekly"
-                        data-value="weekly"
-                        onClick={() => {
-                          handleDropMenuClick("Weekly");
-                        }}
-                      >
-                        Weekly measurements
-                      </span>
-                      <span
-                        className="custom-option Monthly"
-                        data-value="monthly"
-                        onClick={() => {
-                          handleDropMenuClick("Monthly");
-                        }}
-                      >
-                        Monthly measurements
-                      </span>
+                <div className="graph-opt-container">
+                  <div
+                    className="custom-select-wrapper"
+                    onClick={toggleDropMenu}
+                  >
+                    <div className="custom-select">
+                      <div className="custom-select__trigger">
+                        <span>{measurementType} measurements</span>
+                        <div className="arrow"></div>
+                      </div>
+
+                      <div className="custom-options">
+                        <span
+                          className="custom-option Daily selected"
+                          data-value="daily"
+                          onClick={() => {
+                            handleDropMenuClick("Daily");
+                          }}
+                        >
+                          Daily measurements
+                        </span>
+                        <span
+                          className="custom-option Weekly"
+                          data-value="weekly"
+                          onClick={() => {
+                            handleDropMenuClick("Weekly");
+                          }}
+                        >
+                          Weekly measurements
+                        </span>
+                        <span
+                          className="custom-option Monthly"
+                          data-value="monthly"
+                          onClick={() => {
+                            handleDropMenuClick("Monthly");
+                          }}
+                        >
+                          Monthly measurements
+                        </span>
+                      </div>
                     </div>
                   </div>
+
+                  <input
+                    onChange={selectDate}
+                    className="select-date"
+                    type="date"
+                  ></input>
                 </div>
 
                 <Chart allValues={allValues} ApHv={ApHv} />

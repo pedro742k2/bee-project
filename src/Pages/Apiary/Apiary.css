@@ -143,6 +143,24 @@
   font-size: 2.5rem;
 }
 
+.graph-opt-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-direction: row;
+
+  width: 80vw;
+}
+
+.select-date {
+  padding: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  color: #3b3b3b;
+  font-size: 1.75rem;
+
+  border: 2px solid #ff4800;
+}
+
 /* Dropdown menu -> */
 *,
 *:after,
@@ -151,7 +169,6 @@
 }
 
 .custom-select-wrapper {
-  position: relative;
   user-select: none;
   width: 30vw;
 

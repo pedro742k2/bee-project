@@ -110,6 +110,16 @@
 }
 
 @media (max-width: 800px) {
+  .graph-opt-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .select-date {
+    margin-top: 10px;
+  }
+
   .values p:first-of-type {
     display: none;
   }
@@ -124,6 +134,10 @@
 }
 
 @media (max-width: 650px) {
+  .select-date {
+    font-size: 1.5rem;
+  }
+
   .custom-select-wrapper {
     width: 70vw;
   }
