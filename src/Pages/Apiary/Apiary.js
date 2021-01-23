@@ -49,8 +49,8 @@ const Apiary = () => {
       setReadOn("No hive selected");
       setReceivedOn("No hive selected");
     } else {
-      if (data !== "Resource not available yet") {
-        if (data.firstDataFromHours.length >= 1) {
+      if (data !== "not available") {
+        if (data.firstDataFromHours.length >= 1 || data.lastValues) {
           try {
             /* Date of when the data was read */
             const readingsDateInfo = data.lastValues.readings_date.split("T");
@@ -97,6 +97,11 @@ const Apiary = () => {
           setReadOn("Not available yet");
           setReceivedOn("Not available yet");
         }
+      } else {
+        setAllValues(undefined);
+        setActualValues(["-", "-", "-", "-"]);
+        setReadOn("Not available yet");
+        setReceivedOn("Not available yet");
       }
     }
   };
@@ -126,12 +131,12 @@ const Apiary = () => {
 
     const interval = setInterval(() => {
       getValues();
-    }, 5000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [selectedHives]);
+  }, [selectedHives, measurementType]);
 
   const burgerMenuOptionClicked = () => {
     if (!burgerState) {
@@ -194,7 +199,7 @@ const Apiary = () => {
 
             <div className="graphs">
               <div id="actual-values">
-                <h1>Actual values</h1>
+                <h1>Last values</h1>
                 <ActualValues
                   actualValues={actualValues}
                   readOn={readOn}

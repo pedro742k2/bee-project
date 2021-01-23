@@ -40,7 +40,7 @@
 .nav-bar p {
   text-align: center;
   color: #fff;
-  padding: 7px 5px;
+  padding: 7px 10px;
   margin: 0 20px;
   font-size: 2rem;
   cursor: default;
@@ -53,16 +53,17 @@
 }
 
 .nav-bar p:hover {
+  font-weight: bold;
   color: #ff4800;
   box-shadow: inset 0 -100px 0 0 rgb(255, 255, 255);
 }
 
 .nav-bar p.disabled {
   opacity: 0.4;
-  cursor: default;
 }
 
 .nav-bar p.disabled:hover {
+  font-weight: normal;
   color: #fff;
   box-shadow: inset 0 0 0 0 #ffffff;
 }
