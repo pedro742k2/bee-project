@@ -24,20 +24,33 @@ const Chart = ({ allValues, ApHv }) => {
     const cloneBattery = [];
     const cloneReadingsDate = [];
 
+    let allValuesLen = 0;
     try {
-      allValues.forEach((value) => {
-        const receivedDate = value.readings_date
-          .split("T")[1]
-          .split(".")[0]
-          .split(":");
-
-        cloneTemp.push(value.temperature);
-        cloneHmdt.push(value.humidity);
-        cloneWeight.push(value.weight);
-        cloneBattery.push(value.battery);
-        cloneReadingsDate.push(`${receivedDate[0]}:${receivedDate[1]}`);
-      });
+      allValuesLen = allValues.length;
     } catch {
+      error = true;
+    }
+
+    if (allValuesLen === 0) {
+      error = true;
+    }
+
+    try {
+      if (!error) {
+        allValues.forEach((value) => {
+          const receivedDate = value.readings_date
+            .split("T")[1]
+            .split(".")[0]
+            .split(":");
+
+          cloneTemp.push(value.temperature);
+          cloneHmdt.push(value.humidity);
+          cloneWeight.push(value.weight);
+          cloneBattery.push(value.battery);
+          cloneReadingsDate.push(`${receivedDate[0]}:${receivedDate[1]}`);
+        });
+      }
+    } catch (err) {
       error = true;
     }
 
@@ -63,6 +76,15 @@ const Chart = ({ allValues, ApHv }) => {
       {readyToDisplay ? (
         <Fragment>
           <div className="chart">
+            <WeightData
+              ApHv={ApHv}
+              weight={weight}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
+
+          <div className="chart">
             <TempData
               ApHv={ApHv}
               temp={temp}
@@ -81,15 +103,6 @@ const Chart = ({ allValues, ApHv }) => {
           </div>
 
           <div className="chart">
-            <WeightData
-              ApHv={ApHv}
-              weight={weight}
-              readingsDate={readingsDate}
-              chartOptions={chartOptions}
-            />
-          </div>
-
-          <div className="chart">
             <BatteryData
               ApHv={ApHv}
               battery={battery}
@@ -101,7 +114,7 @@ const Chart = ({ allValues, ApHv }) => {
       ) : (
         <div>
           <h3 style={{ marginTop: "50px", fontSize: "3rem" }}>
-            Nothing to display yet
+            No readings from today
           </h3>
         </div>
       )}
