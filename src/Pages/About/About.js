@@ -92,6 +92,30 @@ class About extends Component {
                   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </span>
               </div>
+
+              <div className="license-container">
+                <span className="license-type">Credits</span>
+                <hr></hr>
+                <span align="justify" className="license">
+                  1. All these beautiful background images were downloaded at{" "}
+                  <a
+                    className="credit-link"
+                    href="https://www.svgbackgrounds.com"
+                  >
+                    SVGBackgrounds.com
+                  </a>
+                  <br />
+                  <br />
+                  2. All these wicked icons were downloaded at flaticon.com |
+                  Uicons by{" "}
+                  <a
+                    className="credit-link"
+                    href="https://www.flaticon.com/uicons"
+                  >
+                    Flaticon
+                  </a>
+                </span>
+              </div>
             </main>
 
             <footer>

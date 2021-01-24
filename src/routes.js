@@ -9,17 +9,19 @@ import MainLogin from "./Pages/MainLogin/MainLogin";
 import Apiary from "./Pages/Apiary/Apiary";
 import NotExistPage from "./Pages/NotExistPage/NotExistPage";
 
-const Routes = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/contacts" component={Contacts} />
-      <Route path="/login" component={MainLogin} />
-      <Route path="/apiary" component={Apiary} />
-      <Route path="/" component={NotExistPage} />
-    </Switch>
-  </BrowserRouter>
-);
+const Routes = () => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/contacts" component={Contacts} />
+        <Route path="/login" component={MainLogin} />
+        <Route path="/apiary" component={Apiary} />
+        <Route path="/" component={NotExistPage} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default Routes;

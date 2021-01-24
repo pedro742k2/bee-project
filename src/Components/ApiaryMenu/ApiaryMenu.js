@@ -41,25 +41,6 @@ const ApiaryMenu = ({ selectHive }) => {
           </p>
         </div>
       </div>
-
-      <div className="apiary">
-        <p className="apiary-title">Apiary 4</p>
-
-        <div>
-          <p id="4-1" onClick={selectHive}>
-            Hive 1
-          </p>
-          <p id="4-2" onClick={selectHive}>
-            Hive 2
-          </p>
-          <p id="4-3" onClick={selectHive}>
-            Hive 3
-          </p>
-          <p id="4-4" onClick={selectHive}>
-            Hive 4
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

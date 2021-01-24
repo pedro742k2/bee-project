@@ -11,6 +11,18 @@ class Login extends Component {
       .getElementsByClassName("error-box pwrd")[0]
       .classList.remove("active");
 
+    document
+      .getElementsByClassName("credentials")[0]
+      .classList.remove("active");
+
+    document
+      .getElementsByClassName("already-created")[0]
+      .classList.remove("active");
+
+    document
+      .getElementsByClassName("server-error")[0]
+      .classList.remove("active");
+
     this.props.resetState();
   }
 

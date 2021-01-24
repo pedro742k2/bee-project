@@ -34,13 +34,15 @@
 
 /* IMPORTANT ERRORS -> */
 .error-box.reg-invalid-email,
-.error-box.repeated-pwrd {
+.error-box.repeated-pwrd,
+.error-box.credentials {
   background: #ff6334;
   background: -webkit-linear-gradient(to right, #ff6334, #ff3c00);
   background: linear-gradient(to right, #ff6334, #ff3c00);
 }
 .error-box.reg-invalid-email p,
-.error-box.repeated-pwrd p {
+.error-box.repeated-pwrd p,
+.error-box.credentials p {
   color: #fff;
 }
 /* <- IMPORTANT ERRORS */
