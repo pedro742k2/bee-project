@@ -23,7 +23,6 @@ class SubmitErrors extends Component {
   };
 
   fetchLogin = (user, password) => {
-    console.log("fetchLogin");
     if (!this.props.isSignIn) {
       fetch(`${ServerApi}/login`, {
         method: "post",
@@ -48,13 +47,12 @@ class SubmitErrors extends Component {
         .catch(() => {
           document
             .getElementsByClassName("server-error")[0]
-            .classList.add("active");
+            ?.classList.add("active");
         });
     }
   };
 
   fetchRegister = (user, email, password) => {
-    console.log("fetchRegister");
     fetch(`${ServerApi}/register`, {
       method: "post",
       headers: { "Content-Type": "application/json" },

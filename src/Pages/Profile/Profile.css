@@ -1,0 +1,39 @@
+.profile-main {
+  height: 84vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-info-container {
+  z-index: 10;
+}
+
+.profile-main h1 {
+  font-size: 4rem;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.profile-main h2 {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.profile-main p {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.logout-btn {
+  padding: 5px 10px;
+  border: 2px solid #ff4800;
+  border-radius: 5px;
+  background-color: #fff;
+
+  font-size: 2rem;
+  cursor: pointer;
+}

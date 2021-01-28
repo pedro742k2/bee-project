@@ -218,6 +218,29 @@ button.disable .bubble {
   background-color: linear-gradient(to right, #ffae00, #ff6600);
 }
 
+#remember-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#remember-checkbox input {
+  width: 25px;
+  margin: 0px 5px;
+}
+
+#remember-checkbox p {
+  width: 100%;
+  text-align: start;
+  font-size: 1.25rem;
+  cursor: default;
+}
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;

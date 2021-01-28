@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./NavBar.css";
 import "./NavBarResponsive.css";
 import "./burger-menu/hamburgers.min.css";
@@ -7,19 +7,35 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = ({ changeMenuState }) => {
   const path = useLocation().pathname;
+  const userToken = JSON.parse(localStorage.getItem("token"));
+
+  const [logedIn, setLogedIn] = useState(false);
+
+  const changeOptionsState = () => {
+    document.getElementById("/")?.classList.remove("disabled");
+    document.getElementById("/about")?.classList.remove("disabled");
+    document.getElementById("/contacts")?.classList.remove("disabled");
+    document.getElementById("/apiary")?.classList.remove("disabled");
+    document.getElementById("/login")?.classList.remove("disabled");
+    document.getElementById("/profile")?.classList.remove("disabled");
+
+    document.getElementById(path)?.classList.add("disabled");
+
+    if ((userToken?.userName?.length >= 1, userToken?.email?.length >= 1)) {
+      setLogedIn(true);
+    } else {
+      setLogedIn(false);
+    }
+  };
 
   useEffect(() => {
-    document.getElementById("/").classList.remove("disabled");
-    document.getElementById("/about").classList.remove("disabled");
-    document.getElementById("/contacts").classList.remove("disabled");
-    document.getElementById("/apiary").classList.remove("disabled");
-    document.getElementById("/login").classList.remove("disabled");
-    try {
-      document.getElementById(path).classList.add("disabled");
-    } catch (error) {
-      console.warn(error);
-    }
-  }, [path]);
+    changeOptionsState();
+
+    window.addEventListener("storage", changeOptionsState);
+    return () => {
+      window.removeEventListener("storage", changeOptionsState);
+    };
+  }, [path, logedIn]);
 
   return (
     <div className="nav-bar">
@@ -52,9 +68,15 @@ const NavBar = ({ changeMenuState }) => {
           <p id="/apiary">Apiary</p>
         </Link>
 
-        <Link className="links" to="/login">
-          <p id="/login">Login</p>
-        </Link>
+        {!logedIn ? (
+          <Link className="links" to="/login">
+            <p id="/login">Login</p>
+          </Link>
+        ) : (
+          <Link className="links" to="/profile">
+            <p id="/profile">Profile</p>
+          </Link>
+        )}
       </div>
     </div>
   );

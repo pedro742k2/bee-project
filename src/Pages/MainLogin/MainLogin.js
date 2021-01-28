@@ -85,6 +85,7 @@ class MainLogin extends Component {
             disableAllErrorBoxes={this.disableAllErrorBoxes}
             onLoginPage={onLoginPage}
             changeLoginPage={this.changeLoginPage}
+            setLoginToken={this.props.setLoginToken}
           />
         </main>
 

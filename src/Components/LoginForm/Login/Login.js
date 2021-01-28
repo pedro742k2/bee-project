@@ -69,6 +69,11 @@ class Login extends Component {
               src={NotCorrect}
             ></img>
           </div>
+
+          <div id="remember-checkbox">
+            <input id="remember-user-checkbox" type="checkbox"></input>
+            <p>Remember me next time?</p>
+          </div>
         </div>
 
         <button

@@ -8,7 +8,13 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import SubmitErrors from "./SubmitErrors/SubmitErrors";
 
-const LoginForm = ({ disableAllErrorBoxes, onLoginPage, changeLoginPage }) => {
+const LoginForm = ({
+  setLoginToken,
+  disableAllErrorBoxes,
+  onLoginPage,
+  changeLoginPage,
+}) => {
+  const [checkboxState, setCheckboxState] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
   const [signedUser, setSignedUser] = useState({});
   const [loginFields, setLoginFields] = useState({
@@ -41,7 +47,14 @@ const LoginForm = ({ disableAllErrorBoxes, onLoginPage, changeLoginPage }) => {
     });
   };
 
+  useEffect(() => {
+    setLoginToken(checkboxState, signedUser);
+  }, [checkboxState, signedUser]);
+
   const successSign = (user) => {
+    const rememberUser = document.getElementById("remember-user-checkbox");
+
+    setCheckboxState(rememberUser?.checked);
     setIsSignIn(true);
     setSignedUser(user);
   };
