@@ -24,7 +24,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const setName = async () => {
     const newName = document.querySelector(".set-name input").value;
 
-    const newUserData = await fetch(`${ServerApi}/set-name`, {
+    const response = await fetch(`${ServerApi}/set-name`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -37,17 +37,21 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
       .then((data) => {
         return data;
       })
-      .catch((error) => {
-        return error;
+      .catch(() => {
+        return false;
       });
 
-    if (newUserData === "Updated successfuly") {
+    if (response === "Updated successfuly") {
       setLoginToken(localStored, {
         userName: token?.userName,
         email: token?.email,
         ApHv: token?.ApHv,
         name: newName,
       });
+    } else {
+      alert(
+        "We are sorry but there was a problem consulting our servers\nTry again later :("
+      );
     }
   };
 
