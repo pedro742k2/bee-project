@@ -10,6 +10,10 @@ import errorIcon from "../../Assets/error.svg";
 import honeyIcon from "../../Assets/honey.svg";
 import noBeeIcon from "../../Assets/no-bee.svg";
 import removeParticlesIcon from "../../Assets/remove-particles.svg";
+import tempIcon from "../../Components/ActualValues/Assets/thermometer.svg";
+import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
+import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
+import batteryIcon from "../../Components/ActualValues/Assets/battery.svg";
 
 class About extends Component {
   constructor() {
@@ -24,6 +28,10 @@ class About extends Component {
         honeyIcon,
         noBeeIcon,
         removeParticlesIcon,
+        tempIcon,
+        hmdtIcon,
+        weightIcon,
+        batteryIcon,
       ],
     };
   }
@@ -136,6 +144,26 @@ class About extends Component {
                   <div className="icon-license-container">
                     <img src={iconsToCredit[4]} alt=""></img>
                     <p>Designed by Good Ware from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[5]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[6]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[7]} alt=""></img>
+                    <p>Designed by Good Ware from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[8]} alt=""></img>
+                    <p>Designed by Vectors Market from Flaticon</p>
                   </div>
                 </span>
               </div>
