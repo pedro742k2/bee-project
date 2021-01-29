@@ -4,30 +4,29 @@ import Footer from "../../Components/Footer/Footer";
 import "./About.css";
 import "./AboutResponsive.css";
 
+/* Images for credits */
+import beeIcon from "../../Assets/bee.svg";
+import errorIcon from "../../Assets/error.svg";
+import honeyIcon from "../../Assets/honey.svg";
+import noBeeIcon from "../../Assets/no-bee.svg";
+import removeParticlesIcon from "../../Assets/remove-particles.svg";
+
 class About extends Component {
   constructor() {
     super();
 
     this.state = {
       burger_state: true,
+
+      iconsToCredit: [
+        beeIcon,
+        errorIcon,
+        honeyIcon,
+        noBeeIcon,
+        removeParticlesIcon,
+      ],
     };
   }
-
-  /* burgerMenuOptionClicked = () => {
-    const { burger_state } = this.state;
-
-    if (burger_state) {
-      const burger_menu = document.getElementsByClassName(
-        "hamburger--stand"
-      )[0];
-      const nav_bar = document.getElementsByClassName("nav-bar")[0];
-
-      burger_menu.classList.toggle("is-active");
-      nav_bar.classList.toggle("on");
-
-      this.setState({ burger_state: !burger_state });
-    }
-  }; */
 
   changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -42,15 +41,12 @@ class About extends Component {
   };
 
   render() {
-    const { burger_state } = this.state;
+    const { burger_state, iconsToCredit } = this.state;
 
     return (
       <div className="App">
         <header>
-          <NavBar
-            // burgerMenuOptionClicked={this.burgerMenuOptionClicked}
-            changeMenuState={this.changeMenuState}
-          />
+          <NavBar changeMenuState={this.changeMenuState} />
         </header>
 
         {burger_state ? (
@@ -59,7 +55,7 @@ class About extends Component {
               <p>About Page</p>
               <p>Under development</p>
 
-              <div className="license-container">
+              <div className="about-container">
                 <span className="license-type">Copyright Notice</span>
                 <hr></hr>
                 <span align="justify" className="license">
@@ -93,7 +89,7 @@ class About extends Component {
                 </span>
               </div>
 
-              <div className="license-container">
+              <div className="about-container">
                 <span className="license-type">Credits</span>
                 <hr></hr>
                 <span align="justify" className="license">
@@ -114,6 +110,33 @@ class About extends Component {
                   >
                     Flaticon
                   </a>
+                </span>
+
+                <span align="justify" className="license icons">
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[0]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[1]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[2]} alt=""></img>
+                    <p>Designed by monkik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[3]} alt=""></img>
+                    <p>Designed by Darius Dan from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[4]} alt=""></img>
+                    <p>Designed by Good Ware from Flaticon</p>
+                  </div>
                 </span>
               </div>
             </main>

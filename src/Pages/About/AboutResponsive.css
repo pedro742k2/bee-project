@@ -1,10 +1,37 @@
+@media (max-width: 1000px) {
+  .icon-license-container p {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 900px) {
-  .license-container {
+  .about-container {
     padding: 20px 50px;
   }
 
-  .license {
+  .license,
+  .about-container .credit-link {
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .icon-license-container p {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .icon-license-container {
+    flex-direction: column;
+  }
+
+  .icon-license-container p {
+    margin: 10px;
+  }
+
+  .icon-license-container img {
+    margin: 10px;
   }
 }
 
@@ -13,7 +40,11 @@
     font-size: 3rem;
   }
 
-  .license-container {
+  .icon-license-container p {
+    font-size: 1.25rem;
+  }
+
+  .about-container {
     padding: 20px;
   }
 }
@@ -22,10 +53,19 @@
   .aboutpage-main p {
     font-size: 2.2rem;
   }
+
+  .icon-license-container p {
+    font-size: 1.25rem;
+  }
+
+  .icon-license-container img {
+    width: 75px;
+  }
 }
 
 @media (max-width: 300px) {
-  .license {
+  .license,
+  .about-container .credit-link {
     font-size: 1.5rem;
   }
 }

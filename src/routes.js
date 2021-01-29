@@ -21,7 +21,6 @@ const Routes = () => {
   const [localStored, setLocalStorage] = useState(undefined);
 
   const setLoginToken = (checkboxState = false, user) => {
-    console.log("setLoginToken ->", user);
     try {
       const verifyLength = user.userName.length >= 1;
 
@@ -59,7 +58,6 @@ const Routes = () => {
 
     if (userToken) {
       const checkLocalStorage = JSON.parse(localStorage.getItem("token"));
-      console.log("checkLocalStorage ->", checkLocalStorage);
       if (checkLocalStorage === null) {
         setLocalStorage(false);
       } else {
