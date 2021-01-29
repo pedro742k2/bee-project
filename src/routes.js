@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -25,21 +25,23 @@ const Routes = () => {
 
       if (verifyLength && checkboxState) {
         localStorage.setItem("token", JSON.stringify(user));
+        sessionStorage.setItem("isLogged", "true");
         setLoggedIn(true);
-        console.log("Remember");
       } else if (verifyLength && !checkboxState) {
         sessionStorage.setItem("token", JSON.stringify(user));
         setLoggedIn(true);
-        console.log("Don't remember");
+        sessionStorage.setItem("isLogged", "true");
       }
     } catch {
       setLoggedIn(false);
+      sessionStorage.setItem("isLogged", "false");
     }
   };
 
   const logOut = () => {
     localStorage.removeItem("token");
     sessionStorage.removeItem("token");
+    sessionStorage.setItem("isLogged", "false");
     setLoggedIn(false);
   };
 
@@ -51,6 +53,7 @@ const Routes = () => {
     if (userToken) {
       setLoggedIn(true);
       setToken(userToken);
+      sessionStorage.setItem("isLogged", "true");
     }
   }, [loggedIn]);
 
@@ -61,18 +64,13 @@ const Routes = () => {
         <Route path="/about" component={About} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/apiary" component={Apiary} />
-
-        {loggedIn ? (
-          <Route path="/profile">
-            <Profile token={token} logOut={logOut} />
-          </Route>
-        ) : (
-          <Route path="/profile" component={NotExistPage} />
-        )}
+        <Route path="/profile">
+          <Profile loggedIn={loggedIn} token={token} logOut={logOut} />
+        </Route>
 
         {!loggedIn ? (
           <Route path="/login">
-            <MainLogin setLoginToken={setLoginToken} />
+            <MainLogin loggedIn={loggedIn} setLoginToken={setLoginToken} />
           </Route>
         ) : (
           <Redirect

@@ -7,9 +7,13 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = ({ changeMenuState }) => {
   const path = useLocation().pathname;
-  const userToken = JSON.parse(localStorage.getItem("token"));
+  const userToken =
+    JSON.parse(localStorage.getItem("token")) ||
+    JSON.parse(sessionStorage.getItem("token"));
 
-  const [logedIn, setLogedIn] = useState(false);
+  const isLogged = sessionStorage.getItem("isLogged");
+
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const changeOptionsState = () => {
     document.getElementById("/")?.classList.remove("disabled");
@@ -21,10 +25,10 @@ const NavBar = ({ changeMenuState }) => {
 
     document.getElementById(path)?.classList.add("disabled");
 
-    if ((userToken?.userName?.length >= 1, userToken?.email?.length >= 1)) {
-      setLogedIn(true);
+    if (userToken?.userName?.length >= 1 && userToken?.email?.length >= 1) {
+      setLoggedIn(true);
     } else {
-      setLogedIn(false);
+      setLoggedIn(false);
     }
   };
 
@@ -35,7 +39,7 @@ const NavBar = ({ changeMenuState }) => {
     return () => {
       window.removeEventListener("storage", changeOptionsState);
     };
-  }, [path, logedIn]);
+  }, [path, loggedIn, isLogged]);
 
   return (
     <div className="nav-bar">
@@ -68,7 +72,7 @@ const NavBar = ({ changeMenuState }) => {
           <p id="/apiary">Apiary</p>
         </Link>
 
-        {!logedIn ? (
+        {!loggedIn ? (
           <Link className="links" to="/login">
             <p id="/login">Login</p>
           </Link>

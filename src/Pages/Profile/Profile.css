@@ -30,10 +30,12 @@
 
 .logout-btn {
   padding: 5px 10px;
-  border: 2px solid #ff4800;
-  border-radius: 5px;
-  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 
+  color: #fff;
+  font-weight: bold;
   font-size: 2rem;
   cursor: pointer;
 }

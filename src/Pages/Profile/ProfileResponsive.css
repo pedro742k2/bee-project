@@ -1,11 +1,27 @@
 @media (max-width: 600px) {
-  .homepage-main p {
-    font-size: 3rem;
+  .profile-main h1 {
+    font-size: 3.5rem;
+  }
+
+  .profile-main h2 {
+    font-size: 2.5rem;
+  }
+
+  .profile-main p {
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 400px) {
-  .homepage-main p {
+  .profile-main h1 {
+    font-size: 3rem;
+  }
+
+  .profile-main h2 {
     font-size: 2rem;
+  }
+
+  .profile-main p {
+    font-size: 1.5rem;
   }
 }
