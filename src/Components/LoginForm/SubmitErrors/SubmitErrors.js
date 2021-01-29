@@ -71,13 +71,18 @@ class SubmitErrors extends Component {
         } else {
           this.closeBox("already-created");
 
-          this.props.successSign(result[0]);
+          this.props.successSign({
+            userName: result[0].user_name,
+            email: result[0].email,
+            ApHv: null,
+            name: null,
+          });
         }
       })
       .catch(() => {
         document
           .getElementsByClassName("server-error")[0]
-          .classList.add("active");
+          ?.classList.add("active");
       });
   };
 

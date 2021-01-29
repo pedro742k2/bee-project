@@ -29,15 +29,22 @@ const Profile = ({ loggedIn, token, logOut }) => {
       <main className="profile-main">
         {loggedIn ? (
           <div className="user-info-container">
-            {token?.name === null ? (
-              <h1>Hi, we see that you haven't set a name yet</h1>
-            ) : (
-              <h1>Hi, {token?.name}</h1>
-            )}
+            <h1>User info:</h1>
 
-            <h2>User info:</h2>
+            {token?.name === null ? (
+              <h2>Hi, we see that you haven't set a name yet</h2>
+            ) : (
+              <h2>Hi, {token?.name}</h2>
+            )}
+            {/* <div>
+              <span>What's your name?</span>
+            </div> */}
             <p>Username: {token?.userName}</p>
             <p>Email: {token?.email}</p>
+            <p>
+              Apiaries/Hives:{" "}
+              {token?.ApHv ? token.ApHv : "No apiaries or hives added"}
+            </p>
 
             <button
               onClick={() => {
