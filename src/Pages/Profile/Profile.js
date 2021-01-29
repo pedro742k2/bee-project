@@ -80,12 +80,33 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               <h2>Hi, {token?.name}</h2>
             )}
 
-            <p>Username: {token?.userName}</p>
-            <p>Email: {token?.email}</p>
-            <p>
-              Apiaries/Hives:{" "}
-              {token?.ApHv ? token.ApHv : "No apiaries or hives added"}
-            </p>
+            <div className="user-info">
+              <p>
+                <b>Name:</b>
+                <input value={token?.name} type="text"></input>
+              </p>
+
+              <p>
+                <b>Username:</b>
+                <input value={token?.userName} type="text"></input>
+              </p>
+
+              <p>
+                <b>Email:</b>
+                <input value={token?.email} type="text"></input>
+              </p>
+
+              <p>
+                <b>Hives:</b>{" "}
+                <input
+                  value={
+                    token?.ApHv ? token.ApHv : "No apiaries or hives added"
+                  }
+                  type="text"
+                ></input>
+                {/* token?.ApHv ? token.ApHv : "No apiaries or hives added" */}
+              </p>
+            </div>
 
             <button
               onClick={() => {

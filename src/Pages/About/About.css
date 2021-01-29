@@ -24,8 +24,8 @@
   padding: 20px 100px;
   margin: 40px 20px;
 
-  border: 2px solid #fff;
-  border-radius: 5px;
+  border: 5px solid #fff;
+  border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.5);
 
   max-width: 90vw;
@@ -95,5 +95,6 @@
 
   background-color: rgba(0, 0, 0, 0.2);
   border: 5px solid #ff3300;
-  border-radius: 100%;
+  /* border-radius: 100%; */
+  border-radius: 30px;
 }
