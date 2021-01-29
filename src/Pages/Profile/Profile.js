@@ -10,7 +10,6 @@ import NoBeeIcon from "../../Assets/no-bee.svg";
 const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
-  const [user, setUser] = useState();
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -49,25 +48,8 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
         ApHv: token?.ApHv,
         name: newName,
       });
-
-      setUser({
-        userName: token?.userName,
-        email: token?.email,
-        name: newName,
-        ApHv: token?.ApHv,
-      });
     }
   };
-
-  useEffect(() => {
-    console.log("userEffect ->", token, user);
-    setUser({
-      userName: token?.userName,
-      email: token?.email,
-      name: token?.name,
-      ApHv: token?.ApHv,
-    });
-  }, [token]);
 
   return (
     <div className="App">
@@ -80,7 +62,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
           <div className="user-info-container">
             <h1>User info:</h1>
 
-            {user?.name === null || user?.name?.length < 1 ? (
+            {token?.name === null || token?.name?.length < 1 ? (
               <Fragment>
                 <h2>Hi, we see that you haven't set a name yet</h2>
 
@@ -91,14 +73,14 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 </div>
               </Fragment>
             ) : (
-              <h2>Hi, {user?.name}</h2>
+              <h2>Hi, {token?.name}</h2>
             )}
 
-            <p>Username: {user?.userName}</p>
-            <p>Email: {user?.email}</p>
+            <p>Username: {token?.userName}</p>
+            <p>Email: {token?.email}</p>
             <p>
               Apiaries/Hives:{" "}
-              {user?.ApHv ? user.ApHv : "No apiaries or hives added"}
+              {token?.ApHv ? token.ApHv : "No apiaries or hives added"}
             </p>
 
             <button

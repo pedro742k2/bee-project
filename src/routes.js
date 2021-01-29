@@ -100,7 +100,6 @@ const Routes = () => {
           />
         )}
 
-        {/* Any other page */}
         <Route path="/" component={NotExistPage} />
       </Switch>
     </Router>
