@@ -3,12 +3,14 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./Profile.css";
 import "./ProfileResponsive.css";
+import ServerApi from "../../Settings/ServerApi";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
-const Profile = ({ loggedIn, token, logOut }) => {
+const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
+  const [user, setUser] = useState();
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -19,6 +21,53 @@ const Profile = ({ loggedIn, token, logOut }) => {
 
     setBurgerState(!burgerState);
   };
+
+  const setName = async () => {
+    const newName = document.querySelector(".set-name input").value;
+
+    const newUserData = await fetch(`${ServerApi}/set-name`, {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userName: token?.userName,
+        email: token?.email,
+        name: newName,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    if (newUserData === "Updated successfuly") {
+      setLoginToken(localStored, {
+        userName: token?.userName,
+        email: token?.email,
+        ApHv: token?.ApHv,
+        name: newName,
+      });
+
+      setUser({
+        userName: token?.userName,
+        email: token?.email,
+        name: newName,
+        ApHv: token?.ApHv,
+      });
+    }
+  };
+
+  useEffect(() => {
+    console.log("userEffect ->", token, user);
+    setUser({
+      userName: token?.userName,
+      email: token?.email,
+      name: token?.name,
+      ApHv: token?.ApHv,
+    });
+  }, [token]);
 
   return (
     <div className="App">
@@ -31,19 +80,25 @@ const Profile = ({ loggedIn, token, logOut }) => {
           <div className="user-info-container">
             <h1>User info:</h1>
 
-            {token?.name === null ? (
-              <h2>Hi, we see that you haven't set a name yet</h2>
+            {user?.name === null || user?.name?.length < 1 ? (
+              <Fragment>
+                <h2>Hi, we see that you haven't set a name yet</h2>
+
+                <div className="set-name">
+                  <span>Tell us your name: </span>
+                  <input type="text"></input>
+                  <button onClick={setName}>Submit</button>
+                </div>
+              </Fragment>
             ) : (
-              <h2>Hi, {token?.name}</h2>
+              <h2>Hi, {user?.name}</h2>
             )}
-            {/* <div>
-              <span>What's your name?</span>
-            </div> */}
-            <p>Username: {token?.userName}</p>
-            <p>Email: {token?.email}</p>
+
+            <p>Username: {user?.userName}</p>
+            <p>Email: {user?.email}</p>
             <p>
               Apiaries/Hives:{" "}
-              {token?.ApHv ? token.ApHv : "No apiaries or hives added"}
+              {user?.ApHv ? user.ApHv : "No apiaries or hives added"}
             </p>
 
             <button

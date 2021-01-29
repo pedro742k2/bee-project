@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,8 +18,10 @@ import Profile from "./Pages/Profile/Profile";
 const Routes = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState();
+  const [localStored, setLocalStorage] = useState(undefined);
 
-  const setLoginToken = (checkboxState, user) => {
+  const setLoginToken = (checkboxState = false, user) => {
+    console.log("setLoginToken ->", user);
     try {
       const verifyLength = user.userName.length >= 1;
 
@@ -27,9 +29,13 @@ const Routes = () => {
         localStorage.setItem("token", JSON.stringify(user));
         sessionStorage.setItem("isLogged", "true");
         setLoggedIn(true);
+        setToken(user);
+        setLocalStorage(true);
       } else if (verifyLength && !checkboxState) {
         sessionStorage.setItem("token", JSON.stringify(user));
         setLoggedIn(true);
+        setToken(user);
+        setLocalStorage(false);
         sessionStorage.setItem("isLogged", "true");
       }
     } catch {
@@ -43,6 +49,7 @@ const Routes = () => {
     sessionStorage.removeItem("token");
     sessionStorage.setItem("isLogged", "false");
     setLoggedIn(false);
+    setLocalStorage(undefined);
   };
 
   useEffect(() => {
@@ -51,6 +58,13 @@ const Routes = () => {
       JSON.parse(sessionStorage.getItem("token"));
 
     if (userToken) {
+      const checkLocalStorage = JSON.parse(localStorage.getItem("token"));
+      console.log("checkLocalStorage ->", checkLocalStorage);
+      if (checkLocalStorage === null) {
+        setLocalStorage(false);
+      } else {
+        setLocalStorage(true);
+      }
       setLoggedIn(true);
       setToken(userToken);
       sessionStorage.setItem("isLogged", "true");
@@ -65,7 +79,13 @@ const Routes = () => {
         <Route path="/contacts" component={Contacts} />
         <Route path="/apiary" component={Apiary} />
         <Route path="/profile">
-          <Profile loggedIn={loggedIn} token={token} logOut={logOut} />
+          <Profile
+            localStored={localStored}
+            loggedIn={loggedIn}
+            setLoginToken={setLoginToken}
+            token={token}
+            logOut={logOut}
+          />
         </Route>
 
         {!loggedIn ? (
