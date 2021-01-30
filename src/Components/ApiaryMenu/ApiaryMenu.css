@@ -1,0 +1,58 @@
+.add-aphv-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 2px solid #fff;
+  border-radius: 10px;
+  margin: 20px 10px;
+  padding: 10px 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.add-aphv-container h3 {
+  font-size: 2rem;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.add-aphv-container input,
+.add-aphv-container button {
+  margin: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  color: #fff;
+
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 1px;
+
+  transition: all 0.1s ease-in-out;
+}
+
+.add-aphv-container input {
+  border-width: 0 0 1.5px 0;
+}
+
+.add-aphv-container input:focus {
+  box-shadow: inset 0 -1px 0 0 rgb(255, 255, 255);
+}
+
+.add-aphv-container input::-webkit-outer-spin-button,
+.add-aphv-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-aphv-container button {
+  margin-top: 10px;
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.add-aphv-container button:hover {
+  background-color: #fff;
+  color: #ff3600;
+}

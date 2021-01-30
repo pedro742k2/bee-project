@@ -7,12 +7,16 @@ import Chart from "../../Components/Chart/Chart";
 import "./Apiary.css";
 import "./ApiaryResponsive.css";
 import ServerApi from "../../Settings/ServerApi";
+import { useLoading, Audio } from "@agney/react-loading";
 
-const Apiary = () => {
+import NoBeeIcon from "../../Assets/no-bee.svg";
+
+const Apiary = ({ loggedIn }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
   const [selectedHives, setSelectedHives] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
+  const [date, setDate] = useState();
 
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
@@ -23,24 +27,29 @@ const Apiary = () => {
   const getValues = async () => {
     setApHv(selectedHives[0]);
 
-    const data = await fetch(`${ServerApi}/get-data`, {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ApHv: selectedHives,
-        currentDate: selectedDate,
-        measurementType: measurementType.toLowerCase(),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        return data;
+    let data = undefined;
+    try {
+      data = await fetch(`${ServerApi}/get-data`, {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ApHv: selectedHives,
+          currentDate: selectedDate,
+          measurementType: measurementType.toLowerCase(),
+        }),
       })
-      .catch(() => {
-        return false;
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          return data;
+        })
+        .catch(() => {
+          return false;
+        });
+    } catch {
+      data = undefined;
+    }
 
-    if (selectedHives.length === 0) {
+    if (selectedHives?.length === 0) {
       setAllValues(undefined);
       setActualValues(["-", "-", "-", "-"]);
       setReadOn("No hive selected");
@@ -75,6 +84,7 @@ const Apiary = () => {
                 ? "0" + nowDate.getMinutes()
                 : nowDate.getMinutes();
             const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
+            setDate(`${currentYear}-${currentMonth}-${currentDay}`);
 
             setAllValues(data.firstDataFromHours);
             setActualValues([
@@ -134,9 +144,19 @@ const Apiary = () => {
 
     getValues();
 
+    const nowDate = new Date();
+    const currentDay =
+      nowDate.getDate() <= 9 ? "0" + nowDate.getDate() : nowDate.getDate();
+    const currentMonth =
+      nowDate.getMonth() + 1 <= 9
+        ? "0" + (nowDate.getMonth() + 1)
+        : nowDate.getMonth() + 1;
+    const currentYear = nowDate.getFullYear();
+    setDate(`${currentYear}-${currentMonth}-${currentDay}`);
+
     const interval = setInterval(() => {
       getValues();
-    }, 1000);
+    }, 10000);
 
     return () => {
       clearInterval(interval);
@@ -184,74 +204,86 @@ const Apiary = () => {
       {burgerState ? (
         <Fragment>
           <main className="apiarypage-main">
-            {/* Left-side menu */}
-            <div className="menus">
-              <ApiaryMenu selectHive={selectHive} />
-            </div>
-
-            <div className="graphs">
-              <div id="actual-values">
-                <h1>Last values</h1>
-                <ActualValues
-                  actualValues={actualValues}
-                  readOn={readOn}
-                  receivedOn={receivedOn}
-                />
-              </div>
-              <div id="charts">
-                <div className="graph-opt-container">
-                  <div
-                    className="custom-select-wrapper"
-                    onClick={toggleDropMenu}
-                  >
-                    <div className="custom-select">
-                      <div className="custom-select__trigger">
-                        <span>{measurementType} measurements</span>
-                        <div className="arrow"></div>
-                      </div>
-
-                      <div className="custom-options">
-                        <span
-                          className="custom-option Daily selected"
-                          data-value="daily"
-                          onClick={() => {
-                            handleDropMenuClick("Daily");
-                          }}
-                        >
-                          Daily measurements
-                        </span>
-                        <span
-                          className="custom-option Weekly"
-                          data-value="weekly"
-                          onClick={() => {
-                            handleDropMenuClick("Weekly");
-                          }}
-                        >
-                          Weekly measurements
-                        </span>
-                        <span
-                          className="custom-option Monthly"
-                          data-value="monthly"
-                          onClick={() => {
-                            handleDropMenuClick("Monthly");
-                          }}
-                        >
-                          Monthly measurements
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <input
-                    onChange={selectDate}
-                    className="select-date"
-                    type="date"
-                  ></input>
+            {loggedIn ? (
+              <Fragment>
+                <div className="menus">
+                  <ApiaryMenu selectHive={selectHive} />
                 </div>
 
-                <Chart allValues={allValues} ApHv={ApHv} />
+                <div className="graphs">
+                  <div id="actual-values">
+                    <h1>Last values</h1>
+                    <ActualValues
+                      actualValues={actualValues}
+                      readOn={readOn}
+                      receivedOn={receivedOn}
+                    />
+                  </div>
+                  <div id="charts">
+                    <div className="graph-opt-container">
+                      <div
+                        className="custom-select-wrapper"
+                        onClick={toggleDropMenu}
+                      >
+                        <div className="custom-select">
+                          <div className="custom-select__trigger">
+                            <span>{measurementType} measurements</span>
+                            <div className="arrow"></div>
+                          </div>
+
+                          <div className="custom-options">
+                            <span
+                              className="custom-option Daily selected"
+                              data-value="daily"
+                              onClick={() => {
+                                handleDropMenuClick("Daily");
+                              }}
+                            >
+                              Daily measurements
+                            </span>
+                            <span
+                              className="custom-option Weekly"
+                              data-value="weekly"
+                              onClick={() => {
+                                handleDropMenuClick("Weekly");
+                              }}
+                            >
+                              Weekly measurements
+                            </span>
+                            <span
+                              className="custom-option Monthly"
+                              data-value="monthly"
+                              onClick={() => {
+                                handleDropMenuClick("Monthly");
+                              }}
+                            >
+                              Monthly measurements
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <input
+                        onChange={selectDate}
+                        className="select-date"
+                        defaultValue={date}
+                        type="date"
+                      ></input>
+                    </div>
+
+                    <Chart allValues={allValues} ApHv={ApHv} />
+                  </div>
+                </div>
+              </Fragment>
+            ) : (
+              <div className="not-logged">
+                <h1>We can't reach your bees without knowing them :(</h1>
+                <p className="bee-p">
+                  <img alt="" src={NoBeeIcon}></img>
+                  <p>{"You need to log in first"}</p>
+                </p>
               </div>
-            </div>
+            )}
           </main>
 
           <footer>

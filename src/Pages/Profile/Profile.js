@@ -10,6 +10,9 @@ import NoBeeIcon from "../../Assets/no-bee.svg";
 const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
+  const [updatedHives, setUpdatedHives] = useState(undefined);
+
+  const getApHv = sessionStorage.getItem("ApHv");
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -55,6 +58,14 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     }
   };
 
+  useEffect(() => {
+    if (getApHv.length >= 1) {
+      setUpdatedHives(getApHv);
+    } else {
+      setUpdatedHives(token?.ApHv ? token.ApHv : "No apiaries or hives added");
+    }
+  }, [getApHv]);
+
   return (
     <div className="App">
       <header>
@@ -97,13 +108,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               </p>
 
               <p>
-                <b>Hives:</b>{" "}
-                <input
-                  value={
-                    token?.ApHv ? token.ApHv : "No apiaries or hives added"
-                  }
-                  type="text"
-                ></input>
+                <b>Hives:</b> <input value={updatedHives} type="text"></input>
                 {/* token?.ApHv ? token.ApHv : "No apiaries or hives added" */}
               </p>
             </div>

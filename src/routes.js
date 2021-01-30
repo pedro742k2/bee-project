@@ -19,6 +19,7 @@ const Routes = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState();
   const [localStored, setLocalStorage] = useState(undefined);
+  const [updatedHives, setUpdatedHives] = useState(undefined);
 
   const setLoginToken = (checkboxState = false, user) => {
     try {
@@ -26,16 +27,17 @@ const Routes = () => {
 
       if (verifyLength && checkboxState) {
         localStorage.setItem("token", JSON.stringify(user));
-        sessionStorage.setItem("isLogged", "true");
-        setLoggedIn(true);
-        setToken(user);
         setLocalStorage(true);
       } else if (verifyLength && !checkboxState) {
         sessionStorage.setItem("token", JSON.stringify(user));
+        setLocalStorage(false);
+      }
+
+      if (verifyLength) {
+        sessionStorage.setItem("isLogged", "true");
+        sessionStorage.setItem("ApHv", user?.ApHv);
         setLoggedIn(true);
         setToken(user);
-        setLocalStorage(false);
-        sessionStorage.setItem("isLogged", "true");
       }
     } catch {
       setLoggedIn(false);
@@ -58,11 +60,10 @@ const Routes = () => {
 
     if (userToken) {
       const checkLocalStorage = JSON.parse(localStorage.getItem("token"));
-      if (checkLocalStorage === null) {
-        setLocalStorage(false);
-      } else {
-        setLocalStorage(true);
-      }
+      checkLocalStorage === null
+        ? setLocalStorage(false)
+        : setLocalStorage(true);
+
       setLoggedIn(true);
       setToken(userToken);
       sessionStorage.setItem("isLogged", "true");
@@ -75,7 +76,9 @@ const Routes = () => {
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/contacts" component={Contacts} />
-        <Route path="/apiary" component={Apiary} />
+        <Route path="/apiary">
+          <Apiary loggedIn={loggedIn} />
+        </Route>
         <Route path="/profile">
           <Profile
             localStored={localStored}
