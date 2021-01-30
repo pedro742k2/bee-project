@@ -7,7 +7,6 @@ import Chart from "../../Components/Chart/Chart";
 import "./Apiary.css";
 import "./ApiaryResponsive.css";
 import ServerApi from "../../Settings/ServerApi";
-import { useLoading, Audio } from "@agney/react-loading";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
