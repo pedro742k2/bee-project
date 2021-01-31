@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ServerApi from "../../Settings/ServerApi";
+import Fetch from "../../Settings/Fetch";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
@@ -24,16 +24,11 @@ const ApiaryMenu = ({ selectHive }) => {
     }
   };
 
-  const updateHivesInfo = () => {
-    fetch(`${ServerApi}/get-user-data`, {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: token?.userName,
-        email: token?.email,
-      }),
+  const updateHivesInfo = async () => {
+    Fetch("/get-user-data", "post", {
+      userName: token?.userName,
+      email: token?.email,
     })
-      .then((response) => response.json())
       .then((info) => {
         const data = info[0].ap_hv;
 
@@ -48,22 +43,16 @@ const ApiaryMenu = ({ selectHive }) => {
     const ap = document.getElementById("apiary-input").value;
     const hv = document.getElementById("hive-input").value;
 
-    fetch(`${ServerApi}/add-hives`, {
-      method: "put",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: token?.userName,
-        email: token?.email,
-        ApHv: `${ap}-${hv}`,
-      }),
+    Fetch("/add-hives", "put", {
+      userName: token?.userName,
+      email: token?.email,
+      ApHv: `${ap}-${hv}`,
     })
-      .then((response) => response.json())
       .then(console.log)
       .catch(console.log);
   };
 
   useEffect(() => {
-    console.log("useEffect");
     updateHivesInfo();
   }, [getApHv]);
 
@@ -93,12 +82,8 @@ const ApiaryMenu = ({ selectHive }) => {
 
       <div className="add-aphv-container">
         <h3>Add hive</h3>
-        <input
-          id="apiary-input"
-          type="number"
-          placeholder="Apiary number"
-        ></input>
-        <input id="hive-input" type="number" placeholder="Hive number"></input>
+        <input id="apiary-input" type="number" placeholder="Apiary id"></input>
+        <input id="hive-input" type="number" placeholder="Hive id"></input>
 
         <button onClick={addHive}>Add</button>
       </div>

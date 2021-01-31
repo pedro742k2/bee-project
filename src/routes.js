@@ -19,7 +19,6 @@ const Routes = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState();
   const [localStored, setLocalStorage] = useState(undefined);
-  const [updatedHives, setUpdatedHives] = useState(undefined);
 
   const setLoginToken = (checkboxState = false, user) => {
     try {
@@ -77,7 +76,7 @@ const Routes = () => {
         <Route path="/about" component={About} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/apiary">
-          <Apiary loggedIn={loggedIn} />
+          <Apiary loggedIn={loggedIn} token={token} />
         </Route>
         <Route path="/profile">
           <Profile

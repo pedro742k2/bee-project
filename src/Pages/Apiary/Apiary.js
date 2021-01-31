@@ -6,11 +6,11 @@ import ActualValues from "../../Components/ActualValues/ActualValues";
 import Chart from "../../Components/Chart/Chart";
 import "./Apiary.css";
 import "./ApiaryResponsive.css";
-import ServerApi from "../../Settings/ServerApi";
+import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
-const Apiary = ({ loggedIn }) => {
+const Apiary = ({ loggedIn, token }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
   const [selectedHives, setSelectedHives] = useState([]);
@@ -28,77 +28,79 @@ const Apiary = ({ loggedIn }) => {
 
     let data = undefined;
 
-    try {
-      if (selectedHives?.length >= 1) {
-        data = await fetch(`${ServerApi}/get-data`, {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+    if (loggedIn) {
+      try {
+        if (selectedHives?.length >= 1) {
+          data = await Fetch("/get-data", "post", {
             ApHv: selectedHives,
             currentDate: selectedDate,
             measurementType: measurementType.toLowerCase(),
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            return data;
           })
-          .catch(() => {
-            return false;
-          });
+            .then((data) => {
+              return data;
+            })
+            .catch(() => {
+              return false;
+            });
+        }
+      } catch {
+        data = undefined;
       }
-    } catch {
-      data = undefined;
-    }
 
-    if (selectedHives?.length === 0) {
-      setAllValues(undefined);
-      setActualValues(["-", "-", "-", "-"]);
-      setReadOn("No hive selected");
-      setReceivedOn("No hive selected");
-    } else {
-      if (data !== "not available") {
-        if (data.firstDataFromHours.length >= 1 || data.lastValues) {
-          try {
-            /* Date of when the data was read */
-            const readingsDateInfo = data.lastValues.readings_date.split("T");
-            let date = readingsDateInfo[0].split("-");
-            const hours = readingsDateInfo[1].split(".")[0].split(":");
-            date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
+      if (selectedHives?.length === 0) {
+        setAllValues(undefined);
+        setActualValues(["-", "-", "-", "-"]);
+        setReadOn("No hive selected");
+        setReceivedOn("No hive selected");
+      } else {
+        if (data !== "not available") {
+          if (data.firstDataFromHours.length >= 1 || data.lastValues) {
+            try {
+              /* Date of when the data was read */
+              const readingsDateInfo = data.lastValues.readings_date.split("T");
+              let date = readingsDateInfo[0].split("-");
+              const hours = readingsDateInfo[1].split(".")[0].split(":");
+              date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
 
-            /* Date of when the data was received */
-            const nowDate = new Date();
-            const currentDay =
-              nowDate.getDate() <= 9
-                ? "0" + nowDate.getDate()
-                : nowDate.getDate();
-            const currentMonth =
-              nowDate.getMonth() + 1 <= 9
-                ? "0" + (nowDate.getMonth() + 1)
-                : nowDate.getMonth() + 1;
-            const currentYear = nowDate.getFullYear();
-            const currentHour =
-              nowDate.getHours() <= 9
-                ? "0" + nowDate.getHours()
-                : nowDate.getHours();
-            const currentMinute =
-              nowDate.getMinutes() <= 9
-                ? "0" + nowDate.getMinutes()
-                : nowDate.getMinutes();
-            const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
-            setDate(`${currentYear}-${currentMonth}-${currentDay}`);
+              /* Date of when the data was received */
+              const nowDate = new Date();
+              const currentDay =
+                nowDate.getDate() <= 9
+                  ? "0" + nowDate.getDate()
+                  : nowDate.getDate();
+              const currentMonth =
+                nowDate.getMonth() + 1 <= 9
+                  ? "0" + (nowDate.getMonth() + 1)
+                  : nowDate.getMonth() + 1;
+              const currentYear = nowDate.getFullYear();
+              const currentHour =
+                nowDate.getHours() <= 9
+                  ? "0" + nowDate.getHours()
+                  : nowDate.getHours();
+              const currentMinute =
+                nowDate.getMinutes() <= 9
+                  ? "0" + nowDate.getMinutes()
+                  : nowDate.getMinutes();
+              const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
+              setDate(`${currentYear}-${currentMonth}-${currentDay}`);
 
-            setAllValues(data.firstDataFromHours);
-            setActualValues([
-              data.lastValues.temperature,
-              data.lastValues.humidity,
-              data.lastValues.weight,
-              data.lastValues.battery,
-            ]);
-            setReadOn(date);
-            setReceivedOn(currentTime);
-          } catch (error) {
-            console.log(error);
+              setAllValues(data.firstDataFromHours);
+              setActualValues([
+                data.lastValues.temperature,
+                data.lastValues.humidity,
+                data.lastValues.weight,
+                data.lastValues.battery,
+              ]);
+              setReadOn(date);
+              setReceivedOn(currentTime);
+            } catch (error) {
+              console.log(error);
+            }
+          } else {
+            setAllValues(undefined);
+            setActualValues(["-", "-", "-", "-"]);
+            setReadOn("Not available yet");
+            setReceivedOn("Not available yet");
           }
         } else {
           setAllValues(undefined);
@@ -106,11 +108,6 @@ const Apiary = ({ loggedIn }) => {
           setReadOn("Not available yet");
           setReceivedOn("Not available yet");
         }
-      } else {
-        setAllValues(undefined);
-        setActualValues(["-", "-", "-", "-"]);
-        setReadOn("Not available yet");
-        setReceivedOn("Not available yet");
       }
     }
   };
@@ -158,7 +155,7 @@ const Apiary = ({ loggedIn }) => {
 
     const interval = setInterval(() => {
       getValues();
-    }, 10000);
+    }, 5000);
 
     return () => {
       clearInterval(interval);

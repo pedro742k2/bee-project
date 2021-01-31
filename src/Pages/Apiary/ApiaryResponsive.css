@@ -7,7 +7,8 @@
 
   .custom-select__trigger,
   .custom-option,
-  .apiary-title {
+  .apiary-title,
+  .add-aphv-container h3 {
     font-size: 1.75rem;
   }
 
@@ -68,7 +69,12 @@
     padding: 0;
   }
 
-  .apiary {
+  .add-aphv-container input {
+    width: 80%;
+  }
+
+  .apiary,
+  .add-aphv-container {
     min-width: 100px;
     width: 15vw;
     height: 100%;

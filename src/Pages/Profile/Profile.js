@@ -3,7 +3,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import "./Profile.css";
 import "./ProfileResponsive.css";
-import ServerApi from "../../Settings/ServerApi";
+import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
@@ -27,16 +27,11 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const setName = async () => {
     const newName = document.querySelector(".set-name input").value;
 
-    const response = await fetch(`${ServerApi}/set-name`, {
-      method: "put",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: token?.userName,
-        email: token?.email,
-        name: newName,
-      }),
+    const response = await Fetch("/set-name", "put", {
+      userName: token?.userName,
+      email: token?.email,
+      name: newName,
     })
-      .then((res) => res.json())
       .then((data) => {
         return data;
       })

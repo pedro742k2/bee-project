@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import closeBtn from "../../../Assets/close.svg";
 import "./SubmitErrors.css";
 import "./SubmitErrorsResponsive.css";
-import ServerApi from "../../../Settings/ServerApi";
+import Fetch from "../../../Settings/Fetch";
 
 class SubmitErrors extends Component {
   closeBox = (event) => {
@@ -24,15 +24,10 @@ class SubmitErrors extends Component {
 
   fetchLogin = (user, password) => {
     if (!this.props.isSignIn) {
-      fetch(`${ServerApi}/login`, {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user: user,
-          password: password,
-        }),
+      Fetch("/login", "post", {
+        user: user,
+        password: password,
       })
-        .then((data) => data.json())
         .then((result) => {
           if (result === "Wrong credentials") {
             document
@@ -53,16 +48,11 @@ class SubmitErrors extends Component {
   };
 
   fetchRegister = (user, email, password) => {
-    fetch(`${ServerApi}/register`, {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: user,
-        email: email,
-        password: password,
-      }),
+    Fetch("/register", "post", {
+      userName: user,
+      email: email,
+      password: password,
     })
-      .then((data) => data.json())
       .then((result) => {
         if (result === "Something went wrong") {
           document
