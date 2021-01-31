@@ -13,14 +13,15 @@ const ApiaryMenu = ({ selectHive }) => {
   const updateApiaries = () => {
     const apiariesArray = [];
 
-    getApHv?.split(";").forEach((data) => {
-      if (data !== "")
-        if (!apiariesArray.includes(data[0])) {
-          apiariesArray.push(data[0]);
-        }
-    });
-
-    setApiaries(apiariesArray);
+    if (getApHv !== "null") {
+      getApHv?.split(";").forEach((data) => {
+        if (data !== "")
+          if (!apiariesArray.includes(data[0])) {
+            apiariesArray.push(data[0]);
+          }
+      });
+      setApiaries(apiariesArray);
+    }
   };
 
   const updateHivesInfo = () => {
@@ -43,11 +44,11 @@ const ApiaryMenu = ({ selectHive }) => {
       .catch(() => false);
   };
 
-  const addHive = async () => {
+  const addHive = () => {
     const ap = document.getElementById("apiary-input").value;
     const hv = document.getElementById("hive-input").value;
 
-    const response = await fetch(`${ServerApi}/add-hives`, {
+    fetch(`${ServerApi}/add-hives`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -57,15 +58,14 @@ const ApiaryMenu = ({ selectHive }) => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => data)
-      .catch(() => false);
-
-    console.log(response);
+      .then(console.log)
+      .catch(console.log);
   };
 
   useEffect(() => {
+    console.log("useEffect");
     updateHivesInfo();
-  }, [getApHv, token]);
+  }, [getApHv]);
 
   return (
     <div className="apiaries">

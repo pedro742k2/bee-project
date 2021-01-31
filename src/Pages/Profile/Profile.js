@@ -59,10 +59,15 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   };
 
   useEffect(() => {
-    if (getApHv.length >= 1) {
-      setUpdatedHives(getApHv);
-    } else {
+    if (
+      getApHv === "null" ||
+      getApHv === null ||
+      getApHv === "" ||
+      getApHv === undefined
+    ) {
       setUpdatedHives(token?.ApHv ? token.ApHv : "No apiaries or hives added");
+    } else {
+      setUpdatedHives(getApHv);
     }
   }, [getApHv]);
 

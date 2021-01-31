@@ -27,23 +27,26 @@ const Apiary = ({ loggedIn }) => {
     setApHv(selectedHives[0]);
 
     let data = undefined;
+
     try {
-      data = await fetch(`${ServerApi}/get-data`, {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ApHv: selectedHives,
-          currentDate: selectedDate,
-          measurementType: measurementType.toLowerCase(),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          return data;
+      if (selectedHives?.length >= 1) {
+        data = await fetch(`${ServerApi}/get-data`, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ApHv: selectedHives,
+            currentDate: selectedDate,
+            measurementType: measurementType.toLowerCase(),
+          }),
         })
-        .catch(() => {
-          return false;
-        });
+          .then((res) => res.json())
+          .then((data) => {
+            return data;
+          })
+          .catch(() => {
+            return false;
+          });
+      }
     } catch {
       data = undefined;
     }
