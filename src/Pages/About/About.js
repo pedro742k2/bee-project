@@ -132,8 +132,8 @@ class About extends Component {
                     it is a part of Uicons pack mentioned right above, on point
                     number two, or with a free/paid license without any need to
                     attribution or even designed by our own team. If by any mean
-                    if found that your or any other work isn't attributed below,
-                    as it should be, contact us
+                    you found that your or any other work isn't attributed
+                    below, as it should be, please contact us
                   </span>
                 </span>
 

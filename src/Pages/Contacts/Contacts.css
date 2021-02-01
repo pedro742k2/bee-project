@@ -12,3 +12,18 @@
   font-weight: bolder;
   color: #fff;
 }
+
+.contact-info {
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
+
+.contact-info p {
+  font-size: 2rem;
+}

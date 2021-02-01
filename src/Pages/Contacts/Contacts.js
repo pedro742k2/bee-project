@@ -35,6 +35,12 @@ class Contacts extends Component {
         <main className="contactspage-main">
           <p>Contacts Page</p>
           <p>Under development</p>
+          <div className="contact-info">
+            <p>If you wish to contact me, feel free to send an email</p>
+            <p>
+              <b>Email:</b> pmpb742k2@gmail.com
+            </p>
+          </div>
         </main>
 
         <footer>

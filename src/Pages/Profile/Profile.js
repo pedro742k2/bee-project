@@ -108,8 +108,11 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               </p>
 
               <p>
-                <b>Hives:</b> <input value={updatedHives} type="text"></input>
-                {/* token?.ApHv ? token.ApHv : "No apiaries or hives added" */}
+                <b>Hives:</b>{" "}
+                <input
+                  value={updatedHives + "\t( Data format: Apiary-Hive; )"}
+                  type="text"
+                ></input>
               </p>
             </div>
 
