@@ -10,6 +10,7 @@ import errorIcon from "../../Assets/error.svg";
 import honeyIcon from "../../Assets/honey.svg";
 import noBeeIcon from "../../Assets/no-bee.svg";
 import removeParticlesIcon from "../../Assets/remove-particles.svg";
+import closeRed from "../../Assets/closeRed.svg";
 import tempIcon from "../../Components/ActualValues/Assets/thermometer.svg";
 import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
 import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
@@ -32,6 +33,7 @@ class About extends Component {
         hmdtIcon,
         weightIcon,
         batteryIcon,
+        closeRed,
       ],
     };
   }
@@ -160,6 +162,11 @@ class About extends Component {
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[8]} alt=""></img>
+                    <p>Designed by Vectors Market from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[9]} alt=""></img>
                     <p>Designed by Vectors Market from Flaticon</p>
                   </div>
                 </span>

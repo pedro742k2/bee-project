@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Fetch from "../../Settings/Fetch";
+import closeIcon from "../../Assets/closeRed.svg";
 import "./ApiaryMenu.css";
-
-import closeIcon from "../../Assets/closeWhite.svg";
 
 const ApiaryMenu = ({ selectHive }) => {
   const getApHv = sessionStorage.getItem("ApHv");
