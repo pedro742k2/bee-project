@@ -192,11 +192,20 @@ button.disable .bubble {
   transform: scale(1.05);
 }
 
-.submit-form-btn {
+.btn-container {
+  width: 90%;
+
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+}
+
+.submit-form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   /* border: none; */
   border: 3px solid #ff8800;
@@ -206,7 +215,6 @@ button.disable .bubble {
   color: #fff;
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 20px;
   padding: 10px 30px;
   cursor: pointer;
 
@@ -217,6 +225,11 @@ button.disable .bubble {
   background-color: #ff8800;
   background-color: -webkit-linear-gradient(to right, #ffae00, #ff6600);
   background-color: linear-gradient(to right, #ffae00, #ff6600);
+}
+
+.rotating-refresh.login {
+  width: 35px;
+  margin-left: 20px;
 }
 
 #remember-checkbox {

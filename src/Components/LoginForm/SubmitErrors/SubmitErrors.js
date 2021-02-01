@@ -33,6 +33,8 @@ class SubmitErrors extends Component {
             document
               .getElementsByClassName("credentials")[0]
               .classList.add("active");
+
+            this.props.cancelPending();
           } else {
             this.closeBox("credentials");
 
@@ -43,6 +45,8 @@ class SubmitErrors extends Component {
           document
             .getElementsByClassName("server-error")[0]
             ?.classList.add("active");
+
+          this.props.cancelPending();
         });
     }
   };
@@ -58,6 +62,8 @@ class SubmitErrors extends Component {
           document
             .getElementsByClassName("already-created")[0]
             .classList.add("active");
+
+          this.props.cancelPending();
         } else {
           this.closeBox("already-created");
 
@@ -73,6 +79,8 @@ class SubmitErrors extends Component {
         document
           .getElementsByClassName("server-error")[0]
           ?.classList.add("active");
+
+        this.props.cancelPending();
       });
   };
 
@@ -101,10 +109,12 @@ class SubmitErrors extends Component {
       if (!error) {
         this.fetchLogin(user, pwrd);
       } else {
+        this.props.cancelPending();
         this.closeBox("credentials");
         this.closeBox("server-error");
       }
     } catch (error) {
+      this.props.cancelPending();
       console.log(error);
     }
   };
@@ -201,10 +211,12 @@ class SubmitErrors extends Component {
       if (!error) {
         this.fetchRegister(user, email, pwrd);
       } else {
+        this.props.cancelPending();
         this.closeBox("already-created");
         this.closeBox("server-error");
       }
     } catch (error) {
+      this.props.cancelPending();
       console.log(error);
     }
   };

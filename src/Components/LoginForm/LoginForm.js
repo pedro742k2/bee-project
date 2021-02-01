@@ -17,6 +17,8 @@ const LoginForm = ({
   const [checkboxState, setCheckboxState] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
   const [signedUser, setSignedUser] = useState({});
+  const [pending, setPending] = useState(false);
+
   const [loginFields, setLoginFields] = useState({
     ready: false,
     user: "",
@@ -54,12 +56,20 @@ const LoginForm = ({
   const successSign = (user) => {
     const rememberUser = document.getElementById("remember-user-checkbox");
 
+    setPending(false);
     setCheckboxState(rememberUser?.checked);
     setIsSignIn(true);
     setSignedUser(user);
   };
 
+  const cancelPending = () => {
+    console.log("cancelPending");
+    return setPending(false);
+  };
+
   const checkLoginInputs = () => {
+    console.log("setPending");
+    setPending(true);
     disableAllErrorBoxes();
 
     const user = document.getElementById("login-user-input").value;
@@ -73,6 +83,7 @@ const LoginForm = ({
   };
 
   const checkRegisterInputs = () => {
+    setPending(true);
     disableAllErrorBoxes();
     const user = document.getElementById("register-user-input").value;
     const email = document.getElementById("register-email-input").value;
@@ -181,12 +192,14 @@ const LoginForm = ({
 
         {onLoginPage ? (
           <Login
+            pending={pending}
             mouseOverError={mouseOverError}
             checkLoginInputs={checkLoginInputs}
             resetState={resetState}
           />
         ) : (
           <Register
+            pending={pending}
             mouseOverError={mouseOverError}
             specialOverErrors={specialOverErrors}
             checkRegisterInputs={checkRegisterInputs}
@@ -195,6 +208,7 @@ const LoginForm = ({
         )}
       </div>
       <SubmitErrors
+        cancelPending={cancelPending}
         isSignIn={isSignIn}
         login={loginFields}
         register={registerFields}

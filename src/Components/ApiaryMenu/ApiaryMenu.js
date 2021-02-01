@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Fetch from "../../Settings/Fetch";
 import closeIcon from "../../Assets/closeRed.svg";
+import refreshIcon from "../../Assets/refresh.svg";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
@@ -11,7 +12,7 @@ const ApiaryMenu = ({ selectHive }) => {
 
   const [apiaries, setApiaries] = useState(undefined);
   const [pending, setPending] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(undefined);
 
   const updateApiaries = () => {
     const apiariesArray = [];
@@ -44,7 +45,7 @@ const ApiaryMenu = ({ selectHive }) => {
 
   const addHive = () => {
     setPending(true);
-    setErrors([]);
+    setErrors(undefined);
     const ap = document.getElementById("apiary-input").value;
     const hv = document.getElementById("hive-input").value;
 
@@ -56,7 +57,7 @@ const ApiaryMenu = ({ selectHive }) => {
     })
       .then((data) => {
         if (data === "Successfuly updated") {
-          setErrors([]);
+          setErrors(undefined);
         } else {
           setErrors(data);
         }
@@ -70,7 +71,7 @@ const ApiaryMenu = ({ selectHive }) => {
 
   const removeApiary = (event) => {
     setPending(true);
-    setErrors([]);
+    setErrors(undefined);
     const data = event?.target?.id.split("!")[1];
 
     Fetch("/add-hives", "put", {
@@ -81,7 +82,7 @@ const ApiaryMenu = ({ selectHive }) => {
     })
       .then((data) => {
         if (data === "Successfuly updated") {
-          setErrors([]);
+          setErrors(undefined);
         } else {
           setErrors(data);
         }
@@ -94,7 +95,6 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   useEffect(() => {
-    console.log("useEffect");
     updateHivesInfo();
   }, [getApHv, pending]);
 
@@ -106,25 +106,27 @@ const ApiaryMenu = ({ selectHive }) => {
             <p className="apiary-title">Apiary {apiary}</p>
 
             <div>
-              {getApHv.split(";").map((item) => {
-                const check = item[0] === apiary;
-
-                if (check) {
-                  return (
-                    <div className="hive-container">
-                      <p id={item} onClick={selectHive}>
-                        Hive {item[2]}
-                      </p>
-                      <img
-                        id={`rm!${item}`}
-                        onClick={removeApiary}
-                        alt=""
-                        src={closeIcon}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {getApHv
+                .split(";")
+                .sort()
+                .map((item) => {
+                  const check = item[0] === apiary;
+                  if (check) {
+                    return (
+                      <div className="hive-container">
+                        <p id={item} onClick={selectHive}>
+                          Hive {item[2]}
+                        </p>
+                        <img
+                          id={`rm!${item}`}
+                          onClick={removeApiary}
+                          alt=""
+                          src={closeIcon}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
         );
@@ -136,7 +138,24 @@ const ApiaryMenu = ({ selectHive }) => {
         <input id="hive-input" type="number" placeholder="Hive id"></input>
 
         <button onClick={addHive}>Add</button>
-        <h3>{pending ? "Loading" : ""}</h3>
+        <h3>
+          {pending ? (
+            <img
+              alt=""
+              className="rotating-refresh"
+              src={refreshIcon}
+              width="50px"
+            />
+          ) : (
+            ""
+          )}
+        </h3>
+
+        {errors !== undefined ? (
+          <span class="error-msg">{errors}</span>
+        ) : (
+          <Fragment />
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NotCorrect from "../../../Assets/error.svg";
+import refresh from "../../../Assets/refresh_colorful.svg";
 
 class Login extends Component {
   componentWillUnmount() {
@@ -76,12 +77,19 @@ class Login extends Component {
           </div>
         </div>
 
-        <button
-          onClick={this.props.checkLoginInputs}
-          className="submit-form-btn"
-        >
-          <span>LOGIN</span>
-        </button>
+        <div className="btn-container">
+          <button
+            onClick={this.props.checkLoginInputs}
+            className="submit-form-btn"
+          >
+            <span>LOGIN</span>
+          </button>
+          {this.props.pending ? (
+            <img alt="" className="rotating-refresh login" src={refresh}></img>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     );
   }
