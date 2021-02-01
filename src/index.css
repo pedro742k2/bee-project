@@ -15,7 +15,8 @@
 
 html {
   /* background by SVGBackgrounds.com */
-  background: url("./Assets/background.svg") no-repeat center center fixed;
+  background: url("./Assets/backgrounds/background1.svg") no-repeat center
+    center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
