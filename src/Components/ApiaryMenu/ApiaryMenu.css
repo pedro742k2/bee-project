@@ -1,3 +1,20 @@
+.hive-container {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  flex-direction: row;
+
+  cursor: default;
+}
+
+.hive-container img {
+  cursor: pointer;
+}
+
+.hive-container img {
+  width: 15px;
+}
+
 .add-aphv-container {
   display: flex;
   justify-content: center;
@@ -9,7 +26,7 @@
   border-radius: 1px;
   margin: 20px 10px;
   padding: 10px 5px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .add-aphv-container h3 {

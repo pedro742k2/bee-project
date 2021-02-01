@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Fetch from "../../Settings/Fetch";
 import "./ApiaryMenu.css";
+
+import closeIcon from "../../Assets/close.svg";
 
 const ApiaryMenu = ({ selectHive }) => {
   const getApHv = sessionStorage.getItem("ApHv");
@@ -9,6 +11,8 @@ const ApiaryMenu = ({ selectHive }) => {
     JSON.parse(localStorage.getItem("token"));
 
   const [apiaries, setApiaries] = useState(undefined);
+  const [pending, setPending] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const updateApiaries = () => {
     const apiariesArray = [];
@@ -20,7 +24,7 @@ const ApiaryMenu = ({ selectHive }) => {
             apiariesArray.push(data[0]);
           }
       });
-      setApiaries(apiariesArray);
+      setApiaries(apiariesArray.sort());
     }
   };
 
@@ -40,6 +44,8 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   const addHive = () => {
+    setPending(true);
+    setErrors([]);
     const ap = document.getElementById("apiary-input").value;
     const hv = document.getElementById("hive-input").value;
 
@@ -47,14 +53,51 @@ const ApiaryMenu = ({ selectHive }) => {
       userName: token?.userName,
       email: token?.email,
       ApHv: `${ap}-${hv}`,
+      add: true,
     })
-      .then(console.log)
-      .catch(console.log);
+      .then((data) => {
+        if (data === "Successfuly updated") {
+          setErrors([]);
+        } else {
+          setErrors(data);
+        }
+        setPending(false);
+      })
+      .catch(() => {
+        setErrors("Server error");
+        setPending(false);
+      });
+  };
+
+  const removeApiary = (event) => {
+    setPending(true);
+    setErrors([]);
+    const data = event?.target?.id.split("!")[1];
+
+    Fetch("/add-hives", "put", {
+      userName: token?.userName,
+      email: token?.email,
+      ApHv: data,
+      add: false,
+    })
+      .then((data) => {
+        if (data === "Successfuly updated") {
+          setErrors([]);
+        } else {
+          setErrors(data);
+        }
+        setPending(false);
+      })
+      .catch(() => {
+        setErrors("Server error");
+        setPending(false);
+      });
   };
 
   useEffect(() => {
+    console.log("useEffect");
     updateHivesInfo();
-  }, [getApHv]);
+  }, [getApHv, pending]);
 
   return (
     <div className="apiaries">
@@ -69,9 +112,17 @@ const ApiaryMenu = ({ selectHive }) => {
 
                 if (check) {
                   return (
-                    <p id={item} onClick={selectHive}>
-                      Hive {item[2]}
-                    </p>
+                    <div className="hive-container">
+                      <p id={item} onClick={selectHive}>
+                        Hive {item[2]}
+                      </p>
+                      <img
+                        id={`rm!${item}`}
+                        onClick={removeApiary}
+                        alt=""
+                        src={closeIcon}
+                      />
+                    </div>
                   );
                 }
               })}
@@ -86,6 +137,7 @@ const ApiaryMenu = ({ selectHive }) => {
         <input id="hive-input" type="number" placeholder="Hive id"></input>
 
         <button onClick={addHive}>Add</button>
+        <h3>{pending ? "Loading" : ""}</h3>
       </div>
     </div>
   );
