@@ -1,10 +1,17 @@
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
   .icon-license-container p {
     font-size: 1.5rem;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .icon-license-container img {
+    width: 180px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 950px) {
   .about-container {
     padding: 20px 50px;
   }
@@ -13,15 +20,13 @@
   .about-container .credit-link {
     font-size: 1.8rem;
   }
-}
 
-@media (max-width: 750px) {
   .icon-license-container p {
     font-size: 1.25rem;
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
   .icon-license-container {
     flex-direction: column;
   }

@@ -60,9 +60,6 @@ class About extends Component {
         {burger_state ? (
           <Fragment>
             <main className="aboutpage-main">
-              <p>About Page</p>
-              <p>Under development</p>
-
               <div className="about-container">
                 <span className="license-type">Copyright Notice</span>
                 <hr></hr>

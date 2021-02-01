@@ -24,9 +24,13 @@
   padding: 20px 100px;
   margin: 40px 20px;
 
-  border: 5px solid #fff;
+  /* border: 3px solid #fff; */
   border-radius: 1px;
   background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 
   max-width: 90vw;
   z-index: 10;
@@ -75,26 +79,28 @@
   align-items: center;
   flex-direction: row;
 
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 2px solid #ff3300;
-  border-radius: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #fff;
+  border-radius: 10px;
   width: 100%;
   margin: 10px 0;
+  padding: 5px;
 }
 
 .icon-license-container p {
-  color: #ff3300;
+  color: #fff;
   font-size: 2rem;
   margin-right: 10px;
 }
 
 .icon-license-container img {
-  width: 100px;
+  width: 150px;
+  height: 100px;
   padding: 10px;
-  margin: 10px 20px;
+  margin: 10px 10px;
 
-  background-color: rgba(0, 0, 0, 0.2);
-  border: 5px solid #ff3300;
+  background-color: #fff;
+  /* border: 3px solid #ff3300; */
   /* border-radius: 100%; */
-  border-radius: 20px;
+  border-radius: 10px;
 }
