@@ -11,6 +11,8 @@ import honeyIcon from "../../Assets/honey.svg";
 import noBeeIcon from "../../Assets/no-bee.svg";
 import removeParticlesIcon from "../../Assets/remove-particles.svg";
 import closeRed from "../../Assets/closeRed.svg";
+import refreshIcon from "../../Assets/refresh.svg";
+import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import tempIcon from "../../Components/ActualValues/Assets/thermometer.svg";
 import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
 import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
@@ -34,6 +36,8 @@ class About extends Component {
         weightIcon,
         batteryIcon,
         closeRed,
+        refreshIcon,
+        refreshColorfulIcon,
       ],
     };
   }
@@ -100,23 +104,37 @@ class About extends Component {
                 <span className="license-type">Credits</span>
                 <hr></hr>
                 <span align="justify" className="license">
-                  1. All these beautiful background images were downloaded at{" "}
-                  <a
-                    className="credit-link"
-                    href="https://www.svgbackgrounds.com"
-                  >
-                    SVGBackgrounds.com
-                  </a>
+                  <span>
+                    1. All these beautiful background images were downloaded at{" "}
+                    <a
+                      className="credit-link"
+                      href="https://www.svgbackgrounds.com"
+                    >
+                      SVGBackgrounds.com
+                    </a>
+                  </span>
                   <br />
                   <br />
-                  2. All these wicked icons were downloaded at flaticon.com |
-                  Uicons by{" "}
-                  <a
-                    className="credit-link"
-                    href="https://www.flaticon.com/uicons"
-                  >
-                    Flaticon
-                  </a>
+                  <span>
+                    2. All these wicked icons were downloaded at flaticon.com |
+                    Uicons by{" "}
+                    <a
+                      className="credit-link"
+                      href="https://www.flaticon.com/uicons"
+                    >
+                      Flaticon
+                    </a>
+                  </span>
+                  <br />
+                  <br />
+                  <span>
+                    <b>Note:</b> If any icon isn't attributed below, that means
+                    it is a part of Uicons pack mentioned right above, on point
+                    number two, or with a free/paid license without any need to
+                    attribution or even designed by our own team. If by any mean
+                    if found that your or any other work isn't attributed below,
+                    as it should be, contact us
+                  </span>
                 </span>
 
                 <span align="justify" className="license icons">
@@ -168,6 +186,16 @@ class About extends Component {
                   <div className="icon-license-container">
                     <img src={iconsToCredit[9]} alt=""></img>
                     <p>Designed by Vectors Market from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[10]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[11]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
                   </div>
                 </span>
               </div>
