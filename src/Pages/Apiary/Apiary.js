@@ -32,7 +32,7 @@ const Apiary = ({ loggedIn, token }) => {
       try {
         if (selectedHives?.length >= 1) {
           data = await Fetch("/get-data", "post", {
-            ApHv: selectedHives,
+            hiveId: selectedHives[0],
             currentDate: selectedDate,
             measurementType: measurementType.toLowerCase(),
           })
@@ -52,8 +52,12 @@ const Apiary = ({ loggedIn, token }) => {
         setActualValues(["-", "-", "-", "-"]);
         setReadOn("No hive selected");
         setReceivedOn("No hive selected");
-      } else {
-        if (data !== "not available") {
+      } else if (data) {
+        if (
+          data !== "Unable to get data" &&
+          data !== "not available" &&
+          data !== undefined
+        ) {
           if (data.firstDataFromHours.length >= 1 || data.lastValues) {
             try {
               /* Date of when the data was read */

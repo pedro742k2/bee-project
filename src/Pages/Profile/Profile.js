@@ -12,7 +12,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
   const [updatedHives, setUpdatedHives] = useState(undefined);
 
-  const getApHv = sessionStorage.getItem("ApHv");
+  const getApHv = sessionStorage.getItem("hives_id");
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -108,9 +108,9 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               </p>
 
               <p>
-                <b>Hives:</b>{" "}
+                <b>Hives ID:</b>{" "}
                 <input
-                  value={updatedHives + "\t( Data format: Apiary-Hive; )"}
+                  value={updatedHives.split(";").slice(0, -1).sort()}
                   type="text"
                 ></input>
               </p>
