@@ -7,6 +7,10 @@
   cursor: default;
 }
 
+.rotating-refresh.loadingPage {
+  margin: 10px;
+}
+
 .hive-container img {
   cursor: pointer;
 }

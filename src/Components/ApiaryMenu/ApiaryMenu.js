@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import Fetch from "../../Settings/Fetch";
 import closeIcon from "../../Assets/closeRed.svg";
 import refreshIcon from "../../Assets/refresh.svg";
+import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
@@ -13,6 +14,7 @@ const ApiaryMenu = ({ selectHive }) => {
   const [apiaries, setApiaries] = useState(undefined);
   const [apiaryHive, setApiaryHive] = useState([]);
   const [pending, setPending] = useState(false);
+  const [empty, setEmpty] = useState(false);
   const [errors, setErrors] = useState(undefined);
 
   const updateApiaries = (hivesId) => {
@@ -20,10 +22,9 @@ const ApiaryMenu = ({ selectHive }) => {
     const apiaryHivesArray = [];
 
     if (hivesId !== "null") {
-      hivesId?.split(";").forEach((hiveID) => {
-        // Remember "error" msg
+      hivesId?.split(";").forEach(async (hiveID) => {
         if (hiveID !== "") {
-          Fetch("/get-user-data", "post", {
+          await Fetch("/get-user-data", "post", {
             userName: token?.userName,
             email: token?.email,
             id: hiveID,
@@ -31,10 +32,16 @@ const ApiaryMenu = ({ selectHive }) => {
           })
             .then((data) => {
               data = data[0];
-              // console.log(data.hive_id, data.apiary_number, data.hive_number);
-              apiaryHivesArray.push(`${data.apiary_number}-${data.hive_id}`);
-              if (!apiariesArray.includes(data.apiary_number)) {
-                apiariesArray.push(data.apiary_number);
+              if (data !== "error") {
+                apiaryHivesArray.push(
+                  `${data.apiary_number}-${data.hive_id}-${data.hive_number}`
+                );
+                if (
+                  !apiariesArray.includes(data.apiary_number) &&
+                  data.apiary_number !== ""
+                ) {
+                  apiariesArray.push(data.apiary_number);
+                }
               }
             })
             .catch(() => {
@@ -42,6 +49,7 @@ const ApiaryMenu = ({ selectHive }) => {
             });
         }
       });
+
       setApiaries(apiariesArray.sort());
       setApiaryHive(apiaryHivesArray);
     }
@@ -57,10 +65,22 @@ const ApiaryMenu = ({ selectHive }) => {
         const data = info[0].hives_id;
 
         sessionStorage.setItem("hives_id", data);
-        updateApiaries(data);
+        if (data === "") {
+          setEmpty(true);
+        } else {
+          setEmpty(false);
+          updateApiaries(data);
+        }
+
         return data;
       })
       .catch(() => false);
+  };
+
+  const clearInputValues = () => {
+    document.getElementById("hive-id").value = "";
+    document.getElementById("apiary-input").value = "";
+    document.getElementById("hive-input").value = "";
   };
 
   const addHive = () => {
@@ -69,6 +89,7 @@ const ApiaryMenu = ({ selectHive }) => {
     const id = document.getElementById("hive-id").value;
     const ap = document.getElementById("apiary-input").value;
     const hv = document.getElementById("hive-input").value;
+    clearInputValues();
 
     Fetch("/add-hives", "put", {
       userName: token?.userName,
@@ -95,7 +116,6 @@ const ApiaryMenu = ({ selectHive }) => {
     setErrors(undefined);
     const data = event?.target?.id.split("!")[1];
 
-    console.log(data);
     Fetch("/add-hives", "put", {
       userName: token?.userName,
       email: token?.email,
@@ -117,11 +137,22 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   useEffect(() => {
+    setEmpty(true);
     updateHivesInfo();
   }, [getApHv, pending]);
 
   return (
     <div className="apiaries">
+      {apiaries?.length === 0 && !empty ? (
+        <img
+          alt=""
+          className="rotating-refresh loadingPage"
+          src={refreshColorfulIcon}
+          width="75px"
+        />
+      ) : (
+        <Fragment />
+      )}
       {apiaries?.map((apiary) => {
         return (
           <div className="apiary">
@@ -133,11 +164,13 @@ const ApiaryMenu = ({ selectHive }) => {
                 .sort()
                 .map((item) => {
                   let check = false;
+                  let hvNumber;
                   apiaryHive.forEach((apiary_hive) => {
                     const hvId = apiary_hive.split("-")[1];
                     const apNumber = Number(apiary_hive.split("-")[0]);
 
                     if (item === hvId && apiary === apNumber) {
+                      hvNumber = apiary_hive.split("-")[2];
                       check = true;
                     }
                   });
@@ -146,7 +179,7 @@ const ApiaryMenu = ({ selectHive }) => {
                     return (
                       <div className="hive-container">
                         <p id={item} onClick={selectHive}>
-                          Hive {item}
+                          Hive {hvNumber}
                         </p>
                         <img
                           id={`rm!${item}`}

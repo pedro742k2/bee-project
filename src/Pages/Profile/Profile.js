@@ -110,7 +110,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               <p>
                 <b>Hives ID:</b>{" "}
                 <input
-                  value={updatedHives.split(";").slice(0, -1).sort()}
+                  value={updatedHives?.split(";")?.slice(0, -1)?.sort()}
                   type="text"
                 ></input>
               </p>
