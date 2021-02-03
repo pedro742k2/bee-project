@@ -10,7 +10,7 @@ import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
-const Apiary = ({ loggedIn, token }) => {
+const Apiary = ({ loggedIn }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
   const [selectedHives, setSelectedHives] = useState([]);
@@ -272,6 +272,14 @@ const Apiary = ({ loggedIn, token }) => {
                         defaultValue={date}
                         type="date"
                       ></input>
+                    </div>
+
+                    <div className="selected-hive-title">
+                      <h3>
+                        {selectedHives[0] === undefined
+                          ? "No hive is selected"
+                          : `Hive #${selectedHives[0]} selected`}
+                      </h3>
                     </div>
 
                     <Chart allValues={allValues} ApHv={ApHv} />

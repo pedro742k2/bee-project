@@ -83,6 +83,18 @@ const ApiaryMenu = ({ selectHive }) => {
     document.getElementById("hive-input").value = "";
   };
 
+  const removeErrors = () => {
+    setTimeout(() => {
+      try {
+        setErrors(undefined);
+      } catch {
+        console.warn(
+          "Tried to clear errors, but looks like the page was unmounted"
+        );
+      }
+    }, 7000);
+  };
+
   const addHive = () => {
     setPending(true);
     setErrors(undefined);
@@ -102,11 +114,13 @@ const ApiaryMenu = ({ selectHive }) => {
           setErrors(undefined);
         } else {
           setErrors(data);
+          removeErrors();
         }
         setPending(false);
       })
       .catch(() => {
         setErrors("Server error");
+        removeErrors();
         setPending(false);
       });
   };
@@ -127,11 +141,13 @@ const ApiaryMenu = ({ selectHive }) => {
           setErrors(undefined);
         } else {
           setErrors(data);
+          removeErrors();
         }
         setPending(false);
       })
       .catch(() => {
         setErrors("Server error");
+        removeErrors();
         setPending(false);
       });
   };
@@ -153,7 +169,7 @@ const ApiaryMenu = ({ selectHive }) => {
       ) : (
         <Fragment />
       )}
-      {apiaries?.map((apiary) => {
+      {apiaries?.sort().map((apiary) => {
         return (
           <div className="apiary">
             <p className="apiary-title">Apiary {apiary}</p>
