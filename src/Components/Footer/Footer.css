@@ -8,11 +8,7 @@
   flex-direction: row;
   text-align: start;
 
-  background: #ff8800;
-  background: -webkit-linear-gradient(to right, #ffae00, #ff4800);
-  background: linear-gradient(to right, #ffae00, #ff4800);
-
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: transparent;
 }
 
 .footer .credits {

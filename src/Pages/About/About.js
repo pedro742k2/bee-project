@@ -67,40 +67,6 @@ class About extends Component {
           <Fragment>
             <main className="aboutpage-main">
               <div className="about-container">
-                <span className="license-type">Copyright Notice</span>
-                <hr></hr>
-                <span align="justify" className="license">
-                  MIT License
-                  <br />
-                  Copyright (c) 2021 Pedro Batista
-                  <br />
-                  <br />
-                  Permission is hereby granted, free of charge, to any person
-                  obtaining a copy of this software and associated documentation
-                  files (the "Software"), to deal in the Software without
-                  restriction, including without limitation the rights to use,
-                  copy, modify, merge, publish, distribute, sublicense, and/or
-                  sell copies of the Software, and to permit persons to whom the
-                  Software is furnished to do so, subject to the following
-                  conditions
-                  <br />
-                  <br /> The above copyright notice and this permission notice
-                  shall be included in all copies or substantial portions of the
-                  Software.
-                  <br />
-                  <br />
-                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-                  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-                  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-                  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-                  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-                  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-                  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-                </span>
-              </div>
-
-              <div className="about-container">
                 <span className="license-type">Credits</span>
                 <hr></hr>
                 <span align="justify" className="license">
@@ -197,6 +163,40 @@ class About extends Component {
                     <img src={iconsToCredit[11]} alt=""></img>
                     <p>Designed by Freepik from Flaticon</p>
                   </div>
+                </span>
+              </div>
+
+              <div className="about-container">
+                <span className="license-type">Copyright Notice</span>
+                <hr></hr>
+                <span align="justify" className="license">
+                  MIT License
+                  <br />
+                  Copyright (c) 2021 Pedro Batista
+                  <br />
+                  <br />
+                  Permission is hereby granted, free of charge, to any person
+                  obtaining a copy of this software and associated documentation
+                  files (the "Software"), to deal in the Software without
+                  restriction, including without limitation the rights to use,
+                  copy, modify, merge, publish, distribute, sublicense, and/or
+                  sell copies of the Software, and to permit persons to whom the
+                  Software is furnished to do so, subject to the following
+                  conditions
+                  <br />
+                  <br /> The above copyright notice and this permission notice
+                  shall be included in all copies or substantial portions of the
+                  Software.
+                  <br />
+                  <br />
+                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+                  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+                  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+                  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+                  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+                  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </span>
               </div>
             </main>
