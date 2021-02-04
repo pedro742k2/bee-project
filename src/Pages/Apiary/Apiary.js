@@ -155,7 +155,7 @@ const Apiary = ({ loggedIn }) => {
         document.documentElement.scrollTop > 80
       ) {
         actualValuesContainer.style.borderRadius = "10px";
-        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
         actualValuesContainer.style.height = "10vh";
         actualValuesContainer.style.top = "0";
         actualValuesTitle.style.display = "none";
