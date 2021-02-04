@@ -55,10 +55,9 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
 
   useEffect(() => {
     if (
-      getApHv === "null" ||
-      getApHv === null ||
-      getApHv === "" ||
-      getApHv === undefined
+      getApHv === String(null) ||
+      getApHv === String(undefined) ||
+      getApHv === ""
     ) {
       setUpdatedHives(token?.ApHv ? token.ApHv : "No apiaries or hives added");
     } else {
@@ -109,10 +108,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
 
               <p>
                 <b>Hives ID:</b>{" "}
-                <input
-                  value={updatedHives?.split(";")?.slice(0, -1)?.sort()}
-                  type="text"
-                ></input>
+                <input value={updatedHives} type="text"></input>
               </p>
             </div>
 

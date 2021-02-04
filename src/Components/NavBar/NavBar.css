@@ -11,7 +11,7 @@
   background: -webkit-linear-gradient(to right, #ffae00, #ff7300);
   background: linear-gradient(to right, #ffae00, #ff7300);
 
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  box-shadow: rgba(17, 12, 46, 0.15) -100px 40px 100px 5px;
 
   padding-left: 10px;
 }

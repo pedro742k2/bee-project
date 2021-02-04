@@ -17,62 +17,53 @@ const ApiaryMenu = ({ selectHive }) => {
   const [empty, setEmpty] = useState(false);
   const [errors, setErrors] = useState(undefined);
 
-  const updateApiaries = (hivesId) => {
+  const updateApiaries = (hivesInfo) => {
     const apiariesArray = [];
-    const apiaryHivesArray = [];
 
-    if (hivesId !== "null") {
-      hivesId?.split(";").forEach(async (hiveID) => {
-        if (hiveID !== "") {
-          await Fetch("/get-user-data", "post", {
-            userName: token?.userName,
-            email: token?.email,
-            id: hiveID,
-            getHivesId: false,
-          })
-            .then((data) => {
-              data = data[0];
-              if (data !== "error") {
-                apiaryHivesArray.push(
-                  `${data.apiary_number}-${data.hive_id}-${data.hive_number}`
-                );
-                if (
-                  !apiariesArray.includes(data.apiary_number) &&
-                  data.apiary_number !== ""
-                ) {
-                  apiariesArray.push(data.apiary_number);
-                }
-              }
-            })
-            .catch(() => {
-              console.log("updateApiariesError");
-            });
-        }
-      });
+    /* LEMBRAR TRATAMENTO CASO NÃO RECEBA NADA */
 
-      setApiaries(apiariesArray.sort());
-      setApiaryHive(apiaryHivesArray);
-    }
+    hivesInfo?.forEach((hiveID) => {
+      const apiaryNumber = hiveID.split("-")[1];
+      if (!apiariesArray.includes(apiaryNumber)) {
+        apiariesArray.push(apiaryNumber);
+      }
+    });
+
+    setApiaryHive(hivesInfo);
+    setApiaries(apiariesArray.sort());
   };
 
   const updateHivesInfo = () => {
     Fetch("/get-user-data", "post", {
       userName: token?.userName,
       email: token?.email,
-      getHivesId: true,
     })
       .then((info) => {
-        const data = info[0].hives_id;
+        let firstCount = true;
 
-        sessionStorage.setItem("hives_id", data);
-        if (data === "") {
+        let hivesId = "";
+        let hivesAllInfo = [];
+
+        info?.forEach((item) => {
+          if (!firstCount) {
+            hivesId += ", ";
+          }
+
+          hivesId += item.hive_id;
+          hivesAllInfo.push(
+            `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
+          );
+          firstCount = false;
+        });
+
+        console.log(hivesId);
+        sessionStorage.setItem("hives_id", hivesId);
+        if (info.length === 0) {
           setEmpty(true);
         } else {
           setEmpty(false);
-          updateApiaries(data);
+          updateApiaries(hivesAllInfo);
         }
-
-        return data;
       })
       .catch(() => false);
   };
@@ -110,7 +101,7 @@ const ApiaryMenu = ({ selectHive }) => {
       add: true,
     })
       .then((data) => {
-        if (data === "Successfuly added") {
+        if (data === "Successfuly updated") {
           setErrors(undefined);
         } else {
           setErrors(data);
@@ -153,7 +144,6 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   useEffect(() => {
-    setEmpty(true);
     updateHivesInfo();
   }, [getApHv, pending]);
 
@@ -175,38 +165,27 @@ const ApiaryMenu = ({ selectHive }) => {
             <p className="apiary-title">Apiary {apiary}</p>
 
             <div>
-              {getApHv
-                .split(";")
-                .sort()
-                .map((item) => {
-                  let check = false;
-                  let hvNumber;
-                  apiaryHive.forEach((apiary_hive) => {
-                    const hvId = apiary_hive.split("-")[1];
-                    const apNumber = Number(apiary_hive.split("-")[0]);
+              {apiaryHive.sort().map((item) => {
+                item = item.split("-");
 
-                    if (item === hvId && apiary === apNumber) {
-                      hvNumber = apiary_hive.split("-")[2];
-                      check = true;
-                    }
-                  });
+                const check = item[1] === apiary;
 
-                  if (check) {
-                    return (
-                      <div className="hive-container">
-                        <p id={item} onClick={selectHive}>
-                          Hive {hvNumber}
-                        </p>
-                        <img
-                          id={`rm!${item}`}
-                          onClick={removeApiary}
-                          alt=""
-                          src={closeIcon}
-                        />
-                      </div>
-                    );
-                  }
-                })}
+                if (check) {
+                  return (
+                    <div className="hive-container">
+                      <p id={item[0]} onClick={selectHive}>
+                        Hive {item[2]}
+                      </p>
+                      <img
+                        id={`rm!${item}`}
+                        onClick={removeApiary}
+                        alt=""
+                        src={closeIcon}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         );
