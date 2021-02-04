@@ -118,7 +118,7 @@ const ApiaryMenu = ({ selectHive }) => {
   const removeApiary = (event) => {
     setPending(true);
     setErrors(undefined);
-    const data = event?.target?.id.split("!")[1];
+    const data = event?.target?.id.split("!")[1].split(",")[0];
 
     Fetch("/add-hives", "put", {
       userName: token?.userName,

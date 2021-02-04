@@ -28,6 +28,8 @@
   border-radius: 5px;
   width: 17vw;
   margin: 0px 5px;
+
+  box-shadow: rgba(17, 12, 46, 0.15) -100px 40px 100px 5px;
 }
 
 .values p:first-of-type {

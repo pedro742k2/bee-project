@@ -139,6 +139,12 @@ const Apiary = ({ loggedIn }) => {
   const scrollFunction = () => {
     const actualValuesContainer = document.getElementById("actual-values");
     const actualValuesTitle = document.getElementById("actual-values-title");
+
+    const actualValues1 = document.getElementsByClassName("values")[0];
+    const actualValues2 = document.getElementsByClassName("values")[1];
+    const actualValues3 = document.getElementsByClassName("values")[2];
+    const actualValues4 = document.getElementsByClassName("values")[3];
+
     const readingsDatesContainer = document.getElementsByClassName(
       "actual-info"
     )[0];
@@ -148,16 +154,38 @@ const Apiary = ({ loggedIn }) => {
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+        actualValuesContainer.style.borderRadius = "10px";
+        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
         actualValuesContainer.style.height = "10vh";
         actualValuesContainer.style.top = "0";
         actualValuesTitle.style.display = "none";
+
+        actualValues1.style.border = "2px solid #fff";
+        actualValues1.style.borderRadius = "10px";
+        actualValues2.style.border = "2px solid #fff";
+        actualValues2.style.borderRadius = "10px";
+        actualValues3.style.border = "2px solid #fff";
+        actualValues3.style.borderRadius = "10px";
+        actualValues4.style.border = "2px solid #fff";
+        actualValues4.style.borderRadius = "10px";
+
         readingsDatesContainer.style.display = "none";
       } else {
+        actualValuesContainer.style.borderRadius = "0";
         actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
         actualValuesContainer.style.height = "40vh";
         actualValuesContainer.style.top = "10vh";
         actualValuesTitle.style.display = "block";
+
+        actualValues1.style.border = "none";
+        actualValues1.style.borderRadius = "5px";
+        actualValues2.style.border = "none";
+        actualValues2.style.borderRadius = "5px";
+        actualValues3.style.border = "none";
+        actualValues3.style.borderRadius = "5px";
+        actualValues4.style.border = "none";
+        actualValues4.style.borderRadius = "5px";
+
         readingsDatesContainer.style.display = "flex";
       }
     }
