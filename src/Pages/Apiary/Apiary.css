@@ -144,12 +144,16 @@
 }
 
 #actual-values {
+  position: fixed;
+  z-index: 100;
+  top: 10vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 95%;
-  min-height: 300px;
+  width: 75%;
+  min-height: 200px;
   height: 40vh;
   max-height: 400px;
 
@@ -179,6 +183,8 @@
 }
 
 .graph-opt-container {
+  margin-top: 40vh;
+
   display: flex;
   justify-content: space-around;
   align-items: flex-end;

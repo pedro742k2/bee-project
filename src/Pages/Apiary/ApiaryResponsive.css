@@ -1,5 +1,16 @@
 /* ----- MAX-WIDTH ----- */
 @media (max-width: 1400px) {
+  #actual-values {
+    position: relative;
+    top: 0;
+    width: 95%;
+  }
+
+  .graph-opt-container {
+    position: relative;
+    margin-top: 20px;
+  }
+
   .apiarypage-main {
     justify-content: flex-start;
     align-items: center;
@@ -262,6 +273,18 @@
 }
 
 /* ----- MAX-HEIGHT ----- */
+
+@media (min-height: 1200px) {
+  .graph-opt-container {
+    margin-top: 35vh;
+  }
+}
+
+@media (min-height: 1400px) {
+  .graph-opt-container {
+    margin-top: 30vh;
+  }
+}
 
 @media (max-height: 900px) {
   .chart {

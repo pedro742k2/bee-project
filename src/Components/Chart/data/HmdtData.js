@@ -1,12 +1,12 @@
 // import Hours from "../Hours";
 import { Line } from "react-chartjs-2";
 
-const HmdtData = ({ hmdt, readingsDate, chartOptions }) => {
+const HmdtData = ({ ApHv, hmdt, readingsDate, chartOptions }) => {
   const data = {
     labels: readingsDate,
     datasets: [
       {
-        label: "Humidity",
+        label: `Hive #${ApHv} Humidity`,
         data: hmdt,
 
         backgroundColor: "rgba(0, 124, 255, 0.2)",

@@ -1,12 +1,12 @@
 // import Hours from "../Hours";
 import { Line } from "react-chartjs-2";
 
-const BatteryData = ({ battery, readingsDate, chartOptions }) => {
+const BatteryData = ({ ApHv, battery, readingsDate, chartOptions }) => {
   const data = {
     labels: readingsDate,
     datasets: [
       {
-        label: "Battery",
+        label: `Hive #${ApHv} Battery`,
         data: battery,
 
         backgroundColor: "rgba(0, 255, 114, 0.2)",

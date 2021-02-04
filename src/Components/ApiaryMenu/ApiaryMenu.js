@@ -56,7 +56,6 @@ const ApiaryMenu = ({ selectHive }) => {
           firstCount = false;
         });
 
-        console.log(hivesId);
         sessionStorage.setItem("hives_id", hivesId);
         if (info.length === 0) {
           setEmpty(true);
@@ -101,7 +100,7 @@ const ApiaryMenu = ({ selectHive }) => {
       add: true,
     })
       .then((data) => {
-        if (data === "Successfuly updated") {
+        if (data === "Successfully updated" || data === "Successfully added") {
           setErrors(undefined);
         } else {
           setErrors(data);
@@ -128,7 +127,7 @@ const ApiaryMenu = ({ selectHive }) => {
       add: false,
     })
       .then((data) => {
-        if (data === "Successfuly removed") {
+        if (data === "Successfully removed") {
           setErrors(undefined);
         } else {
           setErrors(data);

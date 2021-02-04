@@ -1,12 +1,12 @@
 // import Hours from "../Hours";
 import { Line } from "react-chartjs-2";
 
-const WeightData = ({ weight, readingsDate, chartOptions }) => {
+const WeightData = ({ ApHv, weight, readingsDate, chartOptions }) => {
   const data = {
     labels: readingsDate,
     datasets: [
       {
-        label: "Weight",
+        label: `Hive #${ApHv} Weight`,
         data: weight,
 
         backgroundColor: "rgba(255, 166, 0, 0.2)",

@@ -2,21 +2,11 @@
 import { Line } from "react-chartjs-2";
 
 const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
-  let apiary;
-  let hive;
-  try {
-    apiary = ApHv.split("-")[0];
-    hive = ApHv.split("-")[1];
-  } catch {
-    apiary = "";
-    hive = "";
-  }
-
   const data = {
     labels: readingsDate,
     datasets: [
       {
-        label: `Apiary ${apiary} Hive ${hive} `,
+        label: `Hive #${ApHv} Temperature`,
         data: temp,
 
         backgroundColor: "rgba(255, 89, 0, 0.2)",

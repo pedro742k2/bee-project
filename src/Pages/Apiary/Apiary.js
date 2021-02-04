@@ -136,7 +136,38 @@ const Apiary = ({ loggedIn }) => {
     }
   };
 
+  const scrollFunction = () => {
+    const actualValuesContainer = document.getElementById("actual-values");
+    const actualValuesTitle = document.getElementById("actual-values-title");
+    const readingsDatesContainer = document.getElementsByClassName(
+      "actual-info"
+    )[0];
+
+    if (window.innerWidth >= 1400) {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+        actualValuesContainer.style.height = "10vh";
+        actualValuesContainer.style.top = "0";
+        actualValuesTitle.style.display = "none";
+        readingsDatesContainer.style.display = "none";
+      } else {
+        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+        actualValuesContainer.style.height = "40vh";
+        actualValuesContainer.style.top = "10vh";
+        actualValuesTitle.style.display = "block";
+        readingsDatesContainer.style.display = "flex";
+      }
+    }
+  };
+
   useEffect(() => {
+    window.onscroll = () => {
+      scrollFunction();
+    };
+
     if (selectedDate === "") {
       const nowDate = new Date();
       const currentDate = `${nowDate.getFullYear()}-${
@@ -215,7 +246,7 @@ const Apiary = ({ loggedIn }) => {
 
                 <div className="graphs">
                   <div id="actual-values">
-                    <h1>Last values</h1>
+                    <h1 id="actual-values-title">Last values</h1>
                     <ActualValues
                       actualValues={actualValues}
                       readOn={readOn}
