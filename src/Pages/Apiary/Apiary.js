@@ -160,15 +160,6 @@ const Apiary = ({ loggedIn }) => {
         actualValuesContainer.style.top = "0";
         actualValuesTitle.style.display = "none";
 
-        actualValues1.style.border = "2px solid #fff";
-        actualValues1.style.borderRadius = "10px";
-        actualValues2.style.border = "2px solid #fff";
-        actualValues2.style.borderRadius = "10px";
-        actualValues3.style.border = "2px solid #fff";
-        actualValues3.style.borderRadius = "10px";
-        actualValues4.style.border = "2px solid #fff";
-        actualValues4.style.borderRadius = "10px";
-
         readingsDatesContainer.style.display = "none";
       } else {
         actualValuesContainer.style.borderRadius = "0";
@@ -176,15 +167,6 @@ const Apiary = ({ loggedIn }) => {
         actualValuesContainer.style.height = "40vh";
         actualValuesContainer.style.top = "10vh";
         actualValuesTitle.style.display = "block";
-
-        actualValues1.style.border = "none";
-        actualValues1.style.borderRadius = "5px";
-        actualValues2.style.border = "none";
-        actualValues2.style.borderRadius = "5px";
-        actualValues3.style.border = "none";
-        actualValues3.style.borderRadius = "5px";
-        actualValues4.style.border = "none";
-        actualValues4.style.borderRadius = "5px";
 
         readingsDatesContainer.style.display = "flex";
       }
