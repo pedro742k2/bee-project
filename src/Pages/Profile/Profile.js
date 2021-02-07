@@ -61,15 +61,24 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   };
 
   const changedInputField = () => {
-    document.getElementById("name")?.value !== token?.name
+    document
+      .getElementById("name")
+      ?.value.trim()
+      .replace(/\s{2,}/g, " ") !== token?.name
       ? setChangedName(true)
       : setChangedName(false);
 
-    document.getElementById("user_name")?.value !== token?.userName
+    document
+      .getElementById("user_name")
+      ?.value.trim()
+      .replace(/\s{2,}/g, " ") !== token?.userName
       ? setChangedUserName(true)
       : setChangedUserName(false);
 
-    document.getElementById("email")?.value !== token?.email
+    document
+      .getElementById("email")
+      ?.value.trim()
+      .replace(/\s{2,}/g, " ") !== token?.email
       ? setChangedEmail(true)
       : setChangedEmail(false);
   };
