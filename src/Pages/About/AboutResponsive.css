@@ -40,6 +40,12 @@
   }
 }
 
+@media (max-width: 700px) {
+  .about-container {
+    border-radius: 10px;
+  }
+}
+
 @media (max-width: 600px) {
   .aboutpage-main p {
     font-size: 3rem;

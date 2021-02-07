@@ -5,6 +5,11 @@
 }
 
 @media (max-width: 700px) {
+  .user-info-container {
+    border-radius: 10px;
+    padding: 20px 10px;
+  }
+
   .set-name {
     flex-direction: column;
   }
@@ -28,9 +33,7 @@
   .user-info p b {
     width: 100%;
   }
-}
 
-@media (max-width: 600px) {
   .profile-main h1 {
     font-size: 3.5rem;
   }
@@ -42,6 +45,14 @@
   .profile-main p,
   .set-name span {
     font-size: 1.8rem;
+  }
+
+  .logout-btn {
+    width: 150px;
+  }
+
+  .logout-btn:hover {
+    box-shadow: inset 150px 0 0 0 rgb(255, 255, 255);
   }
 }
 

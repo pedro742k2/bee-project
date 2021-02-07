@@ -76,7 +76,7 @@ const Routes = () => {
         <Route path="/about" component={About} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/apiary">
-          <Apiary loggedIn={loggedIn} token={token} />
+          <Apiary loggedIn={loggedIn} />
         </Route>
         <Route path="/profile">
           <Profile

@@ -6,11 +6,18 @@ import "./ProfileResponsive.css";
 import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
+import EditPencil from "../../Assets/pencil.svg";
 
 const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
   const [updatedHives, setUpdatedHives] = useState(undefined);
+
+  /* USER INFO */
+  const [name, setName] = useState(token?.name);
+  const [userName, setUserName] = useState(token?.userName);
+  const [email, setEmail] = useState(token?.email);
+  const [hives, setHives] = useState(token?.ApHv);
 
   const getApHv = sessionStorage.getItem("hives_id");
 
@@ -24,7 +31,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     setBurgerState(!burgerState);
   };
 
-  const setName = async () => {
+  const updateName = async () => {
     const newName = document.querySelector(".set-name input").value;
 
     const response = await Fetch("/set-name", "put", {
@@ -53,6 +60,14 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     }
   };
 
+  const updateUserInfo = (event) => {
+    const id = event.target.id.split("-")[0];
+
+    const { value } = document.getElementById(id);
+
+    console.log(id, value);
+  };
+
   useEffect(() => {
     if (
       getApHv === String(null) ||
@@ -63,7 +78,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     } else {
       setUpdatedHives(getApHv);
     }
-  }, [getApHv]);
+  }, [getApHv, name, userName, email, hives]);
 
   return (
     <div className="App">
@@ -74,7 +89,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
       <main className="profile-main">
         {loggedIn ? (
           <div className="user-info-container">
-            <h1>User info:</h1>
+            <h1>User stored information</h1>
 
             {token?.name === null || token?.name?.length < 1 ? (
               <Fragment>
@@ -83,7 +98,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 <div className="set-name">
                   <span>Tell us your name: </span>
                   <input type="text"></input>
-                  <button onClick={setName}>Submit</button>
+                  <button onClick={updateName}>Submit</button>
                 </div>
               </Fragment>
             ) : (
@@ -92,23 +107,75 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
 
             <div className="user-info">
               <p>
-                <b>Name:</b>
-                <input value={token?.name} type="text"></input>
+                <b>Name</b>
+                <div className="input-field">
+                  <input
+                    id="name"
+                    defaultValue={token?.name}
+                    type="text"
+                  ></input>
+                  <img
+                    id="name-img"
+                    alt=""
+                    className="edit-field"
+                    src={EditPencil}
+                    onClick={updateUserInfo}
+                  />
+                </div>
               </p>
 
               <p>
-                <b>Username:</b>
-                <input value={token?.userName} type="text"></input>
+                <b>Username</b>
+                <div className="input-field">
+                  <input
+                    id="username"
+                    defaultValue={token?.userName}
+                    type="text"
+                  ></input>
+                  <img
+                    id="username-img"
+                    alt=""
+                    className="edit-field"
+                    src={EditPencil}
+                    onClick={updateUserInfo}
+                  />
+                </div>
               </p>
 
               <p>
-                <b>Email:</b>
-                <input value={token?.email} type="text"></input>
+                <b>Email</b>
+                <div className="input-field">
+                  <input
+                    id="email"
+                    defaultValue={token?.email}
+                    type="text"
+                  ></input>
+                  <img
+                    id="email-img"
+                    alt=""
+                    className="edit-field"
+                    src={EditPencil}
+                    onClick={updateUserInfo}
+                  />
+                </div>
               </p>
 
               <p>
-                <b>{"Hives ID: "}</b>
-                <input value={updatedHives} type="text"></input>
+                <b>Hives ID</b>
+                <div className="input-field">
+                  <input
+                    id="hives"
+                    defaultValue={updatedHives}
+                    type="text"
+                  ></input>
+                  <img
+                    id="hives-img"
+                    alt=""
+                    className="edit-field"
+                    src={EditPencil}
+                    onClick={updateUserInfo}
+                  />
+                </div>
               </p>
             </div>
 
@@ -123,6 +190,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
             </button>
           </div>
         ) : (
+          /* NOT LOGGED IN */
           <Fragment>
             {haveLoggedOut ? (
               <Fragment>
