@@ -137,34 +137,36 @@ const Apiary = ({ loggedIn }) => {
   };
 
   const scrollFunction = () => {
-    const actualValuesContainer = document.getElementById("actual-values");
-    const actualValuesTitle = document.getElementById("actual-values-title");
+    const actualValuesContainer = document.getElementById("actual-values")
+      .style;
+    const actualValuesTitle = document.getElementById("actual-values-title")
+      .style;
 
     const readingsDatesContainer = document.getElementsByClassName(
       "actual-info"
-    )[0];
+    )[0].style;
 
-    if (window.innerWidth >= 1400) {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        actualValuesContainer.style.borderRadius = "10px";
-        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
-        actualValuesContainer.style.height = "10vh";
-        actualValuesContainer.style.top = "0";
-        actualValuesTitle.style.display = "none";
-
-        readingsDatesContainer.style.display = "none";
-      } else {
-        actualValuesContainer.style.borderRadius = "0";
-        actualValuesContainer.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-        actualValuesContainer.style.height = "40vh";
-        actualValuesContainer.style.top = "10vh";
-        actualValuesTitle.style.display = "block";
-
-        readingsDatesContainer.style.display = "flex";
+    try {
+      if (window.innerWidth >= 1400) {
+        if (
+          document.body.scrollTop > 80 ||
+          document.documentElement.scrollTop > 80
+        ) {
+          actualValuesContainer.backgroundColor = "rgba(0, 0, 0, 0.6)";
+          actualValuesContainer.height = "10vh";
+          actualValuesContainer.top = "0";
+          actualValuesTitle.display = "none";
+          readingsDatesContainer.display = "none";
+        } else {
+          actualValuesContainer.backgroundColor = "rgba(0, 0, 0, 0.2)";
+          actualValuesContainer.height = "40vh";
+          actualValuesContainer.top = "10vh";
+          actualValuesTitle.display = "block";
+          readingsDatesContainer.display = "flex";
+        }
       }
+    } catch {
+      console.warn("Tried to apply scroll efect but failed");
     }
   };
 
@@ -199,6 +201,7 @@ const Apiary = ({ loggedIn }) => {
 
     return () => {
       clearInterval(interval);
+      window.onscroll = () => null;
     };
   }, [selectedHives, measurementType, selectedDate]);
 

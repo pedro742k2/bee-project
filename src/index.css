@@ -63,23 +63,23 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #ff5100 inset;
 }
 
-/* width */
+/* Width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background-color: #fff;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ff7b00;
+  background-color: #ff7b00;
   border-radius: 0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff4800;
+  background-color: #ff4800;
 }
