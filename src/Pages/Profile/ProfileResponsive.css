@@ -1,3 +1,9 @@
+@media (max-width: 1000px) and (min-width: 700px) {
+  .user-info input {
+    text-align: end;
+  }
+}
+
 @media (max-width: 700px) {
   .set-name {
     flex-direction: column;
@@ -5,6 +11,22 @@
 
   .set-name input {
     margin: 5px 0;
+  }
+
+  .user-info p {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .user-info input {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .user-info p b {
+    width: 100%;
   }
 }
 

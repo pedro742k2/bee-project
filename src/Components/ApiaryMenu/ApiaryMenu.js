@@ -33,39 +33,9 @@ const ApiaryMenu = ({ selectHive }) => {
     setApiaries(apiariesArray.sort());
   };
 
-  const updateHivesInfo = () => {
-    Fetch("/get-user-data", "post", {
-      userName: token?.userName,
-      email: token?.email,
-    })
-      .then((info) => {
-        let firstCount = true;
-
-        let hivesId = "";
-        let hivesAllInfo = [];
-
-        info?.forEach((item) => {
-          if (!firstCount) {
-            hivesId += ", ";
-          }
-
-          hivesId += item.hive_id;
-          hivesAllInfo.push(
-            `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
-          );
-          firstCount = false;
-        });
-
-        sessionStorage.setItem("hives_id", hivesId);
-        if (info.length === 0) {
-          setEmpty(true);
-        } else {
-          setEmpty(false);
-          updateApiaries(hivesAllInfo);
-        }
-      })
-      .catch(() => false);
-  };
+  /* const updateHivesInfo = () => {
+    
+  }; */
 
   const clearInputValues = () => {
     document.getElementById("hive-id").value = "";
@@ -143,7 +113,37 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   useEffect(() => {
-    updateHivesInfo();
+    Fetch("/get-user-data", "post", {
+      userName: token?.userName,
+      email: token?.email,
+    })
+      .then((info) => {
+        let firstCount = true;
+
+        let hivesId = "";
+        let hivesAllInfo = [];
+
+        info?.forEach((item) => {
+          if (!firstCount) {
+            hivesId += ", ";
+          }
+
+          hivesId += item.hive_id;
+          hivesAllInfo.push(
+            `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
+          );
+          firstCount = false;
+        });
+
+        sessionStorage.setItem("hives_id", hivesId);
+        if (info.length === 0) {
+          setEmpty(true);
+        } else {
+          setEmpty(false);
+          updateApiaries(hivesAllInfo);
+        }
+      })
+      .catch(() => false);
   }, [getApHv, pending]);
 
   return (
@@ -183,6 +183,8 @@ const ApiaryMenu = ({ selectHive }) => {
                       />
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>

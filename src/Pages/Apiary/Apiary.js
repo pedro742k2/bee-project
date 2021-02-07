@@ -140,11 +140,6 @@ const Apiary = ({ loggedIn }) => {
     const actualValuesContainer = document.getElementById("actual-values");
     const actualValuesTitle = document.getElementById("actual-values-title");
 
-    const actualValues1 = document.getElementsByClassName("values")[0];
-    const actualValues2 = document.getElementsByClassName("values")[1];
-    const actualValues3 = document.getElementsByClassName("values")[2];
-    const actualValues4 = document.getElementsByClassName("values")[3];
-
     const readingsDatesContainer = document.getElementsByClassName(
       "actual-info"
     )[0];

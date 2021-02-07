@@ -41,6 +41,11 @@ const NavBar = ({ changeMenuState }) => {
     };
   }, [path, loggedIn, isLogged]);
 
+  const btnOptions = {
+    name: ["Home", "About", "Contacts", "Apiary"],
+    links: ["/", "/about", "/contacts", "/apiary"],
+  };
+
   return (
     <div className="nav-bar">
       <Link className="links" to="/">
@@ -56,21 +61,13 @@ const NavBar = ({ changeMenuState }) => {
           </button>
         </div>
 
-        <Link className="links" to="/">
-          <p id="/">Home</p>
-        </Link>
-
-        <Link className="links" to="/about">
-          <p id="/about">About</p>
-        </Link>
-
-        <Link className="links" to="/contacts">
-          <p id="/contacts">Contacts</p>
-        </Link>
-
-        <Link className="links" to="/apiary">
-          <p id="/apiary">Apiary</p>
-        </Link>
+        {btnOptions.name.map((value, index) => {
+          return (
+            <Link className="links" to={btnOptions.links[index]}>
+              <p id={btnOptions.links[index]}>{value}</p>
+            </Link>
+          );
+        })}
 
         {!loggedIn ? (
           <Link className="links" to="/login">

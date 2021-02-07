@@ -107,7 +107,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
               </p>
 
               <p>
-                <b>Hives ID:</b>{" "}
+                <b>{"Hives ID: "}</b>
                 <input value={updatedHives} type="text"></input>
               </p>
             </div>

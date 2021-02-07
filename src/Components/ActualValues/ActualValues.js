@@ -6,52 +6,35 @@ import weightIcon from "./Assets/weighing-machine.svg";
 import batteryIcon from "./Assets/battery.svg";
 
 const ActualValues = ({ actualValues, readOn, receivedOn }) => {
+  const btnOptions = {
+    content: ["Weight", "Humidity", "Temperature", "Battery"],
+    values: [
+      actualValues[2] + " Kg",
+      actualValues[0] + " °C",
+      actualValues[1] + "%",
+      actualValues[3] + "%",
+    ],
+    icons: [weightIcon, tempIcon, hmdtIcon, batteryIcon],
+  };
+
   return (
     <div className="actual-values">
       <div className="values-container">
-        <div className="values">
-          <p>
-            <img alt="" src={tempIcon}></img>Temperature
-          </p>
-          <p className="hidden-img">
-            <img alt="" src={tempIcon}></img>
-          </p>
+        {btnOptions.content.map((value, index) => {
+          return (
+            <div className="values">
+              <p>
+                <img alt="" src={btnOptions.icons[index]}></img>
+                {value}
+              </p>
+              <p className="hidden-img">
+                <img alt="" src={btnOptions.icons[index]}></img>
+              </p>
 
-          <p>{`${actualValues[0]} °C`}</p>
-        </div>
-
-        <div className="values">
-          <p>
-            <img alt="" src={hmdtIcon}></img>Humidity
-          </p>
-          <p className="hidden-img">
-            <img alt="" src={hmdtIcon}></img>
-          </p>
-
-          <p>{`${actualValues[1]} %`}</p>
-        </div>
-
-        <div className="values">
-          <p>
-            <img alt="" src={weightIcon}></img>Weight
-          </p>
-          <p className="hidden-img">
-            <img alt="" src={weightIcon}></img>
-          </p>
-
-          <p>{`${actualValues[2]} Kg`}</p>
-        </div>
-
-        <div className="values">
-          <p>
-            <img alt="" src={batteryIcon}></img>Battery
-          </p>
-          <p className="hidden-img">
-            <img alt="" src={batteryIcon}></img>
-          </p>
-
-          <p>{`${actualValues[3]} %`}</p>
-        </div>
+              <p>{btnOptions.values[index]}</p>
+            </div>
+          );
+        })}
       </div>
 
       <div className="actual-info">

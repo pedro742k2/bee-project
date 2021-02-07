@@ -75,10 +75,11 @@ select:-webkit-autofill:focus {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ff4800;
+  background: #ff7b00;
+  border-radius: 0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff1100;
+  background: #ff4800;
 }
