@@ -31,13 +31,17 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     setBurgerState(!burgerState);
   };
 
-  const updateName = async () => {
-    const newName = document.querySelector(".set-name input").value;
+  const updateUserInfo = async (event) => {
+    const id = event.target.id.split("-")[0];
+    const { value } = document.getElementById(id);
 
-    const response = await Fetch("/set-name", "put", {
+    console.log(id, value);
+
+    const response = await Fetch("/change-user-info", "put", {
       userName: token?.userName,
       email: token?.email,
-      name: newName,
+      field: id,
+      value,
     })
       .then((data) => {
         return data;
@@ -46,26 +50,20 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
         return false;
       });
 
-    if (response === "Updated successfuly") {
+    if (response !== "Error") {
       setLoginToken(localStored, {
-        userName: token?.userName,
-        email: token?.email,
-        ApHv: token?.ApHv,
-        name: newName,
+        userName: response.user_name,
+        email: response.email,
+        ApHv: response.hives_id,
+        name: response.name,
       });
     } else {
       alert(
         "We are sorry but there was a problem consulting our servers\nTry again later :("
       );
     }
-  };
 
-  const updateUserInfo = (event) => {
-    const id = event.target.id.split("-")[0];
-
-    const { value } = document.getElementById(id);
-
-    console.log(id, value);
+    console.log(response);
   };
 
   useEffect(() => {
@@ -97,8 +95,14 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
 
                 <div className="set-name">
                   <span>Tell us your name: </span>
-                  <input type="text"></input>
-                  <button onClick={updateName}>Submit</button>
+                  <input id="empty-name-to-change" type="text"></input>
+                  <button
+                    onClick={updateUserInfo({
+                      id: "name",
+                      value: document.getElementById("empty-name-to-change")
+                        .value,
+                    })}
+                  />
                 </div>
               </Fragment>
             ) : (
@@ -111,6 +115,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 <div className="input-field">
                   <input
                     id="name"
+                    className="profile-input"
                     defaultValue={token?.name}
                     type="text"
                   ></input>
@@ -128,12 +133,13 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 <b>Username</b>
                 <div className="input-field">
                   <input
-                    id="username"
+                    id="user_name"
+                    className="profile-input"
                     defaultValue={token?.userName}
                     type="text"
                   ></input>
                   <img
-                    id="username-img"
+                    id="user_name-img"
                     alt=""
                     className="edit-field"
                     src={EditPencil}
@@ -147,6 +153,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 <div className="input-field">
                   <input
                     id="email"
+                    className="profile-input"
                     defaultValue={token?.email}
                     type="text"
                   ></input>
@@ -164,17 +171,10 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                 <b>Hives ID</b>
                 <div className="input-field">
                   <input
-                    id="hives"
-                    defaultValue={updatedHives}
+                    className="profile-input"
+                    value={updatedHives}
                     type="text"
                   ></input>
-                  <img
-                    id="hives-img"
-                    alt=""
-                    className="edit-field"
-                    src={EditPencil}
-                    onClick={updateUserInfo}
-                  />
                 </div>
               </p>
             </div>
