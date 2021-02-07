@@ -6,18 +6,16 @@ import "./ProfileResponsive.css";
 import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
-import EditPencil from "../../Assets/pencil.svg";
+import SendChanges from "../../Assets/send-changes.svg";
 
 const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
   const [updatedHives, setUpdatedHives] = useState(undefined);
 
-  /* USER INFO */
-  const [name, setName] = useState(token?.name);
-  const [userName, setUserName] = useState(token?.userName);
-  const [email, setEmail] = useState(token?.email);
-  const [hives, setHives] = useState(token?.ApHv);
+  const [changedName, setChangedName] = useState(false);
+  const [changedUserName, setChangedUserName] = useState(false);
+  const [changedEmail, setChangedEmail] = useState(false);
 
   const getApHv = sessionStorage.getItem("hives_id");
 
@@ -34,8 +32,6 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const updateUserInfo = async (event) => {
     const id = event.target.id.split("-")[0];
     const { value } = document.getElementById(id);
-
-    console.log(id, value);
 
     const response = await Fetch("/change-user-info", "put", {
       userName: token?.userName,
@@ -62,8 +58,20 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
         "We are sorry but there was a problem consulting our servers\nTry again later :("
       );
     }
+  };
 
-    console.log(response);
+  const changedInputField = () => {
+    document.getElementById("name")?.value !== token?.name
+      ? setChangedName(true)
+      : setChangedName(false);
+
+    document.getElementById("user_name")?.value !== token?.userName
+      ? setChangedUserName(true)
+      : setChangedUserName(false);
+
+    document.getElementById("email")?.value !== token?.email
+      ? setChangedEmail(true)
+      : setChangedEmail(false);
   };
 
   useEffect(() => {
@@ -76,7 +84,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     } else {
       setUpdatedHives(getApHv);
     }
-  }, [getApHv, name, userName, email, hives]);
+  }, [getApHv]);
 
   return (
     <div className="App">
@@ -117,15 +125,20 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                     id="name"
                     className="profile-input"
                     defaultValue={token?.name}
+                    onChange={changedInputField}
                     type="text"
                   ></input>
-                  <img
-                    id="name-img"
-                    alt=""
-                    className="edit-field"
-                    src={EditPencil}
-                    onClick={updateUserInfo}
-                  />
+                  {changedName ? (
+                    <img
+                      id="name-img"
+                      alt=""
+                      className="edit-field"
+                      src={SendChanges}
+                      onClick={updateUserInfo}
+                    />
+                  ) : (
+                    <Fragment />
+                  )}
                 </div>
               </p>
 
@@ -136,15 +149,20 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                     id="user_name"
                     className="profile-input"
                     defaultValue={token?.userName}
+                    onChange={changedInputField}
                     type="text"
                   ></input>
-                  <img
-                    id="user_name-img"
-                    alt=""
-                    className="edit-field"
-                    src={EditPencil}
-                    onClick={updateUserInfo}
-                  />
+                  {changedUserName ? (
+                    <img
+                      id="user_name-img"
+                      alt=""
+                      className="edit-field"
+                      src={SendChanges}
+                      onClick={updateUserInfo}
+                    />
+                  ) : (
+                    <Fragment />
+                  )}
                 </div>
               </p>
 
@@ -155,15 +173,20 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
                     id="email"
                     className="profile-input"
                     defaultValue={token?.email}
+                    onChange={changedInputField}
                     type="text"
                   ></input>
-                  <img
-                    id="email-img"
-                    alt=""
-                    className="edit-field"
-                    src={EditPencil}
-                    onClick={updateUserInfo}
-                  />
+                  {changedEmail ? (
+                    <img
+                      id="email-img"
+                      alt=""
+                      className="edit-field"
+                      src={SendChanges}
+                      onClick={updateUserInfo}
+                    />
+                  ) : (
+                    <Fragment />
+                  )}
                 </div>
               </p>
 
