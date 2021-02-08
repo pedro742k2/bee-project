@@ -93,7 +93,9 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
     } else {
       setUpdatedHives(getApHv);
     }
-  }, [getApHv]);
+
+    changedInputField();
+  }, [getApHv, token]);
 
   return (
     <div className="App">
