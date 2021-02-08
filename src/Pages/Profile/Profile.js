@@ -55,7 +55,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
       });
     } else {
       alert(
-        "We are sorry but there was a problem consulting our servers\nTry again later :("
+        "Something went wrong.\nProbably this new value is already linked to another account"
       );
     }
   };
