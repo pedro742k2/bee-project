@@ -33,10 +33,6 @@ const ApiaryMenu = ({ selectHive }) => {
     setApiaries(apiariesArray.sort());
   };
 
-  /* const updateHivesInfo = () => {
-    
-  }; */
-
   const clearInputValues = () => {
     document.getElementById("hive-id").value = "";
     document.getElementById("apiary-input").value = "";

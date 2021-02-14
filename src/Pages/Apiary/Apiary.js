@@ -166,7 +166,7 @@ const Apiary = ({ loggedIn }) => {
         }
       }
     } catch {
-      console.warn("Tried to apply scroll efect but failed");
+      console.warn("Tried to apply scroll effect but failed");
     }
   };
 

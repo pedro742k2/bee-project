@@ -5,17 +5,19 @@ import "./Footer.css";
 const Footer = () => {
   const [removeParticles, setRemoveParticles] = useState(false);
 
-  useEffect(() => {
-    document.querySelector(".particles.disable") === null
-      ? setRemoveParticles(false)
-      : setRemoveParticles(true);
-  }, []);
-
   const disableParticles = () => {
-    document.getElementsByClassName("particles")[0].classList.toggle("disable");
+    document
+      .getElementsByClassName("particles")[0]
+      ?.classList.toggle("disable");
 
     setRemoveParticles(!removeParticles);
   };
+
+  useEffect(() => {
+    document.getElementsByClassName("particles")[0].classList[1] === "disable"
+      ? setRemoveParticles(true)
+      : setRemoveParticles(false);
+  }, [removeParticles]);
 
   return (
     <div className="footer">

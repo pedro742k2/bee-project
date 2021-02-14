@@ -21,32 +21,37 @@ const Routes = () => {
   const [localStored, setLocalStorage] = useState(undefined);
 
   const setLoginToken = (checkboxState = false, user) => {
-    try {
-      const verifyLength = user.userName.length >= 1;
+    const { token } = user;
 
-      if (verifyLength && checkboxState) {
-        localStorage.setItem("token", JSON.stringify(user));
-        setLocalStorage(true);
-      } else if (verifyLength && !checkboxState) {
-        sessionStorage.setItem("token", JSON.stringify(user));
-        setLocalStorage(false);
-      }
+    if (token) {
+      try {
+        if (checkboxState) {
+          localStorage.setItem("token", JSON.stringify(user));
+          localStorage.setItem("authorization_token", token);
+          setLocalStorage(true);
+        } else if (!checkboxState) {
+          sessionStorage.setItem("token", JSON.stringify(user));
+          sessionStorage.setItem("authorization_token", token);
+          setLocalStorage(false);
+        }
 
-      if (verifyLength) {
         sessionStorage.setItem("isLogged", "true");
         sessionStorage.setItem("hives_id", user?.hivesId);
         setLoggedIn(true);
         setToken(user);
+      } catch {
+        setLoggedIn(false);
+        sessionStorage.setItem("isLogged", "false");
       }
-    } catch {
-      setLoggedIn(false);
-      sessionStorage.setItem("isLogged", "false");
     }
   };
 
   const logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("authorization_token");
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("authorization_token");
+
     sessionStorage.setItem("isLogged", "false");
     setLoggedIn(false);
     setLocalStorage(undefined);
@@ -57,15 +62,22 @@ const Routes = () => {
       JSON.parse(localStorage.getItem("token")) ||
       JSON.parse(sessionStorage.getItem("token"));
 
-    if (userToken) {
-      const checkLocalStorage = JSON.parse(localStorage.getItem("token"));
-      checkLocalStorage === null
-        ? setLocalStorage(false)
-        : setLocalStorage(true);
+    try {
+      const { token } = userToken;
 
-      setLoggedIn(true);
-      setToken(userToken);
-      sessionStorage.setItem("isLogged", "true");
+      if (token) {
+        const checkLocalStorage = JSON.parse(localStorage.getItem("token"));
+        checkLocalStorage === null
+          ? setLocalStorage(false)
+          : setLocalStorage(true);
+
+        setLoggedIn(true);
+        setToken(userToken);
+        sessionStorage.setItem("isLogged", "true");
+      }
+    } catch {
+      setLoggedIn(false);
+      sessionStorage.setItem("isLogged", "false");
     }
   }, [loggedIn]);
 

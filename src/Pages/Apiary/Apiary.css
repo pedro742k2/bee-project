@@ -174,15 +174,6 @@
   transition: all 0.5s ease;
 }
 
-#actual-values::before {
-  content: "";
-  position: absolute;
-  width: 50%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-}
-
 #actual-values,
 #actual-values h1 {
   margin-bottom: 20px;

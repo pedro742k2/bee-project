@@ -29,16 +29,25 @@ class SubmitErrors extends Component {
         password: password,
       })
         .then((result) => {
-          if (result === "Wrong credentials") {
+          const { token } = result;
+
+          if (token) {
+            /* const userInfo = {
+              name: result.name,
+              userName: result.userName,
+              email: result.email,
+              hivedId: result.hivedId,
+            }; */
+
+            this.closeBox("credentials");
+
+            this.props.successSign(result);
+          } else {
             document
               .getElementsByClassName("credentials")[0]
               .classList.add("active");
 
             this.props.cancelPending();
-          } else {
-            this.closeBox("credentials");
-
-            this.props.successSign(result);
           }
         })
         .catch(() => {

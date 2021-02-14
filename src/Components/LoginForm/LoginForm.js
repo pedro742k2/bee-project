@@ -63,12 +63,10 @@ const LoginForm = ({
   };
 
   const cancelPending = () => {
-    console.log("cancelPending");
     return setPending(false);
   };
 
   const checkLoginInputs = () => {
-    console.log("setPending");
     setPending(true);
     disableAllErrorBoxes();
 
