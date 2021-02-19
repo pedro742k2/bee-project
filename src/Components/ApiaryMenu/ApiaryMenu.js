@@ -20,8 +20,6 @@ const ApiaryMenu = ({ selectHive }) => {
   const updateApiaries = (hivesInfo) => {
     const apiariesArray = [];
 
-    /* LEMBRAR TRATAMENTO CASO NÃO RECEBA NADA */
-
     hivesInfo?.forEach((hiveID) => {
       const apiaryNumber = hiveID.split("-")[1];
       if (!apiariesArray.includes(apiaryNumber)) {
@@ -138,6 +136,7 @@ const ApiaryMenu = ({ selectHive }) => {
         sessionStorage.setItem("hives_id", hivesId);
         if (info.length === 0) {
           setEmpty(true);
+          setPending(false);
         } else {
           setEmpty(false);
           updateApiaries(hivesAllInfo);
