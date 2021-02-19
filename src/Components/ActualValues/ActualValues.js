@@ -7,7 +7,7 @@ import batteryIcon from "./Assets/battery.svg";
 
 const ActualValues = ({ actualValues, readOn, receivedOn }) => {
   const btnOptions = {
-    content: ["Weight", "Humidity", "Temperature", "Battery"],
+    content: ["Weight", "Temperature", "Humidity", "Battery"],
     values: [
       actualValues[2] + " Kg",
       actualValues[0] + " °C",

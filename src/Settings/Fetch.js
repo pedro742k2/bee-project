@@ -1,7 +1,7 @@
 import ServerApi from "./ServerApi";
 
 const Fetch = (route, method, body) => {
-  const token = localStorage.getItem("authorization_token");
+  const token = JSON.parse(localStorage.getItem("token"))?.token;
 
   const promise = new Promise((resolve, reject) => {
     fetch(ServerApi + route, {

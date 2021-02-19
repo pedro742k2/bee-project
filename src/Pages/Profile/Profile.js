@@ -8,7 +8,7 @@ import Fetch from "../../Settings/Fetch";
 import NoBeeIcon from "../../Assets/no-bee.svg";
 import SendChanges from "../../Assets/send-changes.svg";
 
-const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
+const Profile = ({ setLoginToken, token, logOut, localStored }) => {
   const [burgerState, setBurgerState] = useState(true);
   const [haveLoggedOut, setHaveLoggedOut] = useState(false);
   const [updatedHives, setUpdatedHives] = useState(undefined);
@@ -18,6 +18,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   const [changedEmail, setChangedEmail] = useState(false);
 
   const getApHv = sessionStorage.getItem("hives_id");
+  const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -30,13 +31,18 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
   };
 
   const updateUserInfo = async (event) => {
-    const id = event.target.id.split("-")[0];
-    const { value } = document.getElementById(id);
+    const id = event?.target?.id;
+
+    if (!id) return false;
+
+    let field = id.split("-")[0];
+
+    const { value } = document.getElementById(field);
 
     const response = await Fetch("/change-user-info", "put", {
       userName: token?.userName,
       email: token?.email,
-      field: id,
+      field,
       value,
     })
       .then((data) => {
@@ -48,6 +54,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
 
     if (response !== "Error") {
       setLoginToken(localStored, {
+        token: token?.token,
         userName: response.user_name,
         email: response.email,
         ApHv: response.hives_id,
@@ -55,7 +62,7 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
       });
     } else {
       alert(
-        "Something went wrong.\nProbably this new value is already linked to another account"
+        "Something went wrong.\nProbably your input is already linked to another account"
       );
     }
   };
@@ -111,18 +118,6 @@ const Profile = ({ loggedIn, setLoginToken, token, logOut, localStored }) => {
             {token?.name === null || token?.name?.length < 1 ? (
               <Fragment>
                 <h2>Hi, we see that you haven't set a name yet</h2>
-
-                <div className="set-name">
-                  <span>Tell us your name: </span>
-                  <input id="empty-name-to-change" type="text"></input>
-                  <button
-                    onClick={updateUserInfo({
-                      id: "name",
-                      value: document.getElementById("empty-name-to-change")
-                        .value,
-                    })}
-                  />
-                </div>
               </Fragment>
             ) : (
               <h2>Hi, {token?.name}</h2>

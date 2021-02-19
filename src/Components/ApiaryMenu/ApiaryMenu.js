@@ -31,6 +31,7 @@ const ApiaryMenu = ({ selectHive }) => {
 
     setApiaryHive(hivesInfo);
     setApiaries(apiariesArray.sort());
+    setPending(false);
   };
 
   const clearInputValues = () => {
@@ -72,13 +73,13 @@ const ApiaryMenu = ({ selectHive }) => {
           setErrors(data);
           removeErrors();
         }
-        setPending(false);
       })
       .catch(() => {
         setErrors("Server error");
         removeErrors();
-        setPending(false);
       });
+
+    setPending(false);
   };
 
   const removeApiary = (event) => {
@@ -99,16 +100,19 @@ const ApiaryMenu = ({ selectHive }) => {
           setErrors(data);
           removeErrors();
         }
-        setPending(false);
       })
       .catch(() => {
         setErrors("Server error");
         removeErrors();
-        setPending(false);
       });
+
+    setPending(false);
   };
 
   useEffect(() => {
+    console.log("useEffect");
+    setPending(true);
+
     Fetch("/get-user-data", "post", {
       userName: token?.userName,
       email: token?.email,
@@ -140,7 +144,7 @@ const ApiaryMenu = ({ selectHive }) => {
         }
       })
       .catch(() => false);
-  }, [getApHv, pending]);
+  }, [getApHv]);
 
   return (
     <div className="apiaries">

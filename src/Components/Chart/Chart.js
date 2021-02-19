@@ -2,14 +2,17 @@ import React, { useState, useEffect, Fragment } from "react";
 import chartOptions from "./GraphConfig";
 import "./Chart.css";
 /* DATA */
-import TempData from "./data/TempData";
+import IntTempData from "./data/InternalTempData";
+import ExtTempData from "./data/ExternalTempData";
 import HmdtData from "./data/HmdtData";
 import WeightData from "./data/WeightData";
 import BatteryData from "./data/BatteryData";
 
 const Chart = ({ allValues, ApHv }) => {
   const [readyToDisplay, setReadyToDisplay] = useState(false);
-  const [temp, setTemp] = useState([]);
+  // const [temp, setTemp] = useState([]);
+  const [extTemp, setExtTemp] = useState([]);
+  const [intTemp, setIntTemp] = useState([]);
   const [hmdt, setHmdt] = useState([]);
   const [weight, setWeight] = useState([]);
   const [battery, setBattery] = useState([]);
@@ -18,7 +21,8 @@ const Chart = ({ allValues, ApHv }) => {
   useEffect(() => {
     let error = false;
 
-    const cloneTemp = [];
+    const cloneExtTemp = [];
+    const cloneIntTemp = [];
     const cloneHmdt = [];
     const cloneWeight = [];
     const cloneBattery = [];
@@ -43,7 +47,8 @@ const Chart = ({ allValues, ApHv }) => {
             .split(".")[0]
             .split(":");
 
-          cloneTemp.push(value.temperature);
+          cloneExtTemp.push(value.external_temperature);
+          cloneIntTemp.push(value.internal_temperature);
           cloneHmdt.push(value.humidity);
           cloneWeight.push(value.weight);
           cloneBattery.push(value.battery);
@@ -56,14 +61,16 @@ const Chart = ({ allValues, ApHv }) => {
 
     if (!error) {
       setReadyToDisplay(true);
-      setTemp(cloneTemp);
+      setExtTemp(cloneExtTemp);
+      setIntTemp(cloneIntTemp);
       setHmdt(cloneHmdt);
       setWeight(cloneWeight);
       setBattery(cloneBattery);
       setReadingsDate(cloneReadingsDate);
     } else {
       setReadyToDisplay(false);
-      setTemp([]);
+      setExtTemp([]);
+      setIntTemp([]);
       setHmdt([]);
       setWeight([]);
       setBattery([]);
@@ -85,9 +92,18 @@ const Chart = ({ allValues, ApHv }) => {
           </div>
 
           <div className="chart">
-            <TempData
+            <ExtTempData
               ApHv={ApHv}
-              temp={temp}
+              temp={extTemp}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
+
+          <div className="chart">
+            <IntTempData
+              ApHv={ApHv}
+              temp={intTemp}
               readingsDate={readingsDate}
               chartOptions={chartOptions}
             />

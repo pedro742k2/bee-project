@@ -10,7 +10,7 @@ import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
 
-const Apiary = ({ loggedIn }) => {
+const Apiary = () => {
   const [burgerState, setBurgerState] = useState(true);
   const [measurementType, setMeasurementType] = useState("Daily");
   const [selectedHives, setSelectedHives] = useState([]);
@@ -19,9 +19,12 @@ const Apiary = ({ loggedIn }) => {
 
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
-  const [actualValues, setActualValues] = useState(["-", "-", "-", "-"]);
+  const [actualValues, setActualValues] = useState(["-", "-", "-", "-", "-"]);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
+
+  // Check if logged in
+  const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
 
   const getValues = async () => {
     setApHv(selectedHives[0]);
@@ -49,7 +52,7 @@ const Apiary = ({ loggedIn }) => {
 
       if (selectedHives?.length === 0) {
         setAllValues(undefined);
-        setActualValues(["-", "-", "-", "-"]);
+        setActualValues(["-", "-", "-", "-", "-"]);
         setReadOn("No hive selected");
         setReceivedOn("No hive selected");
       } else if (data) {
@@ -90,7 +93,7 @@ const Apiary = ({ loggedIn }) => {
 
               setAllValues(data.firstDataFromHours);
               setActualValues([
-                data.lastValues.temperature,
+                data.lastValues.internal_temperature,
                 data.lastValues.humidity,
                 data.lastValues.weight,
                 data.lastValues.battery,
@@ -102,13 +105,13 @@ const Apiary = ({ loggedIn }) => {
             }
           } else {
             setAllValues(undefined);
-            setActualValues(["-", "-", "-", "-"]);
+            setActualValues(["-", "-", "-", "-", "-"]);
             setReadOn("Not available yet");
             setReceivedOn("Not available yet");
           }
         } else {
           setAllValues(undefined);
-          setActualValues(["-", "-", "-", "-"]);
+          setActualValues(["-", "-", "-", "-", "-"]);
           setReadOn("Not available yet");
           setReceivedOn("Not available yet");
         }

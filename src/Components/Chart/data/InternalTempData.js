@@ -6,11 +6,11 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
     labels: readingsDate,
     datasets: [
       {
-        label: `Hive #${ApHv} Temperature`,
+        label: `Hive #${ApHv} Internal temperature`,
         data: temp,
 
-        backgroundColor: "rgba(255, 89, 0, 0.2)",
-        borderColor: "#FF5900",
+        backgroundColor: "rgba(255, 67, 12, 0.2)",
+        borderColor: "#FF430C",
         fill: true,
         lineTension: 0.2,
         borderCapStyle: "butt",
@@ -54,7 +54,7 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
 
         title: {
           display: chartOptions.displayTitle,
-          text: "Temperature (°C)",
+          text: "Internal temperature (°C)",
           fontSize: 34,
           fontColor: "#fff",
         },

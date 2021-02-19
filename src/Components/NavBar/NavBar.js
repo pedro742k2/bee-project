@@ -11,7 +11,7 @@ const NavBar = ({ changeMenuState }) => {
     JSON.parse(localStorage.getItem("token")) ||
     JSON.parse(sessionStorage.getItem("token"));
 
-  const isLogged = sessionStorage.getItem("isLogged");
+  const isLogged = JSON.parse(sessionStorage.getItem("isLogged"));
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -25,11 +25,11 @@ const NavBar = ({ changeMenuState }) => {
 
     document.getElementById(path)?.classList.add("disabled");
 
-    if (userToken?.userName?.length >= 1 && userToken?.email?.length >= 1) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+    const token = userToken?.token;
+
+    if (token && isLogged) return setLoggedIn(true);
+
+    return setLoggedIn(false);
   };
 
   useEffect(() => {
