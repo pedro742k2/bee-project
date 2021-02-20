@@ -6,7 +6,7 @@ import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
-  const getApHv = JSON.parse(sessionStorage.getItem("hives_id"));
+  const getApHv = sessionStorage.getItem("hives_id");
   const token =
     JSON.parse(sessionStorage.getItem("token")) ||
     JSON.parse(localStorage.getItem("token"));
