@@ -115,10 +115,8 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
           <div className="user-info-container">
             <h1>User stored information</h1>
 
-            {token?.name === null || token?.name?.length < 1 ? (
-              <Fragment>
-                <h2>Hi, we see that you haven't set a name yet</h2>
-              </Fragment>
+            {!token?.name || token?.name === null || token?.name?.length < 4 ? (
+              <h2>Hi, we see that you haven't set a name yet</h2>
             ) : (
               <h2>Hi, {token?.name}</h2>
             )}
