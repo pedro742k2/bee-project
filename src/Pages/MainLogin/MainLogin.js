@@ -13,44 +13,15 @@ class MainLogin extends Component {
     };
   }
 
-  disableAllErrorBoxes = () => {
-    document
-      .getElementsByClassName("error-box user_email")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box pwrd")[0]
-      .classList.remove("active");
-
-    document
-      .getElementsByClassName("error-box user")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box email")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box reg_pwrd")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box secondPwrd")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box repeated-pwrd")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box reg-invalid-email")[0]
-      .classList.remove("active");
-    document
-      .getElementsByClassName("error-box min-char-pwrd")[0]
-      .classList.remove("active");
-  };
-
   changeLoginPage = (route) => {
     route === "login-page"
       ? this.setState({ onLoginPage: true })
       : this.setState({ onLoginPage: false });
 
+    // Get all page inputs ("Login" and "Register" page)
     const inputs = document.getElementsByClassName("user-input");
 
+    // Clear input values on page change (Login <-> Register)
     for (let input of inputs) {
       input.value = "";
     }
@@ -82,9 +53,8 @@ class MainLogin extends Component {
 
         <main className="login-main">
           <LoginForm
-            disableAllErrorBoxes={this.disableAllErrorBoxes}
-            onLoginPage={onLoginPage}
-            changeLoginPage={this.changeLoginPage}
+            onLoginPage={onLoginPage} // Always start on login page
+            changeLoginPage={this.changeLoginPage} // To clear input values
             setLoginToken={this.props.setLoginToken}
           />
         </main>

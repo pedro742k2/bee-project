@@ -1,32 +1,7 @@
 import React, { Component } from "react";
-import NotCorrect from "../../../Assets/error.svg";
 import refresh from "../../../Assets/refresh_colorful.svg";
 
 class Login extends Component {
-  componentWillUnmount() {
-    document
-      .getElementsByClassName("error-box user_email")[0]
-      .classList.remove("active");
-
-    document
-      .getElementsByClassName("error-box pwrd")[0]
-      .classList.remove("active");
-
-    document
-      .getElementsByClassName("credentials")[0]
-      .classList.remove("active");
-
-    document
-      .getElementsByClassName("already-created")[0]
-      .classList.remove("active");
-
-    document
-      .getElementsByClassName("server-error")[0]
-      .classList.remove("active");
-
-    this.props.resetState();
-  }
-
   render() {
     return (
       <div className="inputs-div">
@@ -38,17 +13,6 @@ class Login extends Component {
               type="text"
               placeholder="Email or username"
             ></input>
-            <img
-              alt=""
-              onClick={() => {
-                this.props.mouseOverError("error-box user_email");
-              }}
-              onMouseOver={() => {
-                this.props.mouseOverError("error-box user_email");
-              }}
-              id="login-user-error"
-              src={NotCorrect}
-            ></img>
           </div>
 
           <div className="input-container">
@@ -58,17 +22,6 @@ class Login extends Component {
               type="password"
               placeholder="Password"
             ></input>
-            <img
-              alt=""
-              onClick={() => {
-                this.props.mouseOverError("error-box pwrd");
-              }}
-              onMouseOver={() => {
-                this.props.mouseOverError("error-box pwrd");
-              }}
-              id="login-pwrd-error"
-              src={NotCorrect}
-            ></img>
           </div>
 
           <div id="remember-checkbox">

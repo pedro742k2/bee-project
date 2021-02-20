@@ -3,10 +3,6 @@
     margin-left: 0%;
     width: 65%;
   }
-
-  .main-div {
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 800px) {
@@ -17,8 +13,13 @@
 
 @media (max-width: 750px) {
   .login-form button,
-  .login-form input {
+  .login-form input,
+  .actual-error-container span {
     font-size: 1.5rem;
+  }
+
+  .actual-error-container img {
+    width: 25px;
   }
 
   .buttons-div .login-register-icon {

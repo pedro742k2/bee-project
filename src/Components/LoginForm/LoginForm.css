@@ -13,26 +13,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .login-form {
-  margin-left: 10%;
-  width: 50%;
+  width: 60%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /*border: 2px solid #ff7b00;*/
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0 0 20px 0;
 
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   z-index: 20;
 
@@ -178,10 +173,6 @@ button.disable .bubble {
   transition: all linear 0.1s;
 }
 
-.login-form input.error {
-  border: 3px solid #ff0000;
-}
-
 ::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -253,6 +244,37 @@ button.disable .bubble {
   text-align: start;
   font-size: 1.25rem;
   cursor: default;
+}
+
+.actual-error-container {
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  background-color: rgba(255, 94, 0, 0.7);
+  text-align: center;
+  padding: 10px 20px;
+  margin: 30px 15px 15px 15px;
+  /* margin-top: 30px; */
+  border-radius: 10px;
+
+  box-shadow: rgb(255, 102, 0) -5px 5px, rgb(255, 136, 0) -10px 10px;
+}
+
+.actual-error-container img {
+  width: 30px;
+  border-radius: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.actual-error-container span {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
 }
 
 @-webkit-keyframes fadeIn {
