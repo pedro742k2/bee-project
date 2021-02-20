@@ -6,7 +6,7 @@ import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
-  const getApHv = sessionStorage.getItem("hives_id");
+  const getApHv = JSON.parse(sessionStorage.getItem("hives_id"));
   const token =
     JSON.parse(sessionStorage.getItem("token")) ||
     JSON.parse(localStorage.getItem("token"));
@@ -108,7 +108,6 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   useEffect(() => {
-    console.log("useEffect");
     setPending(true);
 
     Fetch("/get-user-data", "post", {
@@ -143,7 +142,7 @@ const ApiaryMenu = ({ selectHive }) => {
         }
       })
       .catch(() => false);
-  }, [getApHv]);
+  }, [getApHv, errors]);
 
   return (
     <div className="apiaries">

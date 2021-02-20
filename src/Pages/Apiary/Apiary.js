@@ -57,6 +57,7 @@ const Apiary = () => {
         setReceivedOn("No hive selected");
       } else if (data) {
         if (
+          data !== "invalid resource" &&
           data !== "Unable to get data" &&
           data !== "not available" &&
           data !== undefined
@@ -227,7 +228,7 @@ const Apiary = () => {
   const handleDropMenuClick = (item) => {
     setMeasurementType(item);
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       document
         .getElementsByClassName("custom-option")
         [i].classList.remove("selected");
@@ -277,6 +278,15 @@ const Apiary = () => {
                           </div>
 
                           <div className="custom-options">
+                            <span
+                              className="custom-option Hourly"
+                              data-value="hourly"
+                              onClick={() => {
+                                handleDropMenuClick("Hourly");
+                              }}
+                            >
+                              Hourly measurements
+                            </span>
                             <span
                               className="custom-option Daily selected"
                               data-value="daily"
