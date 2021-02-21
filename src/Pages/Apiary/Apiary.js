@@ -174,7 +174,48 @@ const Apiary = () => {
     }
   };
 
+  const changeMenuState = () => {
+    const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
+    const nav_bar = document.getElementsByClassName("nav-bar")[0];
+
+    burger_menu.classList.toggle("is-active", burgerState);
+    nav_bar.classList.toggle("on");
+
+    setBurgerState(!burgerState);
+  };
+
+  const toggleDropMenu = () => {
+    document
+      .getElementsByClassName("custom-select")[0]
+      .classList.toggle("open");
+  };
+
+  const handleDropMenuClick = (item) => {
+    setMeasurementType(item);
+
+    for (let i = 0; i < 4; i++) {
+      document
+        .getElementsByClassName("custom-option")
+        [i].classList.remove("selected");
+    }
+
+    document.getElementsByClassName(item)[0].classList.add("selected");
+  };
+
+  const selectDate = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
   useEffect(() => {
+    const dateInput = document.getElementsByClassName("select-date")[0];
+
+    if (measurementType.toLowerCase() === "hourly") {
+      dateInput.disabled = true;
+      dateInput.value = date;
+    } else {
+      dateInput.disabled = false;
+    }
+
     window.onscroll = () => {
       scrollFunction();
     };
@@ -208,38 +249,6 @@ const Apiary = () => {
       window.onscroll = () => null;
     };
   }, [selectedHives, measurementType, selectedDate]);
-
-  const changeMenuState = () => {
-    const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
-    const nav_bar = document.getElementsByClassName("nav-bar")[0];
-
-    burger_menu.classList.toggle("is-active", burgerState);
-    nav_bar.classList.toggle("on");
-
-    setBurgerState(!burgerState);
-  };
-
-  const toggleDropMenu = () => {
-    document
-      .getElementsByClassName("custom-select")[0]
-      .classList.toggle("open");
-  };
-
-  const handleDropMenuClick = (item) => {
-    setMeasurementType(item);
-
-    for (let i = 0; i < 4; i++) {
-      document
-        .getElementsByClassName("custom-option")
-        [i].classList.remove("selected");
-    }
-
-    document.getElementsByClassName(item)[0].classList.add("selected");
-  };
-
-  const selectDate = (event) => {
-    setSelectedDate(event.target.value);
-  };
 
   return (
     <div className="App">
