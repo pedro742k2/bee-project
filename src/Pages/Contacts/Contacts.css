@@ -24,6 +24,18 @@
   margin-top: 20px;
 }
 
+.contact-info p:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 50px;
+}
+
+.contact-info p:last-of-type span {
+  font-weight: normal;
+}
+
 .contact-info p {
   font-size: 2rem;
 }

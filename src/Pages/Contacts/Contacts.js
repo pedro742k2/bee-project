@@ -36,9 +36,17 @@ class Contacts extends Component {
           <p>Contacts Page</p>
           <p>Under development</p>
           <div className="contact-info">
-            <p>If you wish to contact me, feel free to send an email</p>
             <p>
-              <b>Email:</b> pmpb742k2@gmail.com
+              If you wish to contact us to submit a question, report a bug or
+              make a suggestion, please feel free to send an email
+            </p>
+            <p>
+              <span>
+                <b>Technical:</b> pmpb742k2@gmail.com
+              </span>
+              <span>
+                <b>Project related:</b> paulo.torres@ipcb.pt
+              </span>
             </p>
           </div>
         </main>

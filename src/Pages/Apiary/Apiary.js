@@ -285,7 +285,7 @@ const Apiary = () => {
                                 handleDropMenuClick("Hourly");
                               }}
                             >
-                              Hourly measurements
+                              Last hour measurements
                             </span>
                             <span
                               className="custom-option Daily selected"
