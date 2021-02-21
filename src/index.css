@@ -31,6 +31,7 @@ body {
 html,
 body {
   font-size: 62.5%;
+  /* overflow-y: scroll; */
 
   padding: 0;
   margin: 0;
@@ -66,7 +67,7 @@ button,
 
 /* Width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12.5px;
 }
 
 /* Track */
@@ -76,11 +77,11 @@ button,
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: #ff7b00;
+  background-color: #ff7300;
   border-radius: 0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ff4800;
+  background-color: #ff3c00;
 }
