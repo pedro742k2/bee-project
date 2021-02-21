@@ -16,6 +16,7 @@ const ApiaryMenu = ({ selectHive }) => {
   const [pending, setPending] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [errors, setErrors] = useState(undefined);
+  const [update, setUpdate] = useState(false);
 
   const updateApiaries = (hivesInfo) => {
     const apiariesArray = [];
@@ -77,7 +78,8 @@ const ApiaryMenu = ({ selectHive }) => {
         removeErrors();
       });
 
-    setPending(false);
+    setUpdate(true);
+    // setPending(false);
   };
 
   const removeApiary = (event) => {
@@ -104,13 +106,14 @@ const ApiaryMenu = ({ selectHive }) => {
         removeErrors();
       });
 
-    setPending(false);
+    setUpdate(true);
+    // setPending(false);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     setPending(true);
 
-    Fetch("/get-user-data", "post", {
+    await Fetch("/get-user-data", "post", {
       userName: token?.userName,
       email: token?.email,
     })
@@ -136,13 +139,17 @@ const ApiaryMenu = ({ selectHive }) => {
         if (info.length === 0) {
           setEmpty(true);
           setPending(false);
+          setApiaries(undefined);
         } else {
           setEmpty(false);
           updateApiaries(hivesAllInfo);
         }
       })
       .catch(() => false);
-  }, [getApHv, errors]);
+
+    setPending(false);
+    setUpdate(false);
+  }, [getApHv, update]);
 
   return (
     <div className="apiaries">
@@ -158,7 +165,7 @@ const ApiaryMenu = ({ selectHive }) => {
       )}
       {apiaries?.sort().map((apiary) => {
         return (
-          <div className="apiary">
+          <div key={apiary} className="apiary">
             <p className="apiary-title">Apiary {apiary}</p>
 
             <div>
