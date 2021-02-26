@@ -27,14 +27,6 @@ const LoginForm = ({ setLoginToken, onLoginPage, changeLoginPage }) => {
     setSignedUser(user);
   };
 
-  /* const changeErrorMsgState = (add) => {
-    const errorBox = document.getElementsByClassName(
-      "actual-error-container"
-    )[0].classList;
-
-    add ? errorBox.remove("disabled") : errorBox.add("disabled");
-  }; */
-
   const checkLoginInputs = () => {
     setPending(true);
 

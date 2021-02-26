@@ -62,7 +62,7 @@ const Apiary = () => {
           data !== "not available" &&
           data !== undefined
         ) {
-          if (data.firstDataFromHours.length >= 1 || data.lastValues) {
+          if (data.data?.length >= 1 || data?.lastValues) {
             try {
               /* Date of when the data was read */
               const readingsDateInfo = data.lastValues.readings_date.split("T");
@@ -92,7 +92,7 @@ const Apiary = () => {
               const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
               setDate(`${currentYear}-${currentMonth}-${currentDay}`);
 
-              setAllValues(data.firstDataFromHours);
+              setAllValues(data.data);
               setActualValues([
                 data.lastValues.internal_temperature,
                 data.lastValues.humidity,
@@ -209,11 +209,15 @@ const Apiary = () => {
   useEffect(() => {
     const dateInput = document.getElementsByClassName("select-date")[0];
 
-    if (measurementType.toLowerCase() === "hourly") {
-      dateInput.disabled = true;
-      dateInput.value = date;
-    } else {
-      dateInput.disabled = false;
+    try {
+      if (measurementType.toLowerCase() === "hourly") {
+        dateInput.disabled = true;
+        dateInput.value = date;
+      } else {
+        dateInput.disabled = false;
+      }
+    } catch (error) {
+      console.warn(error);
     }
 
     window.onscroll = () => {

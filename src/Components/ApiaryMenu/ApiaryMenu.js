@@ -124,11 +124,7 @@ const ApiaryMenu = ({ selectHive }) => {
         let hivesAllInfo = [];
 
         info?.forEach((item) => {
-          if (!firstCount) {
-            hivesId += ", ";
-          }
-
-          hivesId += item.hive_id;
+          hivesId += item.hive_id + ";";
           hivesAllInfo.push(
             `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
           );
