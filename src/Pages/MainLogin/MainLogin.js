@@ -28,7 +28,6 @@ class MainLogin extends Component {
   };
 
   changeMenuState = () => {
-    this.disableAllErrorBoxes();
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
     const nav_bar = document.getElementsByClassName("nav-bar")[0];
     const login_form = document.getElementsByClassName("login-form")[0];

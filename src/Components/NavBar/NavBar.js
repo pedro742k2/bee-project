@@ -63,7 +63,7 @@ const NavBar = ({ changeMenuState }) => {
 
         {btnOptions.name.map((value, index) => {
           return (
-            <Link className="links" to={btnOptions.links[index]}>
+            <Link key={index} className="links" to={btnOptions.links[index]}>
               <p id={btnOptions.links[index]}>{value}</p>
             </Link>
           );
