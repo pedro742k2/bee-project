@@ -289,6 +289,12 @@
 
 /* ----- MAX-HEIGHT ----- */
 
+@media (max-height: 730px) {
+  #actual-values {
+    height: 50vh;
+  }
+}
+
 @media (min-height: 1200px) {
   .graph-opt-container {
     margin-top: 35vh;
