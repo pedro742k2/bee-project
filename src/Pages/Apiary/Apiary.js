@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import ApiaryMenu from "../../Components/ApiaryMenu/ApiaryMenu";
@@ -9,6 +9,8 @@ import "./ApiaryResponsive.css";
 import Fetch from "../../Settings/Fetch";
 
 import NoBeeIcon from "../../Assets/no-bee.svg";
+import chartImg from "../../Assets/chart.svg";
+import warningIcon from "../../Assets/warning.svg";
 
 const Apiary = () => {
   const [burgerState, setBurgerState] = useState(true);
@@ -22,6 +24,8 @@ const Apiary = () => {
   const [actualValues, setActualValues] = useState(["-", "-", "-", "-", "-"]);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
+
+  const graphEndInfo = useRef(null);
 
   // Check if logged in
   const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
@@ -51,6 +55,7 @@ const Apiary = () => {
       }
 
       if (selectedHives?.length === 0) {
+        console.log(selectedHives);
         setAllValues(undefined);
         setActualValues(["-", "-", "-", "-", "-"]);
         setReadOn("No hive selected");
@@ -347,7 +352,80 @@ const Apiary = () => {
                       </h3>
                     </div>
 
-                    <Chart allValues={allValues} ApHv={ApHv} />
+                    {selectedHives[0] === undefined ? (
+                      <Fragment />
+                    ) : (
+                      <div
+                        className="graphic-info-btn"
+                        onClick={() => {
+                          graphEndInfo.current?.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                        }}
+                      >
+                        <img src={warningIcon} />
+                        <span>Graphics info</span>
+                      </div>
+                    )}
+
+                    <Chart
+                      allValues={allValues}
+                      ApHv={ApHv}
+                      measurementType={measurementType}
+                    />
+
+                    {selectedHives[0] === undefined ? (
+                      <Fragment />
+                    ) : (
+                      <div className="graphs-info" ref={graphEndInfo}>
+                        <div className="graph-format-container">
+                          <h3>Graphic data type</h3>
+
+                          <div className="graph-format-img">
+                            <div>
+                              <span>Values</span>
+                              <img src={chartImg} />
+                            </div>
+                            <span>
+                              {measurementType.toLowerCase() === "weekly" ||
+                              measurementType.toLowerCase() === "monthly"
+                                ? "Day"
+                                : "Hour : Minute"}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="graph-format-container">
+                          <h3>Graphic data info</h3>
+
+                          <div className="graph-format-infobox">
+                            <p>Hourly measurements</p>
+                            <span>
+                              Gets all the available data on the database from
+                              the last hour
+                            </span>
+                          </div>
+
+                          <div className="graph-format-infobox">
+                            <p>Daily measurements</p>
+                            <span>
+                              Takes all the available values from today and gets
+                              the first values from each hour
+                            </span>
+                          </div>
+
+                          <div className="graph-format-infobox">
+                            <p>Weekly and Monthly measurements</p>
+                            <span>
+                              Those measurements are taken from readings near 8
+                              am each day. The weekly measurements are from the
+                              last 7 days and the monthly ones are from the Last
+                              31 days
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Fragment>

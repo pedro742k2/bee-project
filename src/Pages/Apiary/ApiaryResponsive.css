@@ -131,6 +131,16 @@
     min-width: 20px;
     width: 15%;
   }
+
+  .graphs-info {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .graph-format-container {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -176,6 +186,10 @@
 
   .chart {
     width: 95vw;
+  }
+
+  .graph-format-img div img {
+    width: 200px;
   }
 }
 

@@ -8,7 +8,7 @@ import HmdtData from "./data/HmdtData";
 import WeightData from "./data/WeightData";
 import BatteryData from "./data/BatteryData";
 
-const Chart = ({ allValues, ApHv }) => {
+const Chart = ({ allValues, ApHv, measurementType }) => {
   const [readyToDisplay, setReadyToDisplay] = useState(false);
   // const [temp, setTemp] = useState([]);
   const [extTemp, setExtTemp] = useState([]);
@@ -52,7 +52,17 @@ const Chart = ({ allValues, ApHv }) => {
           cloneHmdt.push(value.humidity);
           cloneWeight.push(value.weight);
           cloneBattery.push(value.battery);
-          cloneReadingsDate.push(`${receivedDate[0]}:${receivedDate[1]}`);
+
+          if (
+            measurementType.toLowerCase() !== "weekly" &&
+            measurementType.toLowerCase() !== "monthly"
+          ) {
+            cloneReadingsDate.push(`${receivedDate[0]}:${receivedDate[1]}`);
+          } else {
+            cloneReadingsDate.push(
+              value.readings_date.split("T")[0].split("-")[2]
+            );
+          }
         });
       }
     } catch (err) {
@@ -129,9 +139,7 @@ const Chart = ({ allValues, ApHv }) => {
         </Fragment>
       ) : (
         <div>
-          <h3 style={{ marginTop: "50px", fontSize: "3rem" }}>
-            No readings from today
-          </h3>
+          <h3 style={{ marginTop: "50px", fontSize: "3rem" }}>No readings</h3>
         </div>
       )}
     </div>

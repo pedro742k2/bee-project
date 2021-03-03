@@ -13,6 +13,7 @@ import removeParticlesIcon from "../../Assets/remove-particles.svg";
 import closeRed from "../../Assets/closeRed.svg";
 import refreshIcon from "../../Assets/refresh.svg";
 import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
+import chartIcon from "../../Assets/chart.svg";
 import tempIcon from "../../Components/ActualValues/Assets/thermometer.svg";
 import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
 import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
@@ -38,6 +39,7 @@ class About extends Component {
         closeRed,
         refreshIcon,
         refreshColorfulIcon,
+        chartIcon,
       ],
     };
   }
@@ -162,6 +164,11 @@ class About extends Component {
                   <div className="icon-license-container">
                     <img src={iconsToCredit[11]} alt=""></img>
                     <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[12]} alt=""></img>
+                    <p>Designed by Pixel perfect from Flaticon</p>
                   </div>
                 </span>
               </div>
