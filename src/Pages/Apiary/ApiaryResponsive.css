@@ -222,6 +222,10 @@
   #actual-values {
     width: 95vw;
   }
+
+  .hidden-img {
+    height: 50%;
+  }
 }
 
 @media (max-width: 350px) {

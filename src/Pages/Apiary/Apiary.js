@@ -55,7 +55,6 @@ const Apiary = () => {
       }
 
       if (selectedHives?.length === 0) {
-        console.log(selectedHives);
         setAllValues(undefined);
         setActualValues(["-", "-", "-", "-", "-"]);
         setReadOn("No hive selected");
