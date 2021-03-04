@@ -73,32 +73,38 @@
 .add-aphv-container button {
   margin-top: 10px;
   padding: 5px 20px;
-  font-weight: bold;
+  font-weight: bolder;
   background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+
+  transition: all 0.2s linear;
 }
 
 .add-aphv-container button:hover {
-  background-color: #fff;
-  color: #ff3600;
+  /* background-color: #fff; */
+  box-shadow: inset 0 -50px 0 0 #fff;
+  color: #000;
 }
 
 .error-msg {
   cursor: default;
 
   text-align: center;
-  font-size: 1.5rem;
-  padding: 5px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin-bottom: 10px;
   border: 2px solid #fff;
-  border-radius: 1px;
+  border-radius: 5px;
 
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 
-  background: #ff6334;
-  background: -webkit-linear-gradient(to right, #ff6334, #ff3c00);
-  background: linear-gradient(to right, #ff6334, #ff3c00);
+  background: #ff5420;
+  background: -webkit-linear-gradient(to right, #ff5420, #ff3c00);
+  background: linear-gradient(to right, #ff5420, #ff3c00);
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {

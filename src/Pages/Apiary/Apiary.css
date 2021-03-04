@@ -102,7 +102,7 @@
   width: 80%;
   padding: 10px;
   margin: 5px 10px;
-  transition: all 0.05s linear;
+  transition: all 0.2s ease-in-out;
 }
 
 .apiary div img {
