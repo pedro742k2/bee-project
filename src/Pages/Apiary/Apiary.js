@@ -21,7 +21,14 @@ const Apiary = () => {
 
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
-  const [actualValues, setActualValues] = useState(["-", "-", "-", "-", "-"]);
+  const [actualValues, setActualValues] = useState([
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+  ]);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
 
@@ -54,9 +61,11 @@ const Apiary = () => {
         data = undefined;
       }
 
+      console.log(data);
+
       if (selectedHives?.length === 0) {
         setAllValues(undefined);
-        setActualValues(["-", "-", "-", "-", "-"]);
+        setActualValues(["-", "-", "-", "-", "-", "-"]);
         setReadOn("No hive selected");
         setReceivedOn("No hive selected");
       } else if (data) {
@@ -110,13 +119,13 @@ const Apiary = () => {
             }
           } else {
             setAllValues(undefined);
-            setActualValues(["-", "-", "-", "-", "-"]);
+            setActualValues(["-", "-", "-", "-", "-", "-"]);
             setReadOn("Not available yet");
             setReceivedOn("Not available yet");
           }
         } else {
           setAllValues(undefined);
-          setActualValues(["-", "-", "-", "-", "-"]);
+          setActualValues(["-", "-", "-", "-", "-", "-"]);
           setReadOn("Not available yet");
           setReceivedOn("Not available yet");
         }
@@ -155,7 +164,7 @@ const Apiary = () => {
     )[0].style;
 
     try {
-      if (window.innerWidth >= 1400) {
+      if (window.innerWidth >= 1250) {
         if (
           document.body.scrollTop > 80 ||
           document.documentElement.scrollTop > 80

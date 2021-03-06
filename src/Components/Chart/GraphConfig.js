@@ -10,6 +10,10 @@ const chartOptions = {
           fontColor: "#fff",
           fontSize: 10,
         },
+
+        gridLines: {
+          color: "rgba(0, 0, 0, 0)",
+        },
       },
     ],
 
@@ -20,6 +24,10 @@ const chartOptions = {
           fontSize: 10,
           min: 0,
           max: 100,
+        },
+
+        gridLines: {
+          color: "rgba(0, 0, 0, 0)",
         },
       },
     ],

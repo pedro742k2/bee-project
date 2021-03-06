@@ -9,8 +9,8 @@ const BatteryData = ({ ApHv, battery, readingsDate, chartOptions }) => {
         label: `Hive #${ApHv} Battery`,
         data: battery,
 
-        backgroundColor: "rgba(0, 255, 114, 0.2)",
-        borderColor: "#00FF72",
+        backgroundColor: "rgba(49, 255, 117, 0.2)",
+        borderColor: "#31FF75",
         fill: true,
         lineTension: 0.2,
         borderCapStyle: "butt",

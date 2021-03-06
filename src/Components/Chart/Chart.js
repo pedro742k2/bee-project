@@ -3,6 +3,7 @@ import chartOptions from "./GraphConfig";
 import "./Chart.css";
 /* DATA */
 import IntTempData from "./data/InternalTempData";
+import SolarVoltage from "./data/SolarVoltageData";
 import ExtTempData from "./data/ExternalTempData";
 import HmdtData from "./data/HmdtData";
 import WeightData from "./data/WeightData";
@@ -10,21 +11,22 @@ import BatteryData from "./data/BatteryData";
 
 const Chart = ({ allValues, ApHv, measurementType }) => {
   const [readyToDisplay, setReadyToDisplay] = useState(false);
-  // const [temp, setTemp] = useState([]);
-  const [extTemp, setExtTemp] = useState([]);
-  const [intTemp, setIntTemp] = useState([]);
-  const [hmdt, setHmdt] = useState([]);
   const [weight, setWeight] = useState([]);
+  const [intTemp, setIntTemp] = useState([]);
+  const [solarVoltage, setSolarVoltage] = useState([]);
+  const [extTemp, setExtTemp] = useState([]);
+  const [hmdt, setHmdt] = useState([]);
   const [battery, setBattery] = useState([]);
   const [readingsDate, setReadingsDate] = useState([]);
 
   useEffect(() => {
     let error = false;
 
-    const cloneExtTemp = [];
-    const cloneIntTemp = [];
-    const cloneHmdt = [];
     const cloneWeight = [];
+    const cloneIntTemp = [];
+    const cloneSolarVoltage = [];
+    const cloneExtTemp = [];
+    const cloneHmdt = [];
     const cloneBattery = [];
     const cloneReadingsDate = [];
 
@@ -47,6 +49,7 @@ const Chart = ({ allValues, ApHv, measurementType }) => {
             .split(".")[0]
             .split(":");
 
+          cloneSolarVoltage.push(value.solar_panel_voltage);
           cloneExtTemp.push(value.external_temperature);
           cloneIntTemp.push(value.internal_temperature);
           cloneHmdt.push(value.humidity);
@@ -71,18 +74,20 @@ const Chart = ({ allValues, ApHv, measurementType }) => {
 
     if (!error) {
       setReadyToDisplay(true);
-      setExtTemp(cloneExtTemp);
-      setIntTemp(cloneIntTemp);
-      setHmdt(cloneHmdt);
       setWeight(cloneWeight);
+      setIntTemp(cloneIntTemp);
+      setSolarVoltage(cloneSolarVoltage);
+      setExtTemp(cloneExtTemp);
+      setHmdt(cloneHmdt);
       setBattery(cloneBattery);
       setReadingsDate(cloneReadingsDate);
     } else {
       setReadyToDisplay(false);
-      setExtTemp([]);
-      setIntTemp([]);
-      setHmdt([]);
       setWeight([]);
+      setIntTemp([]);
+      setSolarVoltage([]);
+      setExtTemp([]);
+      setHmdt([]);
       setBattery([]);
       setReadingsDate([]);
     }
@@ -102,15 +107,6 @@ const Chart = ({ allValues, ApHv, measurementType }) => {
           </div>
 
           <div className="chart">
-            <ExtTempData
-              ApHv={ApHv}
-              temp={extTemp}
-              readingsDate={readingsDate}
-              chartOptions={chartOptions}
-            />
-          </div>
-
-          <div className="chart">
             <IntTempData
               ApHv={ApHv}
               temp={intTemp}
@@ -120,9 +116,27 @@ const Chart = ({ allValues, ApHv, measurementType }) => {
           </div>
 
           <div className="chart">
+            <ExtTempData
+              ApHv={ApHv}
+              temp={extTemp}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
+
+          <div className="chart">
             <HmdtData
               ApHv={ApHv}
               hmdt={hmdt}
+              readingsDate={readingsDate}
+              chartOptions={chartOptions}
+            />
+          </div>
+
+          <div className="chart">
+            <SolarVoltage
+              ApHv={ApHv}
+              solarVoltage={solarVoltage}
               readingsDate={readingsDate}
               chartOptions={chartOptions}
             />

@@ -6,6 +6,9 @@ import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import "./ApiaryMenu.css";
 
 const ApiaryMenu = ({ selectHive }) => {
+  // Cancel error message timeout when unmounted
+  let timeOut = undefined;
+
   const getApHv = sessionStorage.getItem("hives_id");
   const token =
     JSON.parse(sessionStorage.getItem("token")) ||
@@ -40,8 +43,10 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   const removeErrors = () => {
-    setTimeout(() => {
+    console.log(":)");
+    timeOut = setTimeout(() => {
       try {
+        console.log("hey");
         setErrors(undefined);
       } catch {
         console.warn(
@@ -79,7 +84,6 @@ const ApiaryMenu = ({ selectHive }) => {
       });
 
     setUpdate(true);
-    // setPending(false);
   };
 
   const removeApiary = (event) => {
@@ -107,7 +111,6 @@ const ApiaryMenu = ({ selectHive }) => {
       });
 
     setUpdate(true);
-    // setPending(false);
   };
 
   useEffect(async () => {
@@ -145,6 +148,8 @@ const ApiaryMenu = ({ selectHive }) => {
 
     setPending(false);
     setUpdate(false);
+
+    return clearTimeout(timeOut);
   }, [getApHv, update]);
 
   return (

@@ -1,16 +1,21 @@
 // import Hours from "../Hours";
 import { Line } from "react-chartjs-2";
 
-const WeightData = ({ ApHv, weight, readingsDate, chartOptions }) => {
+const SolarVoltageData = ({
+  ApHv,
+  solarVoltage,
+  readingsDate,
+  chartOptions,
+}) => {
   const data = {
     labels: readingsDate,
     datasets: [
       {
-        label: `Hive #${ApHv} Weight`,
-        data: weight,
+        label: `Hive #${ApHv} Solar Panel Voltage`,
+        data: solarVoltage,
 
-        backgroundColor: "rgba(255, 191, 54, 0.2)",
-        borderColor: "#FFBF36",
+        backgroundColor: "rgba(255, 246, 58, 0.2)",
+        borderColor: "#FFF63A",
         fill: true,
         lineTension: 0.2,
         borderCapStyle: "butt",
@@ -18,10 +23,10 @@ const WeightData = ({ ApHv, weight, readingsDate, chartOptions }) => {
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
         pointBorderColor: "#fff",
-        pointBackgroundColor: "#B24B00",
+        pointBackgroundColor: "#00C31C",
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "#B24B00",
+        pointHoverBackgroundColor: "#00C31C",
         pointHoverBorderColor: "#fff",
         pointHoverBorderWidth: 2,
         pointRadius: 1,
@@ -57,7 +62,7 @@ const WeightData = ({ ApHv, weight, readingsDate, chartOptions }) => {
 
         title: {
           display: chartOptions.displayTitle,
-          text: "Weight (Kg)",
+          text: "Solar panel voltage (v)",
           fontSize: 34,
           fontColor: "#fff",
         },
@@ -74,4 +79,4 @@ const WeightData = ({ ApHv, weight, readingsDate, chartOptions }) => {
   );
 };
 
-export default WeightData;
+export default SolarVoltageData;

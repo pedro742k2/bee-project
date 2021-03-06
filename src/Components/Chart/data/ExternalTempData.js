@@ -9,8 +9,8 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
         label: `Hive #${ApHv} External temperature`,
         data: temp,
 
-        backgroundColor: "rgba(255, 112, 0, 0.2)",
-        borderColor: "#FF7000",
+        backgroundColor: "rgba(255, 115, 30, 0.2)",
+        borderColor: "#FF731E",
         fill: true,
         lineTension: 0.2,
         borderCapStyle: "butt",
@@ -41,12 +41,15 @@ const TempData = ({ ApHv, temp, readingsDate, chartOptions }) => {
 
           yAxes: [
             {
+              gridLines: {
+                color: "rgba(0, 0, 0, 0)",
+              },
+
               ticks: {
                 fontColor: "#fff",
                 fontSize: 10,
                 min: 0,
-                // min: parseInt(Math.min(...data.datasets[0].data) - 5),
-                max: parseInt(Math.max(...data.datasets[0].data) + 5),
+                max: Math.ceil(Math.max(...data.datasets[0].data) / 10) * 10,
               },
             },
           ],

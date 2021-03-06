@@ -9,8 +9,8 @@ const HmdtData = ({ ApHv, hmdt, readingsDate, chartOptions }) => {
         label: `Hive #${ApHv} Humidity`,
         data: hmdt,
 
-        backgroundColor: "rgba(0, 124, 255, 0.2)",
-        borderColor: "#007CFF",
+        backgroundColor: "rgba(27, 176, 255, 0.2)",
+        borderColor: "#1BB0FF",
         fill: true,
         lineTension: 0.2,
         borderCapStyle: "butt",
