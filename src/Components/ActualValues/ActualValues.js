@@ -9,8 +9,8 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
   const btnOptions = {
     content: ["Weight", "Temperature", "Humidity", "Battery"],
     values: [
-      actualValues[2] + " Kg",
-      actualValues[0] + " °C",
+      Math.round(actualValues[2] * 10) / 10 + "Kg",
+      Math.round(actualValues[0] * 10) / 10 + "°C",
       actualValues[1] + "%",
       actualValues[3] + "%",
     ],
@@ -31,7 +31,11 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
                 <img alt="" src={btnOptions.icons[index]}></img>
               </p>
 
-              <p>{btnOptions.values[index]}</p>
+              {actualValues[index] === "-" ? (
+                <p>...</p>
+              ) : (
+                <p>{btnOptions.values[index]}</p>
+              )}
             </div>
           );
         })}
