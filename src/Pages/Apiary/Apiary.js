@@ -348,7 +348,9 @@ const Apiary = () => {
                       </h3>
                     </div>
 
-                    {selectedHives[0] === undefined ? (
+                    {selectedHives[0] === undefined ||
+                    allValues === undefined ||
+                    allValues.length === 0 ? (
                       <Fragment />
                     ) : (
                       <div
@@ -370,7 +372,9 @@ const Apiary = () => {
                       measurementType={measurementType}
                     />
 
-                    {selectedHives[0] === undefined ? (
+                    {selectedHives[0] === undefined ||
+                    allValues === undefined ||
+                    allValues.length === 0 ? (
                       <Fragment />
                     ) : (
                       <div className="graphs-info" ref={graphEndInfo}>
