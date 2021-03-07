@@ -14,7 +14,7 @@ import closeRed from "../../Assets/closeRed.svg";
 import refreshIcon from "../../Assets/refresh.svg";
 import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
 import chartIcon from "../../Assets/chart.svg";
-import tempIcon from "../../Components/ActualValues/Assets/thermometer.svg";
+import tempIcon from "../../Components/ActualValues/Assets/int_temp.svg";
 import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
 import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
 import batteryIcon from "../../Components/ActualValues/Assets/battery.svg";

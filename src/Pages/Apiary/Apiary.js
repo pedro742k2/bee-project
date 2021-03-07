@@ -102,9 +102,11 @@ const Apiary = () => {
 
               setAllValues(data.data);
               setActualValues([
-                data.lastValues.internal_temperature,
-                data.lastValues.humidity,
                 data.lastValues.weight,
+                data.lastValues.internal_temperature,
+                data.lastValues.external_temperature,
+                data.lastValues.humidity,
+                data.lastValues.solar_panel_voltage,
                 data.lastValues.battery,
               ]);
               setReadOn(formatedReadingsDateInfo);
@@ -142,7 +144,7 @@ const Apiary = () => {
     }
   };
 
-  const scrollFunction = () => {
+  /* const scrollFunction = () => {
     const actualValuesContainer = document.getElementById("actual-values")
       .style;
     const actualValuesTitle = document.getElementById("actual-values-title")
@@ -174,7 +176,7 @@ const Apiary = () => {
     } catch {
       console.warn("Tried to apply scroll effect but failed");
     }
-  };
+  }; */
 
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
@@ -209,9 +211,9 @@ const Apiary = () => {
   };
 
   useEffect(() => {
-    window.onscroll = () => {
+    /* window.onscroll = () => {
       scrollFunction();
-    };
+    }; */
 
     const dateInput = document.getElementsByClassName("select-date")[0];
 
