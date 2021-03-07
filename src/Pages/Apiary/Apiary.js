@@ -19,16 +19,12 @@ const Apiary = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [date, setDate] = useState();
 
+  const DEFAULT_ACTUAL_VALUES_STATE = ["-", "-", "-", "-", "-", "-"];
+  const DEFAULT_READ_STATE = "No hive selected";
+
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
-  const [actualValues, setActualValues] = useState([
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-  ]);
+  const [actualValues, setActualValues] = useState(DEFAULT_ACTUAL_VALUES_STATE);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
 
@@ -36,6 +32,13 @@ const Apiary = () => {
 
   // Check if logged in
   const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
+
+  const resetStatesWhenError = () => {
+    setAllValues(undefined);
+    setActualValues(DEFAULT_ACTUAL_VALUES_STATE);
+    setReadOn(DEFAULT_READ_STATE);
+    setReceivedOn(DEFAULT_READ_STATE);
+  };
 
   const getValues = async () => {
     setApHv(selectedHives[0]);
@@ -62,46 +65,40 @@ const Apiary = () => {
       }
 
       if (selectedHives?.length === 0) {
-        setAllValues(undefined);
-        setActualValues(["-", "-", "-", "-", "-", "-"]);
-        setReadOn("No hive selected");
-        setReceivedOn("No hive selected");
+        resetStatesWhenError();
       } else if (data) {
         if (
-          data !== "invalid resource" &&
           data !== "Unable to get data" &&
-          data !== "not available" &&
-          data !== undefined
+          data !== undefined &&
+          data !== null
         ) {
           if (data.data?.length >= 1 || data?.lastValues) {
             try {
               /* Date of when the data was read */
-              const readingsDateInfo = data.lastValues.readings_date.split("T");
-              let date = readingsDateInfo[0].split("-");
-              const hours = readingsDateInfo[1].split(".")[0].split(":");
-              date = `${date[2]}-${date[1]}-${date[0]} ${hours[0]}:${hours[1]}`;
+              const readingsDateInfo = new Date(data.lastValues.readings_date);
+              const formatedReadingsDateInfo = `${(
+                "0" + readingsDateInfo.getDate()
+              ).slice(-2)}-${("0" + (readingsDateInfo.getMonth() + 1)).slice(
+                -2
+              )}-${readingsDateInfo.getFullYear()} ${(
+                "0" + readingsDateInfo.getHours()
+              ).slice(-2)}:${("0" + readingsDateInfo.getMinutes()).slice(-2)}`;
 
               /* Date of when the data was received */
               const nowDate = new Date();
-              const currentDay =
-                nowDate.getDate() <= 9
-                  ? "0" + nowDate.getDate()
-                  : nowDate.getDate();
-              const currentMonth =
-                nowDate.getMonth() + 1 <= 9
-                  ? "0" + (nowDate.getMonth() + 1)
-                  : nowDate.getMonth() + 1;
-              const currentYear = nowDate.getFullYear();
-              const currentHour =
-                nowDate.getHours() <= 9
-                  ? "0" + nowDate.getHours()
-                  : nowDate.getHours();
-              const currentMinute =
-                nowDate.getMinutes() <= 9
-                  ? "0" + nowDate.getMinutes()
-                  : nowDate.getMinutes();
-              const currentTime = `${currentDay}-${currentMonth}-${currentYear} ${currentHour}:${currentMinute}`;
-              setDate(`${currentYear}-${currentMonth}-${currentDay}`);
+              const formatedNowDate = `${("0" + nowDate.getDate()).slice(
+                -2
+              )}-${("0" + (nowDate.getMonth() + 1)).slice(
+                -2
+              )}-${nowDate.getFullYear()} ${("0" + nowDate.getHours()).slice(
+                -2
+              )}:${("0" + nowDate.getMinutes()).slice(-2)}`;
+              setDate(
+                `${nowDate.getFullYear()}-${(
+                  "0" +
+                  (nowDate.getMonth() + 1)
+                ).slice(-2)}-${("0" + nowDate.getDate()).slice(-2)}`
+              );
 
               setAllValues(data.data);
               setActualValues([
@@ -110,22 +107,16 @@ const Apiary = () => {
                 data.lastValues.weight,
                 data.lastValues.battery,
               ]);
-              setReadOn(date);
-              setReceivedOn(currentTime);
-            } catch (error) {
-              console.log(error);
+              setReadOn(formatedReadingsDateInfo);
+              setReceivedOn(formatedNowDate);
+            } catch {
+              resetStatesWhenError();
             }
           } else {
-            setAllValues(undefined);
-            setActualValues(["-", "-", "-", "-", "-", "-"]);
-            setReadOn("Not available yet");
-            setReceivedOn("Not available yet");
+            resetStatesWhenError();
           }
         } else {
-          setAllValues(undefined);
-          setActualValues(["-", "-", "-", "-", "-", "-"]);
-          setReadOn("Not available yet");
-          setReceivedOn("Not available yet");
+          resetStatesWhenError();
         }
       }
     }
@@ -218,6 +209,10 @@ const Apiary = () => {
   };
 
   useEffect(() => {
+    window.onscroll = () => {
+      scrollFunction();
+    };
+
     const dateInput = document.getElementsByClassName("select-date")[0];
 
     try {
@@ -231,10 +226,6 @@ const Apiary = () => {
       console.warn(error);
     }
 
-    window.onscroll = () => {
-      scrollFunction();
-    };
-
     if (selectedDate === "") {
       const nowDate = new Date();
       const currentDate = `${nowDate.getFullYear()}-${
@@ -246,14 +237,11 @@ const Apiary = () => {
     getValues();
 
     const nowDate = new Date();
-    const currentDay =
-      nowDate.getDate() <= 9 ? "0" + nowDate.getDate() : nowDate.getDate();
-    const currentMonth =
-      nowDate.getMonth() + 1 <= 9
-        ? "0" + (nowDate.getMonth() + 1)
-        : nowDate.getMonth() + 1;
-    const currentYear = nowDate.getFullYear();
-    setDate(`${currentYear}-${currentMonth}-${currentDay}`);
+    setDate(
+      `${nowDate.getFullYear()}-${("0" + (nowDate.getMonth() + 1)).slice(
+        -2
+      )}-${("0" + nowDate.getDate()).slice(-2)}`
+    );
 
     const interval = setInterval(() => {
       getValues();
