@@ -61,8 +61,6 @@ const Apiary = () => {
         data = undefined;
       }
 
-      console.log(data);
-
       if (selectedHives?.length === 0) {
         setAllValues(undefined);
         setActualValues(["-", "-", "-", "-", "-", "-"]);

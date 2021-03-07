@@ -303,7 +303,13 @@
 
 @media (max-height: 730px) {
   #actual-values {
-    height: 80vh;
+    height: 50vh;
+  }
+}
+
+@media (max-height: 730px) and (min-width: 1250px) {
+  .graph-opt-container {
+    margin-top: 50vh;
   }
 }
 

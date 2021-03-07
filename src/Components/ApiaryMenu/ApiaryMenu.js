@@ -43,10 +43,8 @@ const ApiaryMenu = ({ selectHive }) => {
   };
 
   const removeErrors = () => {
-    console.log(":)");
     timeOut = setTimeout(() => {
       try {
-        console.log("hey");
         setErrors(undefined);
       } catch {
         console.warn(
