@@ -17,6 +17,8 @@ import chartIcon from "../../Assets/chart.svg";
 import tempIcon from "../../Components/ActualValues/Assets/int_temp.svg";
 import hmdtIcon from "../../Components/ActualValues/Assets/humidity.svg";
 import weightIcon from "../../Components/ActualValues/Assets/weighing-machine.svg";
+import extTempIcon from "../../Components/ActualValues/Assets/ext_temp.svg";
+import spVoltage from "../../Components/ActualValues/Assets/voltage.svg";
 import batteryIcon from "../../Components/ActualValues/Assets/battery.svg";
 
 class About extends Component {
@@ -40,6 +42,8 @@ class About extends Component {
         refreshIcon,
         refreshColorfulIcon,
         chartIcon,
+        extTempIcon,
+        spVoltage,
       ],
     };
   }
@@ -169,6 +173,16 @@ class About extends Component {
                   <div className="icon-license-container">
                     <img src={iconsToCredit[12]} alt=""></img>
                     <p>Designed by Pixel perfect from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[13]} alt=""></img>
+                    <p>Designed by Freepik from Flaticon</p>
+                  </div>
+
+                  <div className="icon-license-container">
+                    <img src={iconsToCredit[14]} alt=""></img>
+                    <p>Designed by Those Icons from Flaticon</p>
                   </div>
                 </span>
               </div>
