@@ -141,6 +141,10 @@
 }
 
 @media (max-width: 850px) {
+  .actual-values-legend {
+    display: none;
+  }
+
   #actual-values {
     height: 55vh;
   }

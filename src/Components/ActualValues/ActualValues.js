@@ -106,6 +106,18 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
           <span>Readings from:</span> {`${readOn}`}
         </p>
       </div>
+
+      <div className="actual-values-legend">
+        <span>
+          <b>Int. Temp - </b>Internal Temperature
+        </span>
+        <span>
+          <b>Ext. Temp - </b>External Temperature
+        </span>
+        <span>
+          <b>SP Voltage - </b>Solar Panel Voltage Temperature
+        </span>
+      </div>
     </div>
   );
 };

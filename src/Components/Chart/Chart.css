@@ -13,5 +13,6 @@
   width: 75vw;
   height: 30vh;
 
-  /* background-color: #f0ff00; */
+  animation: fadeInUp;
+  animation-duration: 2s;
 }
