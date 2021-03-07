@@ -87,7 +87,7 @@ const LoginForm = ({ setLoginToken, onLoginPage, changeLoginPage }) => {
 
   return (
     <div className="main-div">
-      <div style={{ animation: "fadeIn 0.5s ease-in" }} className="login-form">
+      <div className="login-form">
         <div className="buttons-div">
           <button
             onClick={() => {

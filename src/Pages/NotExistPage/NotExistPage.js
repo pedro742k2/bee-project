@@ -52,7 +52,7 @@ class NotExistPage extends Component {
           />
         </header>
 
-        <main className="nopage-main">
+        <main className="nopage-main zoomIn_animation">
           <p className="bee-p">
             <img alt="" src={NoBeeIcon}></img>
             <p>{"Your bees won't work here :("}</p>

@@ -85,3 +85,8 @@ button,
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ff3c00;
 }
+
+.zoomIn_animation {
+  animation: zoomIn;
+  animation-duration: 0.3s;
+}

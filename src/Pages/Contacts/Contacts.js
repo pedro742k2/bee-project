@@ -32,7 +32,7 @@ class Contacts extends Component {
           <NavBar changeMenuState={this.changeMenuState} />
         </header>
 
-        <main className="contactspage-main">
+        <main className="contactspage-main zoomIn_animation">
           <p>Contacts Page</p>
           <p>Under development</p>
           <div className="contact-info">

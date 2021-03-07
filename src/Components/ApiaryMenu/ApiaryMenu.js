@@ -164,10 +164,7 @@ const ApiaryMenu = ({ selectHive }) => {
       )}
       {apiaries?.sort().map((apiary) => {
         return (
-          <div
-            key={apiary}
-            className="apiary animate__animated animate__backInUp"
-          >
+          <div key={apiary} className="apiary">
             <p className="apiary-title">Apiary {apiary}</p>
 
             <div className>
@@ -180,7 +177,7 @@ const ApiaryMenu = ({ selectHive }) => {
 
                 if (check) {
                   return (
-                    <div className="hive-container animate__animated animate__backInUp">
+                    <div className="hive-container">
                       <p id={item[0]} onClick={selectHive}>
                         Hive {item[2]}
                       </p>

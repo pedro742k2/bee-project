@@ -263,7 +263,7 @@ const Apiary = () => {
 
       {burgerState ? (
         <Fragment>
-          <main className="apiarypage-main">
+          <main className="apiarypage-main zoomIn_animation">
             {loggedIn ? (
               <Fragment>
                 <div className="menus">

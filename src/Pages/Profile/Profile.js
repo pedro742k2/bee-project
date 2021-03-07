@@ -108,7 +108,7 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
         <NavBar changeMenuState={changeMenuState} />
       </header>
 
-      <main className="profile-main">
+      <main className="profile-main zoomIn_animation">
         {loggedIn ? (
           <div className="user-info-container">
             <h1>User stored information</h1>

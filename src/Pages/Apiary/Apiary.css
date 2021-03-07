@@ -91,6 +91,9 @@
   border-radius: 20px;
   margin: 20px 0px 20px 0px;
   padding: 0px 0px 20px 0px;
+
+  animation: fadeInLeft;
+  animation-duration: 0.5s;
 }
 
 .apiary div {

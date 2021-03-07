@@ -71,7 +71,7 @@ class About extends Component {
 
         {burger_state ? (
           <Fragment>
-            <main className="aboutpage-main">
+            <main className="aboutpage-main zoomIn_animation">
               <div className="about-container">
                 <span className="license-type">Credits</span>
                 <hr></hr>

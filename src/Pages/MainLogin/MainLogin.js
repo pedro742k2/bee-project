@@ -50,7 +50,7 @@ class MainLogin extends Component {
           <NavBar changeMenuState={this.changeMenuState} />
         </header>
 
-        <main className="login-main">
+        <main className="login-main zoomIn_animation">
           <LoginForm
             onLoginPage={onLoginPage} // Always start on login page
             changeLoginPage={this.changeLoginPage} // To clear input values

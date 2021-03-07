@@ -5,6 +5,9 @@
   flex-direction: row;
 
   cursor: default;
+
+  animation: fadeInUp;
+  animation-duration: 0.5s;
 }
 
 .rotating-refresh.loadingPage {

@@ -31,7 +31,7 @@ class Home extends Component {
           <NavBar changeMenuState={this.changeMenuState} />
         </header>
 
-        <main className="homepage-main">
+        <main className="homepage-main zoomIn_animation">
           <p>Home Page</p>
           <p>Under development</p>
         </main>
