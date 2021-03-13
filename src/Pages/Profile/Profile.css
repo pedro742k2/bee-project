@@ -8,6 +8,7 @@
 }
 
 .user-info-container {
+  position: relative;
   z-index: 10;
   width: 90vw;
   max-height: 80vh;
@@ -21,6 +22,8 @@
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   padding: 30px 20px;
   border-radius: 50px;
+
+  overflow-y: auto;
 }
 
 .profile-main h1 {
@@ -140,9 +143,19 @@
   cursor: pointer;
 }
 
-.logout-btn {
-  width: 200px;
+.rm-particles-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.logout-btn,
+.rm-particles-btn {
+  width: 300px;
   padding: 10px 20px;
+  margin: 0 5px;
   border: 2px solid #fff;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -156,7 +169,8 @@
   transition: all 0.2s ease-out;
 }
 
-.logout-btn:hover {
+.logout-btn:hover,
+.rm-particles-btn:hover {
   color: #000;
-  box-shadow: inset 200px 0 0 0 rgb(255, 255, 255);
+  box-shadow: inset 305px 0 0 0 rgb(255, 255, 255);
 }

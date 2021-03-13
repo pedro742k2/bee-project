@@ -169,8 +169,6 @@ const ApiaryMenu = ({ selectHive }) => {
 
             <div className>
               {apiaryHive.sort().map((item) => {
-                console.log(apiaryHive);
-
                 item = item.split("-");
 
                 const check = item[1] === apiary;

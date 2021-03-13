@@ -144,40 +144,6 @@ const Apiary = () => {
     }
   };
 
-  /* const scrollFunction = () => {
-    const actualValuesContainer = document.getElementById("actual-values")
-      .style;
-    const actualValuesTitle = document.getElementById("actual-values-title")
-      .style;
-
-    const readingsDatesContainer = document.getElementsByClassName(
-      "actual-info"
-    )[0].style;
-
-    try {
-      if (window.innerWidth >= 1250) {
-        if (
-          document.body.scrollTop > 80 ||
-          document.documentElement.scrollTop > 80
-        ) {
-          actualValuesContainer.backgroundColor = "rgba(0, 0, 0, 0.6)";
-          actualValuesContainer.height = "10vh";
-          actualValuesContainer.top = "0";
-          actualValuesTitle.display = "none";
-          readingsDatesContainer.display = "none";
-        } else {
-          actualValuesContainer.backgroundColor = "rgba(0, 0, 0, 0.2)";
-          actualValuesContainer.height = "40vh";
-          actualValuesContainer.top = "10vh";
-          actualValuesTitle.display = "block";
-          readingsDatesContainer.display = "flex";
-        }
-      }
-    } catch {
-      console.warn("Tried to apply scroll effect but failed");
-    }
-  }; */
-
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
     const nav_bar = document.getElementsByClassName("nav-bar")[0];
@@ -211,10 +177,6 @@ const Apiary = () => {
   };
 
   useEffect(() => {
-    /* window.onscroll = () => {
-      scrollFunction();
-    }; */
-
     const dateInput = document.getElementsByClassName("select-date")[0];
 
     try {
@@ -251,7 +213,6 @@ const Apiary = () => {
 
     return () => {
       clearInterval(interval);
-      window.onscroll = () => null;
     };
   }, [selectedHives, measurementType, selectedDate]);
 

@@ -30,6 +30,16 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
     setBurgerState(!burgerState);
   };
 
+  const toggleParticles = () => {
+    const disable = document
+      .getElementById("tsparticles")
+      .classList.toggle("disable");
+
+    window.location.reload();
+
+    localStorage.setItem("particlesState", disable);
+  };
+
   const updateUserInfo = async (event) => {
     const id = event?.target?.id;
 
@@ -111,7 +121,7 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
       <main className="profile-main zoomIn_animation">
         {loggedIn ? (
           <div className="user-info-container">
-            <h1>User stored information</h1>
+            <h1>User profile</h1>
 
             {!token?.name || token?.name === null || token?.name?.length < 4 ? (
               <h2>Hi, we see that you haven't set a name yet</h2>
@@ -204,15 +214,20 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
               </p>
             </div>
 
-            <button
-              onClick={() => {
-                setHaveLoggedOut(true);
-                logOut();
-              }}
-              className="logout-btn"
-            >
-              Log out
-            </button>
+            <div className="rm-particles-container">
+              <button className="rm-particles-btn" onClick={toggleParticles}>
+                Disable particles
+              </button>
+              <button
+                onClick={() => {
+                  setHaveLoggedOut(true);
+                  logOut();
+                }}
+                className="logout-btn"
+              >
+                Log out
+              </button>
+            </div>
           </div>
         ) : (
           /* NOT LOGGED IN */
