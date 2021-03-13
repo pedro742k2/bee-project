@@ -35,9 +35,9 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
       .getElementById("tsparticles")
       .classList.toggle("disable");
 
-    window.location.reload();
-
     localStorage.setItem("particlesState", disable);
+
+    window.location.reload();
   };
 
   const updateUserInfo = async (event) => {
