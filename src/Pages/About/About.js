@@ -9,7 +9,6 @@ import beeIcon from "../../Assets/bee.svg";
 import errorIcon from "../../Assets/error.svg";
 import honeyIcon from "../../Assets/honey.svg";
 import noBeeIcon from "../../Assets/no-bee.svg";
-import removeParticlesIcon from "../../Assets/remove-particles.svg";
 import closeRed from "../../Assets/closeRed.svg";
 import refreshIcon from "../../Assets/refresh.svg";
 import refreshColorfulIcon from "../../Assets/refresh_colorful.svg";
@@ -33,7 +32,6 @@ class About extends Component {
         errorIcon,
         honeyIcon,
         noBeeIcon,
-        removeParticlesIcon,
         tempIcon,
         hmdtIcon,
         weightIcon,
@@ -132,7 +130,7 @@ class About extends Component {
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[4]} alt=""></img>
-                    <p>Designed by Good Ware from Flaticon</p>
+                    <p>Designed by Freepik from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
@@ -142,12 +140,12 @@ class About extends Component {
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[6]} alt=""></img>
-                    <p>Designed by Freepik from Flaticon</p>
+                    <p>Designed by Good Ware from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[7]} alt=""></img>
-                    <p>Designed by Good Ware from Flaticon</p>
+                    <p>Designed by Vectors Market from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
@@ -157,7 +155,7 @@ class About extends Component {
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[9]} alt=""></img>
-                    <p>Designed by Vectors Market from Flaticon</p>
+                    <p>Designed by Freepik from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
@@ -167,21 +165,16 @@ class About extends Component {
 
                   <div className="icon-license-container">
                     <img src={iconsToCredit[11]} alt=""></img>
-                    <p>Designed by Freepik from Flaticon</p>
-                  </div>
-
-                  <div className="icon-license-container">
-                    <img src={iconsToCredit[12]} alt=""></img>
                     <p>Designed by Pixel perfect from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
-                    <img src={iconsToCredit[13]} alt=""></img>
+                    <img src={iconsToCredit[12]} alt=""></img>
                     <p>Designed by Freepik from Flaticon</p>
                   </div>
 
                   <div className="icon-license-container">
-                    <img src={iconsToCredit[14]} alt=""></img>
+                    <img src={iconsToCredit[13]} alt=""></img>
                     <p>Designed by Those Icons from Flaticon</p>
                   </div>
                 </span>
