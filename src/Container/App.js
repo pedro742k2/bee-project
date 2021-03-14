@@ -10,8 +10,6 @@ const App = () => {
   useEffect(() => {
     const particles = document.getElementById("tsparticles");
 
-    console.log(particlesState);
-
     particlesState === "true"
       ? particles.classList.add("disable")
       : particles.classList.remove("disable");

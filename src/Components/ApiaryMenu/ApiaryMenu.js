@@ -111,41 +111,42 @@ const ApiaryMenu = ({ selectHive }) => {
     setUpdate(true);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     setPending(true);
 
-    await Fetch("/get-user-data", "post", {
-      userName: token?.userName,
-      email: token?.email,
-    })
-      .then((info) => {
-        let firstCount = true;
-
-        let hivesId = "";
-        let hivesAllInfo = [];
-
-        info?.forEach((item) => {
-          hivesId += item.hive_id + ";";
-          hivesAllInfo.push(
-            `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
-          );
-          firstCount = false;
-        });
-
-        sessionStorage.setItem("hives_id", hivesId);
-        if (info.length === 0) {
-          setEmpty(true);
-          setPending(false);
-          setApiaries(undefined);
-        } else {
-          setEmpty(false);
-          updateApiaries(hivesAllInfo);
-        }
+    const requestUserData = async () => {
+      await Fetch("/get-user-data", "post", {
+        userName: token?.userName,
+        email: token?.email,
       })
-      .catch(() => false);
+        .then((info) => {
+          let hivesId = "";
+          let hivesAllInfo = [];
 
-    setPending(false);
-    setUpdate(false);
+          info?.forEach((item) => {
+            hivesId += item.hive_id + ";";
+            hivesAllInfo.push(
+              `${item.hive_id}-${item.apiary_number}-${item.hive_number}`
+            );
+          });
+
+          sessionStorage.setItem("hives_id", hivesId);
+          if (info.length === 0) {
+            setEmpty(true);
+            setPending(false);
+            setApiaries(undefined);
+          } else {
+            setEmpty(false);
+            updateApiaries(hivesAllInfo);
+          }
+        })
+        .catch(() => false);
+
+      setPending(false);
+      setUpdate(false);
+    };
+
+    requestUserData();
 
     return clearTimeout(timeOut);
   }, [getApHv, update]);

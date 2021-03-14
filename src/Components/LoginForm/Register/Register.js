@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import NotCorrect from "../../../Assets/error.svg";
 import refresh from "../../../Assets/refresh_colorful.svg";
 
 class Register extends Component {
