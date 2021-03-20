@@ -152,7 +152,7 @@
   flex-direction: column;
   width: 90%;
   min-height: 200px;
-  height: 50vh;
+  /* height: 50vh; */
 
   margin-top: 1vh;
   padding: 20px;

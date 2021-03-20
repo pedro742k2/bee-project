@@ -20,24 +20,32 @@ const Apiary = () => {
   const [date, setDate] = useState();
 
   const DEFAULT_ACTUAL_VALUES_STATE = ["-", "-", "-", "-", "-", "-"];
-  const DEFAULT_READ_STATE = "No hive selected";
+  const DEFAULT_READ_STATE_1 = "No hive selected";
+  const DEFAULT_READ_STATE_2 = "Not available yet";
 
   const [ApHv, setApHv] = useState("");
   const [allValues, setAllValues] = useState(undefined);
   const [actualValues, setActualValues] = useState(DEFAULT_ACTUAL_VALUES_STATE);
   const [readOn, setReadOn] = useState("Not available yet");
   const [receivedOn, setReceivedOn] = useState("Not available yet");
+  const [hiveTare, setHiveTare] = useState(undefined);
 
   const graphEndInfo = useRef(null);
 
   // Check if logged in
   const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
 
-  const resetStatesWhenError = () => {
+  const resetStatesWhenError = (hivesSelected = true) => {
     setAllValues(undefined);
     setActualValues(DEFAULT_ACTUAL_VALUES_STATE);
-    setReadOn(DEFAULT_READ_STATE);
-    setReceivedOn(DEFAULT_READ_STATE);
+    setHiveTare(undefined);
+    if (hivesSelected) {
+      setReadOn(DEFAULT_READ_STATE_2);
+      setReceivedOn(DEFAULT_READ_STATE_2);
+    } else {
+      setReadOn(DEFAULT_READ_STATE_1);
+      setReceivedOn(DEFAULT_READ_STATE_1);
+    }
   };
 
   const getValues = async () => {
@@ -64,8 +72,10 @@ const Apiary = () => {
         data = undefined;
       }
 
+      console.log(data);
+
       if (selectedHives?.length === 0) {
-        resetStatesWhenError();
+        resetStatesWhenError(false);
       } else if (data) {
         if (
           data !== "Unable to get data" &&
@@ -111,6 +121,7 @@ const Apiary = () => {
               ]);
               setReadOn(formatedReadingsDateInfo);
               setReceivedOn(formatedNowDate);
+              setHiveTare(data.tareWeight[0].tare_weight);
             } catch {
               resetStatesWhenError();
             }
@@ -235,9 +246,11 @@ const Apiary = () => {
                   <div id="actual-values">
                     <h1 id="actual-values-title">Last values</h1>
                     <ActualValues
+                      selectedHive={selectedHives[0]}
                       actualValues={actualValues}
                       readOn={readOn}
                       receivedOn={receivedOn}
+                      hiveTare={hiveTare}
                     />
                   </div>
                   <div id="charts">

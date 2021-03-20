@@ -168,7 +168,7 @@ const ApiaryMenu = ({ selectHive }) => {
           <div key={apiary} className="apiary">
             <p className="apiary-title">Apiary {apiary}</p>
 
-            <div className>
+            <div>
               {apiaryHive.sort().map((item) => {
                 item = item.split("-");
 

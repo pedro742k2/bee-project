@@ -1,0 +1,74 @@
+.fullscreen-alert {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.fullscreen-alert .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.fullscreen-alert .title img {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.fullscreen-alert .message {
+  font-size: 3rem;
+  line-height: 75px;
+}
+
+.fullscreen-alert .prompt {
+  padding: 10px;
+}
+
+.fullscreen-alert .prompt .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 2px solid #fff;
+  width: 100%;
+}
+
+.fullscreen-alert .prompt .buttons button {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+
+  cursor: pointer;
+}
+
+.fullscreen-alert .prompt .buttons button.yes {
+  background-color: rgb(0, 255, 0, 0.5);
+}
+
+.fullscreen-alert .prompt .buttons button.yes:hover {
+  background-color: rgb(0, 255, 0, 0.75);
+}
+
+.fullscreen-alert .prompt .buttons button.no {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.fullscreen-alert .prompt .buttons button.no:hover {
+  background-color: rgba(255, 0, 0, 0.75);
+}

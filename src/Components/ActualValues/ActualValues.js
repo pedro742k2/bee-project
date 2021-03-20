@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
+import FullscreenAlert from "../FullscreenAlert/FullscreenAlert";
 import "./ActualValues.css";
 import intTempIcon from "./Assets/int_temp.svg";
 import extTempIcon from "./Assets/ext_temp.svg";
@@ -6,8 +7,15 @@ import hmdtIcon from "./Assets/humidity.svg";
 import weightIcon from "./Assets/weighing-machine.svg";
 import voltageIcon from "./Assets/voltage.svg";
 import batteryIcon from "./Assets/battery.svg";
+import Fetch from "../../Settings/Fetch";
 
-const ActualValues = ({ actualValues, readOn, receivedOn }) => {
+const ActualValues = ({
+  selectedHive,
+  hiveTare,
+  actualValues,
+  readOn,
+  receivedOn,
+}) => {
   const values = {
     weight: Math.round(actualValues[0] * 10) / 10 + "Kg",
     intTemp: Math.round(actualValues[1] * 10) / 10 + "°C",
@@ -17,8 +25,41 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
     battery: actualValues[5] + "%",
   };
 
+  const [tare, setTare] = useState(undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const confirmEdit = (action) => {
+    if (!action) return setShowMessage(false);
+
+    Fetch("/add-tare", "put", {
+      hiveId: selectedHive,
+      tareWeight: tare,
+    })
+      .then((data) => {
+        const { tare_weight } = data[0];
+
+        if (Number(tare_weight) === Number(tare)) {
+          alert("Added");
+        } else {
+          alert("Sorry, something went wrong");
+        }
+
+        return setShowMessage(false);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="actual-values">
+      {showMessage ? (
+        <FullscreenAlert
+          message={`You are about to add or change the tare weight of hive #${selectedHive} to ${tare}Kg`}
+          confirmEdit={confirmEdit}
+        />
+      ) : (
+        <Fragment />
+      )}
+
       <div className="values-container">
         <div className="values">
           <p>
@@ -94,6 +135,41 @@ const ActualValues = ({ actualValues, readOn, receivedOn }) => {
       </div>
 
       <div className="actual-info">
+        {selectedHive !== undefined && selectedHive !== null ? (
+          <div className="tare-weight-container">
+            <span className="tare-weight-title">
+              Hive #{selectedHive} tare weight
+            </span>
+
+            <span className="tare-weight-input">
+              <input
+                id="hiveTareInput"
+                type="number"
+                defaultValue={hiveTare}
+                onChange={(event) => setTare(event.target.value)}
+              ></input>
+              Kg
+            </span>
+
+            {Number(hiveTare) ===
+            Number(document.getElementById("hiveTareInput")?.value) ? (
+              <Fragment />
+            ) : (
+              <button
+                onClick={() => {
+                  tare?.length >= 1
+                    ? setShowMessage(true)
+                    : setShowMessage(false);
+                }}
+              >
+                Apply
+              </button>
+            )}
+          </div>
+        ) : (
+          <Fragment />
+        )}
+
         <p>
           <span>Date format:</span> {"(DD/MM/YYYY HH:MM)"}
         </p>

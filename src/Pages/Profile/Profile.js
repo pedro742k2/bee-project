@@ -20,6 +20,8 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
   const getApHv = sessionStorage.getItem("hives_id");
   const loggedIn = JSON.parse(sessionStorage.getItem("isLogged"));
 
+  const particlesState = localStorage.getItem("particlesState");
+
   const changeMenuState = () => {
     const burger_menu = document.getElementsByClassName("hamburger--stand")[0];
     const nav_bar = document.getElementsByClassName("nav-bar")[0];
@@ -216,7 +218,9 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
 
             <div className="rm-particles-container">
               <button className="rm-particles-btn" onClick={toggleParticles}>
-                Disable particles
+                {particlesState === "true"
+                  ? "Enable particles"
+                  : "Disable Particles"}
               </button>
               <button
                 onClick={() => {

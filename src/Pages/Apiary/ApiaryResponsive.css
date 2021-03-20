@@ -145,8 +145,13 @@
     display: none;
   }
 
-  #actual-values {
-    height: 55vh;
+  .actual-info {
+    margin-left: 0;
+  }
+
+  .tare-weight-container {
+    width: 70%;
+    margin: 20px 0;
   }
 
   .actual-values {
@@ -205,6 +210,10 @@
 }
 
 @media (max-width: 450px) {
+  .tare-weight-container {
+    width: 90%;
+  }
+
   .custom-select-wrapper {
     width: 90vw;
   }
@@ -295,7 +304,7 @@
 
 @media (max-height: 900px) {
   #actual-values {
-    height: 60vh;
+    min-height: 60vh;
   }
 
   .chart {
@@ -305,7 +314,7 @@
 
 @media (max-height: 730px) {
   #actual-values {
-    height: 70vh;
+    min-height: 70vh;
   }
 }
 
@@ -317,7 +326,7 @@
 
 @media (max-height: 650px) {
   #actual-values {
-    height: 80vh;
+    min-height: 80vh;
   }
 
   .chart {
@@ -327,6 +336,6 @@
 
 @media (max-height: 530px) {
   #actual-values {
-    height: 90vh;
+    min-height: 90vh;
   }
 }

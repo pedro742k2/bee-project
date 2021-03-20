@@ -11,6 +11,7 @@
   outline: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 html {
@@ -31,7 +32,6 @@ body {
 html,
 body {
   font-size: 62.5%;
-  /* overflow-y: scroll; */
 
   padding: 0;
   margin: 0;
