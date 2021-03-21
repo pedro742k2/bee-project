@@ -72,8 +72,6 @@ const Apiary = () => {
         data = undefined;
       }
 
-      console.log(data);
-
       if (selectedHives?.length === 0) {
         resetStatesWhenError(false);
       } else if (data) {

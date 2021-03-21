@@ -31,10 +31,10 @@ const FullScreenAlert = ({ confirmEdit, message }) => {
           <p>Do you really want to continue?</p>
           <div className="buttons">
             <button className="no" onClick={() => confirmEdit(false)}>
-              No
+              Cancel
             </button>
             <button className="yes" onClick={() => confirmEdit(true)}>
-              Yes
+              Continue
             </button>
           </div>
         </div>

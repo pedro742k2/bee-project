@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import FullscreenAlert from "../FullscreenAlert/FullscreenAlert";
 import "./ActualValues.css";
 import intTempIcon from "./Assets/int_temp.svg";
@@ -27,6 +27,7 @@ const ActualValues = ({
 
   const [tare, setTare] = useState(undefined);
   const [showMessage, setShowMessage] = useState(false);
+  const [updating, setUpdating] = useState(false);
 
   const confirmEdit = (action) => {
     if (!action) return setShowMessage(false);
@@ -38,16 +39,20 @@ const ActualValues = ({
       .then((data) => {
         const { tare_weight } = data[0];
 
-        if (Number(tare_weight) === Number(tare)) {
-          alert("Added");
-        } else {
-          alert("Sorry, something went wrong");
-        }
+        setUpdating(true);
 
-        return setShowMessage(false);
+        setShowMessage(false);
+
+        if (Number(tare_weight) !== Number(tare))
+          return alert("Sorry, something went wrong");
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    setUpdating(false);
+    setTare(document.getElementById("hiveTareInput")?.value);
+  }, [actualValues]);
 
   return (
     <div className="actual-values">
@@ -152,7 +157,10 @@ const ActualValues = ({
             </span>
 
             {Number(hiveTare) ===
-            Number(document.getElementById("hiveTareInput")?.value) ? (
+              Number(document.getElementById("hiveTareInput")?.value) ||
+            tare === undefined ||
+            tare?.length === 0 ||
+            updating ? (
               <Fragment />
             ) : (
               <button
