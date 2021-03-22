@@ -30,23 +30,25 @@ const ActualValues = ({
   const [updating, setUpdating] = useState(false);
 
   const confirmEdit = (action) => {
-    if (!action) return setShowMessage(false);
-
-    Fetch("/add-tare", "put", {
-      hiveId: selectedHive,
-      tareWeight: tare,
-    })
-      .then((data) => {
-        const { tare_weight } = data[0];
-
-        setUpdating(true);
-
-        setShowMessage(false);
-
-        if (Number(tare_weight) !== Number(tare))
-          return alert("Sorry, something went wrong");
+    if (action)
+      return Fetch("/add-tare", "put", {
+        hiveId: selectedHive,
+        tareWeight: tare,
       })
-      .catch((error) => console.log(error));
+        .then((data) => {
+          const { tare_weight } = data[0];
+
+          setUpdating(true);
+
+          setShowMessage(false);
+
+          if (Number(tare_weight) !== Number(tare))
+            return alert("Sorry, something went wrong");
+        })
+        .catch((error) => console.log(error));
+
+    setShowMessage(false);
+    document.getElementById("hiveTareInput").value = hiveTare;
   };
 
   useEffect(() => {

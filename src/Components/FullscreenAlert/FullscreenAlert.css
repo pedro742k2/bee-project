@@ -31,7 +31,11 @@
 
 .fullscreen-alert .message {
   font-size: 3rem;
-  line-height: 75px;
+  line-height: 50px;
+}
+
+.fullscreen-alert .message.static {
+  margin-top: 20px;
 }
 
 .fullscreen-alert .prompt {
@@ -55,6 +59,7 @@
   border: none;
 
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .fullscreen-alert .prompt .buttons button.yes {

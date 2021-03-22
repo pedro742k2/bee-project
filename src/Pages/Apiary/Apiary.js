@@ -134,7 +134,19 @@ const Apiary = () => {
   };
 
   const addHive = (id) => {
-    setSelectedHives([...selectedHives, id]);
+    // setSelectedHives([...selectedHives, id]); // Uncomment when multigraph available
+    setSelectedHives([id]); // Comment when multigraph available
+
+    /* document.getElementsByClassName("hive-selector").forEach((item) => {
+      console.log(item);
+    }); */
+
+    // When multigraph available, comment all below this and uncomment above
+    for (const element of document.getElementsByClassName("hive-selector")) {
+      element.classList.remove("selected");
+    }
+
+    document.getElementById(id).classList.add("selected");
   };
 
   const removeHive = (id) => {

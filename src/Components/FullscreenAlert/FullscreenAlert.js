@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import "./FullscreenAlert.css";
+import "./FullscreenAlertResponsive.css";
 import warningIcon from "../../Assets/warning.svg";
 import { Fragment } from "react";
 
 const FullScreenAlert = ({ confirmEdit, message }) => {
   useEffect(() => {
-    const App = document.getElementsByClassName("App")[0];
-    App.classList.add("blur");
+    const overflow = document.querySelector("*");
+
+    overflow.style.overflow = "hidden";
 
     return () => {
-      App.classList.remove("blur");
+      overflow.style.overflow = "auto";
     };
   }, []);
 
@@ -21,11 +23,9 @@ const FullScreenAlert = ({ confirmEdit, message }) => {
           ALERT
         </p>
 
-        <p className="message">
-          {message}
-          <br />
-          This action can't be reversed!
-        </p>
+        <p className="message">{message}</p>
+
+        <p className="message static">This action can't be reversed!</p>
 
         <div className="prompt">
           <p>Do you really want to continue?</p>

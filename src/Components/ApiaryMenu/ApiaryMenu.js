@@ -177,7 +177,11 @@ const ApiaryMenu = ({ selectHive }) => {
                 if (check) {
                   return (
                     <div className="hive-container">
-                      <p id={item[0]} onClick={selectHive}>
+                      <p
+                        className="hive-selector"
+                        id={item[0]}
+                        onClick={selectHive}
+                      >
                         Hive {item[2]}
                       </p>
                       <img
