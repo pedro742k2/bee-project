@@ -201,7 +201,7 @@ const ActualValues = ({
           <b>Ext. Temp - </b>External Temperature
         </span>
         <span>
-          <b>SP Voltage - </b>Solar Panel Voltage Temperature
+          <b>SP Voltage - </b>Solar Panel Voltage
         </span>
       </div>
     </div>

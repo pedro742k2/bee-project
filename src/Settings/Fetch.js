@@ -1,7 +1,9 @@
 import ServerApi from "./ServerApi";
 
 const Fetch = (route, method, body) => {
-  const token = JSON.parse(localStorage.getItem("token"))?.token;
+  const token =
+    JSON.parse(localStorage.getItem("token"))?.token ||
+    JSON.parse(sessionStorage.getItem("token"))?.token;
 
   const promise = new Promise((resolve, reject) => {
     fetch(ServerApi + route, {

@@ -103,10 +103,12 @@ const Profile = ({ setLoginToken, token, logOut, localStored }) => {
   };
 
   useEffect(() => {
-    if (getApHv === null || getApHv === undefined || getApHv.length < 1) {
-      setUpdatedHives(
-        token?.hivesId ? token.hivesId : "No apiaries or hives added"
-      );
+    if (
+      String(getApHv) == "null" ||
+      String(getApHv) == "undefined" ||
+      getApHv.length < 1
+    ) {
+      setUpdatedHives("No apiaries or hives added");
     } else {
       setUpdatedHives(getApHv);
     }

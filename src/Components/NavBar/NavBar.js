@@ -42,7 +42,7 @@ const NavBar = ({ changeMenuState }) => {
   }, [path, loggedIn, isLogged]);
 
   const btnOptions = {
-    name: ["Home", "About", "Contacts", "Apiary"],
+    name: ["Home", "About", "Contacts", "Hives"],
     links: ["/", "/about", "/contacts", "/apiary"],
   };
 
