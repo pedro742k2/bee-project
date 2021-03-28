@@ -59,6 +59,7 @@ const Apiary = () => {
           data = await Fetch("/get-data", "post", {
             hiveId: selectedHives[0],
             currentDate: selectedDate,
+            clientDate: new Date(),
             measurementType: measurementType.toLowerCase(),
           })
             .then((data) => {
