@@ -42,8 +42,17 @@ const ActualValues = ({
 
           setShowMessage(false);
 
-          if (Number(tare_weight) !== Number(tare))
+          if (
+            Math.round((Number(tare_weight) + Number.EPSILON) * 100) / 100 !==
+            Math.round((Number(tare) + Number.EPSILON) * 100) / 100
+          )
             return alert("Sorry, something went wrong");
+
+          setTare(
+            Math.round((Number(tare_weight) + Number.EPSILON) * 100) / 100
+          );
+          document.getElementById("hiveTareInput").value =
+            Math.round((Number(tare_weight) + Number.EPSILON) * 100) / 100;
         })
         .catch((error) => console.log(error));
 
