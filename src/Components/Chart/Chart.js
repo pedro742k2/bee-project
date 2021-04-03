@@ -9,7 +9,7 @@ import HmdtData from "./data/HmdtData";
 import WeightData from "./data/WeightData";
 import BatteryData from "./data/BatteryData";
 
-const Chart = ({ allValues, ApHv, measurementType }) => {
+const Chart = ({ allValues, ApHv, measurementType, hiveTare }) => {
   const [readyToDisplay, setReadyToDisplay] = useState(false);
   const [weight, setWeight] = useState([]);
   const [intTemp, setIntTemp] = useState([]);
@@ -53,7 +53,7 @@ const Chart = ({ allValues, ApHv, measurementType }) => {
           cloneExtTemp.push(value.external_temperature);
           cloneIntTemp.push(value.internal_temperature);
           cloneHmdt.push(value.humidity);
-          cloneWeight.push(value.weight);
+          cloneWeight.push(Math.round((value.weight - hiveTare) * 100) / 100);
           cloneBattery.push(value.battery);
 
           if (

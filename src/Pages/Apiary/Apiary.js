@@ -355,6 +355,7 @@ const Apiary = () => {
                       allValues={allValues}
                       ApHv={ApHv}
                       measurementType={measurementType}
+                      hiveTare={Number(hiveTare)}
                     />
 
                     {selectedHives[0] === undefined ||
